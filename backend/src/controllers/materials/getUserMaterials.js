@@ -4,7 +4,7 @@ module.exports = async (req, res, Material) => {
     limit: 10,
   };
 
-  await Blog.paginate(
+  await Material.paginate(
     Material.find({ _user: req.user.id }),
     paginateOptions,
     (err, materials) => {
@@ -12,7 +12,7 @@ module.exports = async (req, res, Material) => {
         res.status(500).send({ error: "Could Not Fetch materials !" });
       } else {
         if (materials.docs.length > 0) {
-          res.status(200).send(materials);
+          res.status(200).send(materials.docs);
           return;
         } else {
           res.send(null);
