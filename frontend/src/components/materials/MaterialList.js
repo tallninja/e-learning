@@ -19,7 +19,7 @@ class MaterialList extends Component {
           alt="Profile"
         />
         <div className="content">
-          <Link to={`/materialss/content/${material._id}`} className="header">
+          <Link to={`/materials/content/${material._id}`} className="header">
             {material.title}
           </Link>
           <div className="description">
