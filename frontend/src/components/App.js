@@ -1,182 +1,58 @@
 import React, { Component } from "react";
+import { Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
-import { Layout, Menu } from "antd";
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UserOutlined,
-  UploadOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import Navbar from "./Navbar";
+import Dashboard from "./Dashboard";
+import MaterialCreate from "./materials/MaterialCreate";
+import MaterialContent from "./materials/MaterialContent";
+import MaterialDelete from "./materials/MaterialDelete";
+import MaterialEdit from "./materials/MaterialEdit";
+import Landing from "./Landing.js";
 
-import "./App.less";
-
-const { Header, Content, Footer, Sider } = Layout;
+import history from "../history";
 
 class App extends Component {
+  componentDidMount = () => {
+    this.props.fetchUser();
+  };
+
   render() {
     return (
-      <Layout>
-        <Sider
-          style={{
-            overflow: "auto",
-            height: "100vh",
-            position: "fixed",
-            left: 0,
-          }}
-        >
-          <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
-            <Menu.Item key="1" icon={<UserOutlined />}>
-              nav 1
-            </Menu.Item>
-            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-              nav 2
-            </Menu.Item>
-            <Menu.Item key="3" icon={<UploadOutlined />}>
-              nav 3
-            </Menu.Item>
-            <Menu.Item key="4" icon={<BarChartOutlined />}>
-              nav 4
-            </Menu.Item>
-            <Menu.Item key="5" icon={<CloudOutlined />}>
-              nav 5
-            </Menu.Item>
-            <Menu.Item key="6" icon={<AppstoreOutlined />}>
-              nav 6
-            </Menu.Item>
-            <Menu.Item key="7" icon={<TeamOutlined />}>
-              nav 7
-            </Menu.Item>
-            <Menu.Item key="8" icon={<ShopOutlined />}>
-              nav 8
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout className="site-layout" style={{ marginLeft: 200 }}>
-          <Header className="site-layout-background" style={{ padding: 0 }} />
-          <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
-            <div
-              className="site-layout-background"
-              style={{ padding: 24, textAlign: "center" }}
-            >
-              ...
-              <div>
-                <div>
-                  <iframe
-                    title="video-player"
-                    src={"https://www.youtube.com/embed/m96DTtTpGpA"}
-                  ></iframe>
-                </div>
-
-                <div>
-                  <h4>Video</h4>
-                  <p>Description</p>
-                </div>
-              </div>
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              long
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              ...
-              <br />
-              content
-            </div>
-          </Content>
-          <Footer style={{ textAlign: "center" }}>
-            Ant Design ©2018 Created by Ant UED
-          </Footer>
-        </Layout>
-      </Layout>
+      <Router history={history}>
+        <div className="ui container">
+          <Navbar auth={this.props.auth} />
+          <Route exact={true} path="/" component={Landing} />
+          <Route exact={true} path="/dashboard" component={Dashboard} />
+          <Route
+            exact={true}
+            path="/materials/new"
+            component={MaterialCreate}
+          />
+          <Route
+            exact={true}
+            path="/materials/edit/:id"
+            component={MaterialEdit}
+          />
+          <Route
+            exact={true}
+            path="/materials/delete/:id"
+            component={MaterialDelete}
+          />
+          <Route
+            exact={true}
+            path="/materials/content/:id"
+            component={MaterialContent}
+          />
+        </div>
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = ({ auth }) => {
+  return { auth };
+};
+
+export default connect(mapStateToProps, actions)(App);

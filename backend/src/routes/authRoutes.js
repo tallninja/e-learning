@@ -10,7 +10,7 @@ require("../models/User");
 // LOGIN
 
 // google
-require("../services/passport").google();
+require("../services/passport");
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["email", "profile"] })

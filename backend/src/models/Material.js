@@ -13,6 +13,6 @@ const MaterialSchema = new Schema({
   dateCreated: Date,
 });
 
-BlogSchema.plugin(mongoosePaginate);
+MaterialSchema.plugin(mongoosePaginate);
 
 mongoose.model("materials", MaterialSchema);
