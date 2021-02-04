@@ -1,0 +1,12 @@
+{
+    "google": {
+        "clientID": "726527625192-f6hqrhv67cqbd76ell6d4ld8ek1n266l.apps.googleusercontent.com",
+        "clientSecret": "NfCxxWMq9o1mjoVSHnOMi9AX"
+    },
+    "mongo": {
+        "URI": "mongodb+srv://root:dbpassword@react-blogs-cluster.m5izv.mongodb.net/reactBlogs?retryWrites=true&w=majority"
+    },
+    "cookieSession": {
+        "key": "kkhskjdgfsjkgfgjrgqirjgsrkquirtrgkr,qvkjgwuigfqhqvfhqjvfhqsfihfjhafjhfajdfbmcvaavy"
+    }
+}

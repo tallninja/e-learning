@@ -28,8 +28,8 @@ const authRoutes = require("./routes/authRoutes");
 app.use("/auth", authRoutes);
 
 // api
-const blogRoutes = require("./routes/");
-app.use("/api", blogRoutes);
+const apiRoutes = require("./routes/apiRoutes");
+app.use("/api", apiRoutes);
 
 app.listen(5000, () => {
   console.log("Server started successfully !");
