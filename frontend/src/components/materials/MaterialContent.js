@@ -59,7 +59,7 @@ class MaterialContent extends Component {
           const { _id, title, content } = this.props.material;
           return (
             <React.Fragment>
-              <SecondaryMenu materialID={_id} />
+              <SecondaryMenu active="notes" materialID={_id} />
               {this.renderAuthButtons()}
               <div className="ui attached segment">
                 <h2>{title}</h2>

@@ -6,21 +6,27 @@ class SecondaryMenu extends Component {
     return (
       <div className="ui fluid three item menu" style={{ margin: "20 0 20 0" }}>
         <Link
-          className="active fluid item"
-          to={`/materials/content/${this.props.materialID}/notes`}
+          className={`${
+            this.props.active === "notes" ? "active" : ""
+          } fluid item`}
+          to={`/materials/content/${this.props.materialID}`}
         >
           <i className="book icon"></i>
           Notes
         </Link>
         <Link
-          className="fluid item"
+          className={`${
+            this.props.active === "videos" ? "active" : ""
+          } fluid item`}
           to={`/materials/content/${this.props.materialID}/videos`}
         >
           <i className="video camera icon"></i>
           Videos
         </Link>
         <Link
-          className="fluid item"
+          className={`${
+            this.props.active === "revision_questions" ? "active" : ""
+          } fluid item`}
           to={`/materials/content/${this.props.materialID}/revision_questions`}
         >
           <i className="archive icon"></i>

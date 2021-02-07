@@ -1,9 +1,10 @@
 module.exports = async (req, res, Material) => {
-  const { subject, title, content } = req.body;
+  const { subject, title, content, videoID } = req.body;
   await new Material({
     subject: subject,
     title: title,
     content: content,
+    videoID: videoID,
     _user: req.user.id,
     author: req.user.displayName,
     avatarURL: req.user.profileImage,

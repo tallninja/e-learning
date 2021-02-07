@@ -12,6 +12,8 @@ import MaterialDelete from "./materials/MaterialDelete";
 import MaterialEdit from "./materials/MaterialEdit";
 import Landing from "./Landing.js";
 
+import VideoMaterial from "./videos/VideoMaterials";
+
 import history from "../history";
 
 class App extends Component {
@@ -50,6 +52,11 @@ class App extends Component {
             exact={true}
             path="/materials/content/:id"
             component={MaterialContent}
+          />
+          <Route
+            exact={true}
+            path="/materials/content/:id/videos"
+            component={VideoMaterial}
           />
         </div>
       </Router>
