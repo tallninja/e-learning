@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 
 const UserSchema = new Schema({
   authID: String,
+  isAdmin: { type: Boolean, default: false },
   displayName: String,
   profileImage: String,
 });

@@ -1,18 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
 
 import * as actions from "../actions";
-
-import MaterialList from "./materials/MaterialList";
 
 class Dashboard extends Component {
   render() {
     return (
-      <MaterialList
-        action={this.props.fetchMaterials}
-        userMaterials={this.props.userMaterials}
-      />
+      <React.Fragment>
+        <h4>This is the user's dashboard</h4>
+      </React.Fragment>
     );
   }
 }

@@ -21,7 +21,7 @@ class MaterialEdit extends Component {
   };
 
   renderContent = () => {
-    const { _id, title, content } = this.props.materials.material;
+    const { _id, title, subject, content } = this.props.materials.material;
     if (this.state.showReviewForm) {
       return (
         <MaterialReview
@@ -40,7 +40,7 @@ class MaterialEdit extends Component {
           <h2>Edit Material</h2>
           <MaterialForm
             onSubmit={this.handleSubmit}
-            initialValues={{ title, content }}
+            initialValues={{ title, subject, content }}
           />
         </div>
       );

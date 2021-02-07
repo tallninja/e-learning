@@ -26,11 +26,15 @@ class App extends Component {
           <Navbar auth={this.props.auth} />
           <Route exact={true} path="/" component={Landing} />
           <Route exact={true} path="/dashboard" component={Dashboard} />
-          <Route exact={true} path="/materials/:subject" component={Subject} />
           <Route
             exact={true}
             path="/materials/new"
             component={MaterialCreate}
+          />
+          <Route
+            exact={true}
+            path="/materials/:subject/all"
+            component={Subject}
           />
           <Route
             exact={true}

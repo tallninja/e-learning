@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import * as actions from "../../actions";
 
+import SecondaryMenu from "../SecondaryMenu";
+
 class MaterialContent extends Component {
   componentDidMount = () => {
     this.props.fetchMaterial(this.props.match.params.id);
@@ -11,7 +13,7 @@ class MaterialContent extends Component {
 
   renderAuthButtons = () => {
     if (this.props.auth) {
-      if (this.props.auth._id === this.props.material._user) {
+      if (this.props.auth.isAdmin) {
         return (
           <div className="ui two top attached buttons">
             <Link
@@ -54,9 +56,10 @@ class MaterialContent extends Component {
         return <div>Material not found...</div>;
       default:
         if (this.props.material._id === this.props.match.params.id) {
-          const { title, content } = this.props.material;
+          const { _id, title, content } = this.props.material;
           return (
             <React.Fragment>
+              <SecondaryMenu materialID={_id} />
               {this.renderAuthButtons()}
               <div className="ui attached segment">
                 <h2>{title}</h2>
