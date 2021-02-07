@@ -10,13 +10,15 @@ class MaterialReview extends Component {
   };
 
   render() {
-    const { title, content } = this.props.form.materialForm.values;
+    const { title, subject, content } = this.props.form.materialForm.values;
     return (
       <React.Fragment>
         <h3>Review...</h3>
         <div className="ui segment">
           <h4>Title</h4>
           <div className="ui segment">{title}</div>
+          <h4>Subject</h4>
+          <div className="ui segment">{subject}</div>
           <h4>Content</h4>
           <div
             className="ui segment"

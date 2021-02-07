@@ -3,6 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import { Link } from "react-router-dom";
 
 import MaterialField from "./MaterialField";
+import SubjectSelect from "./SubjectSelect";
 import TinyEditor from "./TinyEditor";
 import formValidator from "../../utils/formValidator";
 
@@ -20,6 +21,9 @@ class MaterialForm extends Component {
           placeholder="Material Title"
           component={MaterialField}
         />
+
+        <SubjectSelect name="subject" label="Subject" />
+
         <Field
           type="text"
           name="content"

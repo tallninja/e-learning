@@ -1,13 +1,10 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-
-import * as actions from "../../actions";
 
 class MaterialList extends Component {
   componentDidMount = () => {
-    this.props.fetchMaterials();
+    this.props.action();
   };
 
   renderMaterialItem = (material) => {
@@ -74,8 +71,4 @@ class MaterialList extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, materials }) => {
-  return { user: auth, userMaterials: materials.materialsList };
-};
-
-export default connect(mapStateToProps, actions)(MaterialList);
+export default MaterialList;

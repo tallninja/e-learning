@@ -5,6 +5,7 @@ import * as actions from "../actions";
 
 import Navbar from "./Navbar";
 import Dashboard from "./Dashboard";
+import Subject from "./Subject";
 import MaterialCreate from "./materials/MaterialCreate";
 import MaterialContent from "./materials/MaterialContent";
 import MaterialDelete from "./materials/MaterialDelete";
@@ -25,6 +26,7 @@ class App extends Component {
           <Navbar auth={this.props.auth} />
           <Route exact={true} path="/" component={Landing} />
           <Route exact={true} path="/dashboard" component={Dashboard} />
+          <Route exact={true} path="/materials/:subject" component={Subject} />
           <Route
             exact={true}
             path="/materials/new"

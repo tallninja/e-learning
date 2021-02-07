@@ -21,10 +21,11 @@ export const fetchUser = () => async (dispatch) => {
 };
 
 // fetch all materials
-export const fetchAllMaterials = (page) => async (dispatch) => {
+export const fetchAllMaterials = (subject, page) => async (dispatch) => {
   const res = await axios.get("/api/materials/all", {
     params: {
       page: page,
+      subject: subject,
     },
   });
   dispatch({

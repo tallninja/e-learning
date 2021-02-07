@@ -5,14 +5,14 @@ module.exports = async (req, res, Material) => {
   };
 
   await Material.paginate(
-    Material.find({}),
+    Material.find({ subject: req.query.subject }),
     paginateOptions,
     (err, materials) => {
       if (err) {
         res.status(500).send({ error: "Failed to fetch Materials" });
       } else {
         if (materials.docs.length > 0) {
-          res.status(200).send(materials);
+          res.status(200).send(materials.docs);
           return;
         } else {
           res.status(200).send(null);

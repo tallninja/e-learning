@@ -9,7 +9,9 @@ const router = express.Router();
 
 // get all materials
 const getMaterials = require("../controllers/materials/getMaterials");
-router.get("/materials/all", async (req, res) => getMaterials(req, res, Blog));
+router.get("/materials/all", async (req, res) =>
+  getMaterials(req, res, Material)
+);
 
 // create a material
 const createMaterial = require("../controllers/materials/createMaterial");
@@ -36,7 +38,7 @@ router.delete("/materials", requireLogin, (req, res) =>
 // edit a Material
 const editMaterial = require("../controllers/materials/editMaterial");
 router.patch("/materials", requireLogin, (req, res) =>
-  editBlog(req, res, Material)
+  editMaterial(req, res, Material)
 );
 
 module.exports = router;
