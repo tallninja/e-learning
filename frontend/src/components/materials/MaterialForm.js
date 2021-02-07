@@ -20,6 +20,7 @@ class MaterialForm extends Component {
           label="Title"
           placeholder="Material Title"
           component={MaterialField}
+          required
         />
 
         <SubjectSelect name="subject" label="Subject" />
@@ -29,7 +30,17 @@ class MaterialForm extends Component {
           name="content"
           label="Material Content"
           component={TinyEditor}
+          required
         />
+
+        <Field
+          type="text"
+          name="videoID"
+          label="Video ID"
+          placeholder="Video ID"
+          component={MaterialField}
+        />
+
         <div style={{ margin: "20px" }}>
           <button className="ui right floated teal button">
             Next

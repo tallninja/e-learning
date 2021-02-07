@@ -12,7 +12,7 @@ class Card extends Component {
           />
         </div>
         <div className="content">
-          <Link to={`/materials/${this.props.subject}`} className="header">
+          <Link to={`/materials/${this.props.subject}/all`} className="header">
             {this.props.subject}
           </Link>
           <div className="meta">

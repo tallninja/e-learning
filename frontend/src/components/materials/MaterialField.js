@@ -16,7 +16,7 @@ class MaterialField extends Component {
   render() {
     const { label, type, name, placeholder, input, meta } = this.props;
     return (
-      <div className="required field">
+      <div className={`${this.props.required ? "required" : ""} field`}>
         <label>{label}</label>
         <input
           type={type}

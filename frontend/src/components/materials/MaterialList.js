@@ -10,23 +10,13 @@ class MaterialList extends Component {
   renderMaterialItem = (material) => {
     return (
       <div className="item" key={material._id}>
-        <img
-          className="ui avatar image"
-          src={material.avatarURL}
-          alt="Profile"
-        />
+        {/* <i className="large book middle aligned icon"></i> */}
         <div className="content">
           <Link to={`/materials/content/${material._id}`} className="header">
             {material.title}
           </Link>
           <div className="description">
-            <div>
-              <strong>Author:</strong> {material.author}
-            </div>
-            <div>
-              <strong>Date: </strong>{" "}
-              {new Date(material.dateCreated).toLocaleDateString()}
-            </div>
+            <div>Description</div>
           </div>
         </div>
       </div>
@@ -34,7 +24,7 @@ class MaterialList extends Component {
   };
 
   renderMaterialsList = () => {
-    switch (this.props.userMaterials) {
+    switch (this.props.materials) {
       case false:
         return <h4>No Materials yet...</h4>;
       case null:
@@ -47,7 +37,7 @@ class MaterialList extends Component {
           </div>
         );
       default:
-        return _.map(this.props.userMaterials, (material) => {
+        return _.map(this.props.materials, (material) => {
           return this.renderMaterialItem(material);
         });
     }
@@ -56,16 +46,10 @@ class MaterialList extends Component {
   render() {
     return (
       <div>
-        <h3>My Materials</h3>
-        <div className="ui segment">
-          <div className="ui relaxed divided list">
-            {this.renderMaterialsList()}
-          </div>
+        <h3>Topics</h3>
+        <div className="ui ordered large relaxed divided list">
+          {this.renderMaterialsList()}
         </div>
-        <Link to="/materials/new" className="fluid ui green button">
-          <i className="plus icon"></i>
-          New material
-        </Link>
       </div>
     );
   }

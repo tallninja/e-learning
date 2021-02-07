@@ -12,6 +12,8 @@ import MaterialDelete from "./materials/MaterialDelete";
 import MaterialEdit from "./materials/MaterialEdit";
 import Landing from "./Landing.js";
 
+import VideoMaterial from "./videos/VideoMaterials";
+
 import history from "../history";
 
 class App extends Component {
@@ -26,11 +28,15 @@ class App extends Component {
           <Navbar auth={this.props.auth} />
           <Route exact={true} path="/" component={Landing} />
           <Route exact={true} path="/dashboard" component={Dashboard} />
-          <Route exact={true} path="/materials/:subject" component={Subject} />
           <Route
             exact={true}
             path="/materials/new"
             component={MaterialCreate}
+          />
+          <Route
+            exact={true}
+            path="/materials/:subject/all"
+            component={Subject}
           />
           <Route
             exact={true}
@@ -46,6 +52,11 @@ class App extends Component {
             exact={true}
             path="/materials/content/:id"
             component={MaterialContent}
+          />
+          <Route
+            exact={true}
+            path="/materials/content/:id/videos"
+            component={VideoMaterial}
           />
         </div>
       </Router>

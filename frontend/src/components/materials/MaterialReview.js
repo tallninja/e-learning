@@ -10,7 +10,12 @@ class MaterialReview extends Component {
   };
 
   render() {
-    const { title, subject, content } = this.props.form.materialForm.values;
+    const {
+      title,
+      subject,
+      content,
+      videoID,
+    } = this.props.form.materialForm.values;
     return (
       <React.Fragment>
         <h3>Review...</h3>
@@ -24,6 +29,8 @@ class MaterialReview extends Component {
             className="ui segment"
             dangerouslySetInnerHTML={{ __html: content }}
           ></div>
+          <h4>Video ID</h4>
+          <div className="ui segment">{videoID}</div>
         </div>
         <div style={{ margin: "20px" }}>
           <button
