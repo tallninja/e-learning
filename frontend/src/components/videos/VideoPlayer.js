@@ -1,12 +1,12 @@
 import React from "react";
 
-const VideoDetail = (props) => {
+const VideoPlayer = (props) => {
   return props.video ? (
     <div className="ui segment">
       <div className="ui embed">
         <iframe
           title="video-player"
-          src={`https://www.youtube.com/embed/${props.video.id.videoId}`}
+          src={`https://www.youtube.com/embed/${props.video.id}`}
         ></iframe>
       </div>
 
@@ -22,4 +22,4 @@ const VideoDetail = (props) => {
   );
 };
 
-export default VideoDetail;
+export default VideoPlayer;

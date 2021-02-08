@@ -6,11 +6,14 @@ import * as actions from "../actions";
 import Navbar from "./Navbar";
 import Dashboard from "./Dashboard";
 import Subject from "./Subject";
+import Landing from "./Landing.js";
+
 import MaterialCreate from "./materials/MaterialCreate";
 import MaterialContent from "./materials/MaterialContent";
 import MaterialDelete from "./materials/MaterialDelete";
 import MaterialEdit from "./materials/MaterialEdit";
-import Landing from "./Landing.js";
+import RevisionQuestions from "./materials/RevisionQuestions";
+import MarkingSchemes from "./materials/MarkingSchemes";
 
 import VideoMaterial from "./videos/VideoMaterials";
 
@@ -57,6 +60,16 @@ class App extends Component {
             exact={true}
             path="/materials/content/:id/videos"
             component={VideoMaterial}
+          />
+          <Route
+            exact={true}
+            path="/materials/content/:id/revision_questions"
+            component={RevisionQuestions}
+          />
+          <Route
+            exact={true}
+            path="/materials/content/:id/marking_schemes"
+            component={MarkingSchemes}
           />
         </div>
       </Router>

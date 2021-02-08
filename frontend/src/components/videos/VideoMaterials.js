@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 // import VideoList from "./VideoList";
-import VideoDetail from "./VideoDetail";
+import VideoPlayer from "./VideoPlayer";
 import SecondaryMenu from "../SecondaryMenu";
 
 class VideoMaterials extends React.Component {
@@ -26,7 +26,7 @@ class VideoMaterials extends React.Component {
             <SecondaryMenu active="videos" materialID={_id} />
             <div className="ui container">
               <h3>{title}</h3>
-              <VideoDetail video={this.props.videos[0]} />
+              <VideoPlayer video={this.props.videos[0]} />
             </div>
           </React.Fragment>
         );
