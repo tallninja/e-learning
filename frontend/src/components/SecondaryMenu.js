@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 class SecondaryMenu extends Component {
   render() {
     return (
-      <div className="ui fluid four item menu" style={{ margin: "20 0 20 0" }}>
+      <div
+        className="ui fluid four stackable item menu"
+        style={{ margin: "20 0 20 0" }}
+      >
         <Link
           className={`${
             this.props.active === "notes" ? "active" : ""

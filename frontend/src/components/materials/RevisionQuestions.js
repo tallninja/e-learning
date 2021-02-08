@@ -4,19 +4,25 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import SecondaryMenu from "../SecondaryMenu";
 
+import PlaceHolder from "../PlaceHolder";
+
 class RevisionQuestions extends Component {
   componentDidMount() {
     this.props.fetchMaterial(this.props.match.params.id);
   }
 
   render() {
-    const { _id, title, videoID } = this.props.materials.material;
-    return (
-      <Fragment>
-        <SecondaryMenu active="revision_questions" materialID={_id} />
-        <div>Revision Questions</div>
-      </Fragment>
-    );
+    if (this.props.materials.material) {
+      const { _id } = this.props.materials.material;
+      return (
+        <Fragment>
+          <SecondaryMenu active="revision_questions" materialID={_id} />
+          <div>Revision Questions</div>
+        </Fragment>
+      );
+    } else {
+      return <PlaceHolder />;
+    }
   }
 }
 

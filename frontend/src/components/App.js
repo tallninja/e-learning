@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import Dashboard from "./Dashboard";
 import Subject from "./Subject";
 import Landing from "./Landing.js";
+import Footer from "./Footer";
 
 import MaterialCreate from "./materials/MaterialCreate";
 import MaterialContent from "./materials/MaterialContent";
@@ -71,6 +72,7 @@ class App extends Component {
             path="/materials/content/:id/marking_schemes"
             component={MarkingSchemes}
           />
+          <Footer />
         </div>
       </Router>
     );
