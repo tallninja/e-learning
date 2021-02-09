@@ -15,7 +15,7 @@ class VideoMaterials extends Component {
 
   render = () => {
     if (this.props.materials.material) {
-      const { _id, title, videoID } = this.props.materials.material;
+      const { _id, title } = this.props.materials.material;
       switch (this.props.videos) {
         case null:
           return null;

@@ -4,10 +4,14 @@ import { reducer as formReducer } from "redux-form";
 import authReducer from "./authReducer";
 import materialsReducer from "./materialsReducer";
 import videosReducer from "./videosReducer";
+import revisionQuestionsReducer from "./revisionQuestionsReducer";
+import markingSchemeReducer from "./markingSchemeReducer";
 
 export default combineReducers({
   auth: authReducer,
   materials: materialsReducer,
-  form: formReducer,
   videos: videosReducer,
+  revisionQuestions: revisionQuestionsReducer,
+  markingScheme: markingSchemeReducer,
+  form: formReducer,
 });

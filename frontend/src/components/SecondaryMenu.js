@@ -37,9 +37,9 @@ class SecondaryMenu extends Component {
         </Link>
         <Link
           className={`${
-            this.props.active === "marking_schemes" ? "active" : ""
+            this.props.active === "marking_scheme" ? "active" : ""
           } fluid item`}
-          to={`/materials/content/${this.props.materialID}/marking_schemes`}
+          to={`/materials/content/${this.props.materialID}/marking_scheme`}
         >
           <i className="info icon"></i>
           Marking Schemes
