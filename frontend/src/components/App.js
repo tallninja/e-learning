@@ -16,7 +16,7 @@ import MaterialEdit from "./materials/MaterialEdit";
 import RevisionQuestions from "./materials/RevisionQuestions";
 import MarkingSchemes from "./materials/MarkingSchemes";
 
-import VideoMaterial from "./videos/VideoMaterials";
+import Videos from "./Videos";
 
 import history from "../history";
 
@@ -60,7 +60,7 @@ class App extends Component {
           <Route
             exact={true}
             path="/materials/content/:id/videos"
-            component={VideoMaterial}
+            component={Videos}
           />
           <Route
             exact={true}

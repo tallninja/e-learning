@@ -5,8 +5,10 @@ module.exports = async (req, res, Material) => {
       _user: req.user.id,
     },
     {
+      subject: req.body.subject,
       title: req.body.title,
       content: req.body.content,
+      videoID: req.body.videoID,
     }
   ).exec((err) => {
     if (err) {

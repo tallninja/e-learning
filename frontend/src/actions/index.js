@@ -8,6 +8,14 @@ import {
   CREATE_MATERIAL,
   FETCH_ALL_MATERIALS,
   FETCH_VIDEOS,
+  FETCH_REVISION_QUESTIONS,
+  CREATE_REVISION_QUESTIONS,
+  EDIT_REVISION_QUESTIONS,
+  DELETE_REVISION_QUESTIONS,
+  FETCH_MARKING_SCHEME,
+  CREATE_MARKING_SCHEME,
+  EDIT_MARKING_SCHEME,
+  DELETE_MARKING_SCHEME,
 } from "./types";
 
 import youtube from "../utils/youtube";
@@ -40,7 +48,7 @@ export const fetchAllMaterials = (subject, page) => async (dispatch) => {
 // create a material
 export const createMaterial = (material) => async (dispatch) => {
   const res = await axios.post("/api/materials", material);
-  history.push("/dashboard");
+  history.push("/");
   dispatch({
     type: CREATE_MATERIAL,
     payload: res.data,
@@ -104,5 +112,107 @@ export const fetchVideos = (VIDEO_ID) => async (dispatch) => {
   dispatch({
     type: FETCH_VIDEOS,
     payload: res.data.items,
+  });
+};
+
+// fetch a revision questions
+export const fetchRevisionQuestions = (materialID) => async (dispatch) => {
+  const res = await axios.get("/api/revision_questions", {
+    params: {
+      materialID: materialID,
+    },
+  });
+  dispatch({
+    type: FETCH_REVISION_QUESTIONS,
+    payload: res.data || "",
+  });
+};
+
+// create a revision questions
+export const createRevisionQuestions = (revisionQuestions) => async (
+  dispatch
+) => {
+  const res = await axios.post("/api/revision_questions", revisionQuestions);
+  history.push("/");
+  dispatch({
+    type: CREATE_REVISION_QUESTIONS,
+    payload: res.data,
+  });
+};
+
+// edit a revision questions
+export const editRevisionQuestions = (id, data) => async (dispatch) => {
+  const res = await axios.patch("/api/revision_questions", data, {
+    params: {
+      id: id,
+    },
+  });
+  history.push(`/materials/content/${data.materialID}/revision_questions`);
+  dispatch({
+    type: EDIT_REVISION_QUESTIONS,
+    payload: res.data,
+  });
+};
+
+// delete a revision questions
+export const deleteRevisionQuestions = (id) => async (dispatch) => {
+  const res = await axios.delete("/api/revision_questions", {
+    params: {
+      id: id,
+    },
+  });
+  dispatch({
+    type: DELETE_REVISION_QUESTIONS,
+    payload: res.data,
+  });
+};
+
+// fetch a marking scheme
+export const fetchMarkingScheme = (materialID) => async (dispatch) => {
+  const res = await axios.get("/api/marking_scheme", {
+    params: {
+      materialID: materialID,
+    },
+  });
+  dispatch({
+    type: FETCH_MARKING_SCHEME,
+    payload: res.data || "",
+  });
+};
+
+// create a marking scheme
+export const createMarkingScheme = (markingScheme) => async (dispatch) => {
+  const res = await axios.post("/api/marking_scheme", markingScheme);
+  history.push("/");
+  dispatch({
+    type: CREATE_MARKING_SCHEME,
+    payload: res.data,
+  });
+};
+
+// edit a marking scheme
+export const editMarkingScheme = (id, data) => async (dispatch) => {
+  const res = await axios.patch("/api/marking_scheme", data, {
+    params: {
+      id: id,
+    },
+  });
+  history.push(`/materials/content/${data.materialID}/marking_scheme`);
+  dispatch({
+    type: EDIT_MARKING_SCHEME,
+    payload: res.data,
+  });
+};
+
+// delete a marking scheme
+export const deleteMarkingScheme = (id) => async (dispatch) => {
+  const res = await axios.delete("/api/marking_scheme", {
+    params: {
+      id: id,
+    },
+  });
+  dispatch({
+    type: DELETE_MARKING_SCHEME,
+    payload: res.data,
   });
 };
