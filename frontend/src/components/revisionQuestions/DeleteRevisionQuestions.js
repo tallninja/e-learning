@@ -17,7 +17,8 @@ class RevisionQuestionsDelete extends Component {
           className="ui red button"
           onClick={() => {
             this.props.deleteRevisionQuestions(
-              this.props.revisionQuestions._id
+              this.props.revisionQuestions._id,
+              this.props.match.params.id
             );
             history.push(
               `/materials/content/${this.props.match.params.id}/revision_questions`

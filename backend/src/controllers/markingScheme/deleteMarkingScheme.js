@@ -1,7 +1,6 @@
 module.exports = async (req, res, MarkingScheme) => {
   await MarkingScheme.deleteOne({
     _id: req.query.id,
-    _user: req.user.id,
   }).exec((err) => {
     if (err) {
       res.status(500).send({ error: "Failed to delete Marking Scheme !" });

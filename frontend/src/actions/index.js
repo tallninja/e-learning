@@ -155,12 +155,13 @@ export const editRevisionQuestions = (id, data) => async (dispatch) => {
 };
 
 // delete a revision questions
-export const deleteRevisionQuestions = (id) => async (dispatch) => {
+export const deleteRevisionQuestions = (id, materialID) => async (dispatch) => {
   const res = await axios.delete("/api/revision_questions", {
     params: {
       id: id,
     },
   });
+  history.push(`/materials/content/${materialID}/revision_questions`);
   dispatch({
     type: DELETE_REVISION_QUESTIONS,
     payload: res.data,
@@ -205,12 +206,13 @@ export const editMarkingScheme = (id, data) => async (dispatch) => {
 };
 
 // delete a marking scheme
-export const deleteMarkingScheme = (id) => async (dispatch) => {
+export const deleteMarkingScheme = (id, materialID) => async (dispatch) => {
   const res = await axios.delete("/api/marking_scheme", {
     params: {
       id: id,
     },
   });
+  history.push(`/materials/content/${materialID}/marking_scheme`);
   dispatch({
     type: DELETE_MARKING_SCHEME,
     payload: res.data,

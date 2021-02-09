@@ -16,7 +16,10 @@ class MarkingSchemeDelete extends Component {
         <button
           className="ui red button"
           onClick={() => {
-            this.props.deleteMarkingScheme(this.props.markingScheme._id);
+            this.props.deleteMarkingScheme(
+              this.props.markingScheme._id,
+              this.props.match.params.id
+            );
             history.push(
               `/materials/content/${this.props.match.params.id}/marking_scheme`
             );
