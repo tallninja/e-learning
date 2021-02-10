@@ -60,6 +60,18 @@ class Landing extends Component {
           color="pink"
           description="An accountant is someone who knows the cost of everything and the value of nothind."
         />
+        <Card
+          image="cre.jpeg"
+          subject="CRE"
+          color="teal"
+          description="I want to be so full of christ that when a mosquito bites me it flies away singing 'There is power in the Blood !'."
+        />
+        <Card
+          image="ire.jpeg"
+          subject="IRE"
+          color="olive"
+          description="Wash your heart Everyday with Salah and warm it up with Zikr"
+        />
       </div>
     );
   }
