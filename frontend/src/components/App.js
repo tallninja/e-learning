@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { Sticky } from "semantic-ui-react";
 
 import * as actions from "../actions";
 
@@ -16,15 +15,20 @@ import MaterialContent from "./materials/MaterialContent";
 import MaterialDelete from "./materials/MaterialDelete";
 import MaterialEdit from "./materials/MaterialEdit";
 
-import MarkingScheme from "./markingScheme/MarkingScheme";
-import MarkingSchemeCreate from "./markingScheme/CreateMarkingScheme";
-import MarkingSchemeEdit from "./markingScheme/EditMarkingScheme";
-import MarkingSchemeDelete from "./markingScheme/DeleteMarkingScheme";
+import Notes from "./notes";
+import NotesCreate from "./notes/CreateNotes";
+import NotesEdit from "./notes/EditNotes";
+import NotesDelete from "./notes/DeleteNotes";
 
-import RevisionQuestions from "./revisionQuestions/RevisionQuestions";
+import RevisionQuestions from "./revisionQuestions";
 import RevisionQuestionsCreate from "./revisionQuestions/CreateRevisionQuestions";
 import RevisionQuestionsEdit from "./revisionQuestions/EditRevisionQuestions";
 import RevisionQuestionsDelete from "./revisionQuestions/DeleteRevisionQuestions";
+
+import MarkingScheme from "./markingScheme";
+import MarkingSchemeCreate from "./markingScheme/CreateMarkingScheme";
+import MarkingSchemeEdit from "./markingScheme/EditMarkingScheme";
+import MarkingSchemeDelete from "./markingScheme/DeleteMarkingScheme";
 
 import Videos from "./Videos";
 
@@ -76,23 +80,23 @@ class App extends Component {
 
           <Route
             exact={true}
-            path="/materials/content/:id/marking_scheme"
-            component={MarkingScheme}
+            path="/materials/content/:id/notes"
+            component={Notes}
           />
           <Route
             exact={true}
-            path="/materials/content/:id/marking_scheme/new"
-            component={MarkingSchemeCreate}
+            path="/materials/content/:id/notes/new"
+            component={NotesCreate}
           />
           <Route
             exact={true}
-            path="/materials/content/:id/marking_scheme/edit"
-            component={MarkingSchemeEdit}
+            path="/materials/content/:id/notes/edit"
+            component={NotesEdit}
           />
           <Route
             exact={true}
-            path="/materials/content/:id/marking_scheme/delete"
-            component={MarkingSchemeDelete}
+            path="/materials/content/:id/notes/delete"
+            component={NotesDelete}
           />
 
           <Route
@@ -114,6 +118,27 @@ class App extends Component {
             exact={true}
             path="/materials/content/:id/revision_questions/delete"
             component={RevisionQuestionsDelete}
+          />
+
+          <Route
+            exact={true}
+            path="/materials/content/:id/marking_scheme"
+            component={MarkingScheme}
+          />
+          <Route
+            exact={true}
+            path="/materials/content/:id/marking_scheme/new"
+            component={MarkingSchemeCreate}
+          />
+          <Route
+            exact={true}
+            path="/materials/content/:id/marking_scheme/edit"
+            component={MarkingSchemeEdit}
+          />
+          <Route
+            exact={true}
+            path="/materials/content/:id/marking_scheme/delete"
+            component={MarkingSchemeDelete}
           />
 
           <Footer />

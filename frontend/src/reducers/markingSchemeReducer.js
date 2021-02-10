@@ -13,11 +13,11 @@ const markingSchemeReducer = (
     case FETCH_MARKING_SCHEME:
       return { ...state, item: action.payload || false };
     case CREATE_MARKING_SCHEME:
-      return { ...state, message: action.payload };
+      return { ...state, message: action.payload || false };
     case EDIT_MARKING_SCHEME:
-      return { ...state, message: action.payload };
+      return { ...state, message: action.payload || false };
     case DELETE_MARKING_SCHEME:
-      return { ...state, message: action.payload };
+      return { ...state, message: action.payload || false };
     default:
       return state;
   }

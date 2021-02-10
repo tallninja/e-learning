@@ -13,11 +13,11 @@ const revisionQuestionsReducer = (
     case FETCH_REVISION_QUESTIONS:
       return { ...state, item: action.payload || false };
     case CREATE_REVISION_QUESTIONS:
-      return { ...state, message: action.payload };
+      return { ...state, message: action.payload || false };
     case EDIT_REVISION_QUESTIONS:
-      return { ...state, message: action.payload };
+      return { ...state, message: action.payload || false };
     case DELETE_REVISION_QUESTIONS:
-      return { ...state, message: action.payload };
+      return { ...state, message: action.payload || false };
     default:
       return state;
   }
