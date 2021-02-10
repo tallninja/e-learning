@@ -2,7 +2,6 @@ module.exports = async (req, res, MarkingScheme) => {
   await MarkingScheme.updateOne(
     {
       _id: req.query.id,
-      _user: req.user.id,
     },
     {
       content: req.body.content,
