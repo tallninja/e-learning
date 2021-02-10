@@ -7,7 +7,6 @@ module.exports = async (req, res, Material) => {
     {
       subject: req.body.subject,
       title: req.body.title,
-      content: req.body.content,
       videoID: req.body.videoID,
     }
   ).exec((err) => {

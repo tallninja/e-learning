@@ -17,7 +17,7 @@ class Subject extends Component {
       if (this.props.user.isAdmin) {
         return (
           <Link
-            to="/materials/new"
+            to={`/materials/${this.props.match.params.subject}/new`}
             className="fluid ui green button"
             style={{ margin: "20px 0px 20px 0px" }}
           >

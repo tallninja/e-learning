@@ -4,6 +4,7 @@ module.exports = async (req, res, MarkingScheme) => {
       _id: req.query.id,
     },
     {
+      materialID: req.body.materialID,
       content: req.body.content,
     }
   ).exec((err) => {

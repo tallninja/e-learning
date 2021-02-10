@@ -49,7 +49,7 @@ class App extends Component {
           <Route exact={true} path="/dashboard" component={Dashboard} />
           <Route
             exact={true}
-            path="/materials/new"
+            path="/materials/:subject/new"
             component={MaterialCreate}
           />
           <Route

@@ -65,11 +65,11 @@ class Notes extends Component {
         return (
           <React.Fragment>
             <SecondaryMenu
-              active="revision_questions"
+              active="notes"
               materialID={this.props.match.params.id}
             />
             <div className="ui segment" style={{ textAlign: "center" }}>
-              <h4>No Revision Questions...</h4>
+              <h4>No Notes...</h4>
               {this.renderCreateButton()}
             </div>
           </React.Fragment>
@@ -80,7 +80,7 @@ class Notes extends Component {
           return (
             <React.Fragment>
               <SecondaryMenu
-                active="revision_questions"
+                active="notes"
                 materialID={this.props.match.params.id}
               />
               {this.renderAuthButtons()}

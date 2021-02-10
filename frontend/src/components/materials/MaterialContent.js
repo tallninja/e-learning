@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import * as actions from "../../actions";
 
 import SecondaryMenu from "../SecondaryMenu";
+import Notes from "../notes";
 
 class MaterialContent extends Component {
   componentDidMount = () => {
@@ -56,17 +57,14 @@ class MaterialContent extends Component {
         return <div>Material not found...</div>;
       default:
         if (this.props.material._id === this.props.match.params.id) {
-          const { _id, title, content } = this.props.material;
+          const { _id, title } = this.props.material;
           return (
             <React.Fragment>
               <SecondaryMenu active="notes" materialID={_id} />
               {this.renderAuthButtons()}
               <div className="ui attached segment">
                 <h2>{title}</h2>
-                <div
-                  className="ui left aligned piled segment"
-                  dangerouslySetInnerHTML={{ __html: content }}
-                ></div>
+                <Notes />
               </div>
             </React.Fragment>
           );

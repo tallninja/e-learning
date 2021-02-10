@@ -23,7 +23,7 @@ class NotesEdit extends Component {
 
   renderContent = () => {
     if (this.props.notes.item) {
-      const { _id, content } = this.props.notes.item;
+      const { _id, materialID, content } = this.props.notes.item;
       if (this.state.showReviewForm) {
         return (
           <NotesReview
@@ -42,7 +42,7 @@ class NotesEdit extends Component {
             <h2>Edit Marking Scheme</h2>
             <NotesForm
               onSubmit={this.handleSubmit}
-              initialValues={{ content }}
+              initialValues={{ materialID, content }}
             />
           </div>
         );
@@ -57,8 +57,8 @@ class NotesEdit extends Component {
   }
 }
 
-const mapStateToProps = ({ Notes, form }) => {
-  return { Notes, form };
+const mapStateToProps = ({ notes, form }) => {
+  return { notes, form };
 };
 
 export default connect(mapStateToProps, actions)(NotesEdit);

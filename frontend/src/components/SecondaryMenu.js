@@ -12,7 +12,7 @@ class SecondaryMenu extends Component {
           className={`${
             this.props.active === "notes" ? "active" : ""
           } fluid item`}
-          to={`/materials/content/${this.props.materialID}`}
+          to={`/materials/content/${this.props.materialID}/notes`}
         >
           <i className="book icon"></i>
           Notes

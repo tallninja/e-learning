@@ -135,7 +135,7 @@ export const fetchNotes = (materialID) => async (dispatch) => {
 // create a notes
 export const createNotes = (notes) => async (dispatch) => {
   const res = await axios.post("/api/notes", notes);
-  history.push("/");
+  history.push(`/materials/content/${notes.materialID}/notes`);
   dispatch({
     type: CREATE_NOTES,
     payload: res.data,

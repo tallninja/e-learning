@@ -40,6 +40,9 @@ class Navbar extends Component {
   render() {
     return (
       <div className="ui massive top secondary pointing menu">
+        <div className="item">
+          <img src={`${process.env.PUBLIC_URL}/images/brand.svg`} alt="brand" />
+        </div>
         <Link to="/" className="active item">
           Home
         </Link>

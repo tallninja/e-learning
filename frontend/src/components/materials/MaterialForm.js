@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 import MaterialField from "./MaterialField";
 import SubjectSelect from "./SubjectSelect";
-import TinyEditor from "./TinyEditor";
 import formValidator from "../../utils/formValidator";
 
 class MaterialForm extends Component {
@@ -27,14 +26,6 @@ class MaterialForm extends Component {
 
         <Field
           type="text"
-          name="content"
-          label="Material Content"
-          component={TinyEditor}
-          required
-        />
-
-        <Field
-          type="text"
           name="videoID"
           label="Video ID"
           placeholder="Video ID"
@@ -46,7 +37,10 @@ class MaterialForm extends Component {
             Next
             <i className="angle right icon"></i>
           </button>
-          <Link to="/dashboard" className="ui left floated red button">
+          <Link
+            to={`/materials/${this.props.subject}/all`}
+            className="ui left floated red button"
+          >
             <i className="reply icon"></i>
             Cancel
           </Link>

@@ -12,7 +12,10 @@ class MaterialList extends Component {
       <div className="item" key={material._id}>
         {/* <i className="large book middle aligned icon"></i> */}
         <div className="content">
-          <Link to={`/materials/content/${material._id}`} className="header">
+          <Link
+            to={`/materials/content/${material._id}/notes`}
+            className="header"
+          >
             {material.title}
           </Link>
           <div className="description">

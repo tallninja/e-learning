@@ -15,44 +15,50 @@ class Landing extends Component {
         <Card
           image="chem.jpg"
           subject="Chemistry"
-          color="red"
+          color="yellow"
           description="Think like a proton, and stay positive"
         />
         <Card
           image="phyc.jpeg"
           subject="Physics"
-          color="red"
+          color="blue"
           description="Physics is simple but subtle."
         />
         <Card
           image="bio.jpeg"
           subject="Biology"
-          color="red"
+          color="green"
           description="Biologists are just a bunch of cells talking about other cells."
         />
         <Card
           image="eng.png"
           subject="English"
-          color="red"
+          color="purple"
           description="The English language is a work in progress, have fun with it."
         />
         <Card
           image="kisw.jpeg"
           subject="Kiswahili"
-          color="red"
+          color="orange"
           description="Mtaka cha mvunguni sharti ainame."
         />
         <Card
           image="hist.jpeg"
           subject="History"
-          color="red"
+          color="brown"
           description="Thers's an old saying about those who forget history, I don't remember it, but it's good."
         />
         <Card
           image="geo.jpeg"
           subject="Geography"
-          color="red"
+          color="black"
           description="In our changing world nothing changes more than geography."
+        />
+        <Card
+          image="buss.jpeg"
+          subject="Business"
+          color="pink"
+          description="An accountant is someone who knows the cost of everything and the value of nothind."
         />
       </div>
     );

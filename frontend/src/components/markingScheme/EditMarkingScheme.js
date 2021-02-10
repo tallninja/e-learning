@@ -23,7 +23,7 @@ class MarkingSchemeEdit extends Component {
 
   renderContent = () => {
     if (this.props.markingScheme.item) {
-      const { _id, content } = this.props.markingScheme.item;
+      const { _id, materialID, content } = this.props.markingScheme.item;
       if (this.state.showReviewForm) {
         return (
           <MarkingSchemeReview
@@ -45,7 +45,7 @@ class MarkingSchemeEdit extends Component {
             <h2>Edit Marking Scheme</h2>
             <MarkingSchemeForm
               onSubmit={this.handleSubmit}
-              initialValues={{ content }}
+              initialValues={{ materialID, content }}
             />
           </div>
         );
