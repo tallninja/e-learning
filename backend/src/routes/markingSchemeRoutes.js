@@ -1,4 +1,4 @@
-module.exports = (router, requireLogin, requireAdmin) => {
+module.exports = (router, requireLogin, requireAdmin, MarkingScheme) => {
   // get a marking scheme
   const getMarkingScheme = require("../controllers/markingScheme/getMarkingScheme");
   router.get("/marking_scheme", (req, res) =>

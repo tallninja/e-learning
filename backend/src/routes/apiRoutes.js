@@ -16,12 +16,22 @@ const Notes = mongoose.model("notes");
 
 const router = express.Router();
 
-require("./materialsRoutes")(router, requireLogin, requireAdmin);
+require("./materialsRoutes")(router, requireLogin, requireAdmin, Material);
 
-require("./notesRoutes")(router, requireLogin, requireAdmin);
+require("./notesRoutes")(router, requireLogin, requireAdmin, Notes);
 
-require("./revisionQuestionsRoutes")(router, requireLogin, requireAdmin);
+require("./revisionQuestionsRoutes")(
+  router,
+  requireLogin,
+  requireAdmin,
+  RevisionQuestions
+);
 
-require("./markingSchemeRoutes")(router, requireLogin, requireAdmin);
+require("./markingSchemeRoutes")(
+  router,
+  requireLogin,
+  requireAdmin,
+  MarkingScheme
+);
 
 module.exports = router;

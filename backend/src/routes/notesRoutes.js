@@ -1,4 +1,4 @@
-module.exports = (router, requireLogin, requireAdmin) => {
+module.exports = (router, requireLogin, requireAdmin, Notes) => {
   // get a notes
   const getNotes = require("../controllers/notes/getNotes");
   router.get("/notes", (req, res) => getNotes(req, res, Notes));

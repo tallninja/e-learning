@@ -1,6 +1,6 @@
 const requireAdmin = require("../middlewares/requireAdmin");
 
-module.exports = (router, requireLogin, requireAdmin) => {
+module.exports = (router, requireLogin, requireAdmin, Material) => {
   // get all materials
   const getMaterials = require("../controllers/materials/getMaterials");
   router.get("/materials/all", async (req, res) =>

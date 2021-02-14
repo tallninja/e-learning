@@ -1,4 +1,4 @@
-module.exports = (router, requireLogin, requireAdmin) => {
+module.exports = (router, requireLogin, requireAdmin, RevisionQuestions) => {
   // get a revision questions
   const getRevisionQuestions = require("../controllers/revisionQuestions/getRevisionQuestions");
   router.get("/revision_questions", (req, res) =>
