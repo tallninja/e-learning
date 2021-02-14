@@ -21,7 +21,7 @@ class CreateRevisionQuestions extends Component {
     if (!this.state.showReviewForm) {
       return (
         <div>
-          <h2>Create Revision Questions Scheme</h2>
+          <h2>Create Revision Questions</h2>
           <RevisionQuestionsForm
             onSubmit={this.handleSubmit}
             materialID={this.props.match.params.id}

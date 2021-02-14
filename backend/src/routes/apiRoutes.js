@@ -7,6 +7,7 @@ require("../models/MarkingScheme");
 require("../models/Notes");
 
 const requireLogin = require("../middlewares/requireLogin");
+const requireAdmin = require("../middlewares/requireAdmin");
 
 const Material = mongoose.model("materials");
 const RevisionQuestions = mongoose.model("revisionQuestions");
@@ -15,12 +16,12 @@ const Notes = mongoose.model("notes");
 
 const router = express.Router();
 
-require("./materialsRoutes")(router, requireLogin);
+require("./materialsRoutes")(router, requireLogin, requireAdmin);
 
-require("./notesRoutes")(router, requireLogin);
+require("./notesRoutes")(router, requireLogin, requireAdmin);
 
-require("./revisionQuestionsRoutes")(router, requireLogin);
+require("./revisionQuestionsRoutes")(router, requireLogin, requireAdmin);
 
-require("./markingSchemeRoutes")(router, requireLogin);
+require("./markingSchemeRoutes")(router, requireLogin, requireAdmin);
 
 module.exports = router;

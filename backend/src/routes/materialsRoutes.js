@@ -1,4 +1,6 @@
-module.exports = (router, requireLogin) => {
+const requireAdmin = require("../middlewares/requireAdmin");
+
+module.exports = (router, requireLogin, requireAdmin) => {
   // get all materials
   const getMaterials = require("../controllers/materials/getMaterials");
   router.get("/materials/all", async (req, res) =>
@@ -7,13 +9,13 @@ module.exports = (router, requireLogin) => {
 
   // create a material
   const createMaterial = require("../controllers/materials/createMaterial");
-  router.post("/materials", requireLogin, (req, res) =>
+  router.post("/materials", requireLogin, requireAdmin, (req, res) =>
     createMaterial(req, res, Material)
   );
 
   // get a list of users Materials
   const getUserMaterials = require("../controllers/materials/getUserMaterials");
-  router.get("/materials", requireLogin, (req, res) =>
+  router.get("/materials", requireLogin, requireAdmin, (req, res) =>
     getUserMaterials(req, res, Material)
   );
 
@@ -23,13 +25,13 @@ module.exports = (router, requireLogin) => {
 
   // delete a Material
   const deleteMaterial = require("../controllers/materials/deleteMaterial");
-  router.delete("/materials", requireLogin, (req, res) =>
+  router.delete("/materials", requireLogin, requireAdmin, (req, res) =>
     deleteMaterial(req, res, Material)
   );
 
   // edit a Material
   const editMaterial = require("../controllers/materials/editMaterial");
-  router.patch("/materials", requireLogin, (req, res) =>
+  router.patch("/materials", requireLogin, requireAdmin, (req, res) =>
     editMaterial(req, res, Material)
   );
 };
