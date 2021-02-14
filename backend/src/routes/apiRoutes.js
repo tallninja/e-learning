@@ -15,104 +15,12 @@ const Notes = mongoose.model("notes");
 
 const router = express.Router();
 
-// get all materials
-const getMaterials = require("../controllers/materials/getMaterials");
-router.get("/materials/all", async (req, res) =>
-  getMaterials(req, res, Material)
-);
+require("./materialsRoutes")(router, requireLogin);
 
-// create a material
-const createMaterial = require("../controllers/materials/createMaterial");
-router.post("/materials", requireLogin, (req, res) =>
-  createMaterial(req, res, Material)
-);
+require("./notesRoutes")(router, requireLogin);
 
-// get a list of users Materials
-const getUserMaterials = require("../controllers/materials/getUserMaterials");
-router.get("/materials", requireLogin, (req, res) =>
-  getUserMaterials(req, res, Material)
-);
+require("./revisionQuestionsRoutes")(router, requireLogin);
 
-// get a single Material
-const getMaterial = require("../controllers/materials/getMaterial");
-router.get("/materials/item", (req, res) => getMaterial(req, res, Material));
-
-// delete a Material
-const deleteMaterial = require("../controllers/materials/deleteMaterial");
-router.delete("/materials", requireLogin, (req, res) =>
-  deleteMaterial(req, res, Material)
-);
-
-// edit a Material
-const editMaterial = require("../controllers/materials/editMaterial");
-router.patch("/materials", requireLogin, (req, res) =>
-  editMaterial(req, res, Material)
-);
-
-// get a notes
-const getNotes = require("../controllers/notes/getNotes");
-router.get("/notes", (req, res) => getNotes(req, res, Notes));
-
-// create a notes
-const createNotes = require("../controllers/notes/createNotes");
-router.post("/notes", requireLogin, (req, res) => createNotes(req, res, Notes));
-
-// edit a notes
-const editNotes = require("../controllers/notes/editNotes");
-router.patch("/notes", requireLogin, (req, res) => editNotes(req, res, Notes));
-
-// delete a notes
-const deleteNotes = require("../controllers/notes/deleteNotes");
-router.delete("/notes", requireLogin, (req, res) =>
-  deleteNotes(req, res, Notes)
-);
-
-// get a revision questions
-const getRevisionQuestions = require("../controllers/revisionQuestions/getRevisionQuestions");
-router.get("/revision_questions", (req, res) =>
-  getRevisionQuestions(req, res, RevisionQuestions)
-);
-
-// create a revision questions
-const createRevisionQuestions = require("../controllers/revisionQuestions/createRevisionQuestions");
-router.post("/revision_questions", requireLogin, (req, res) =>
-  createRevisionQuestions(req, res, RevisionQuestions)
-);
-
-// edit a revision questions
-const editRevisionQuestions = require("../controllers/revisionQuestions/editRevisionQuestions");
-router.patch("/revision_questions", requireLogin, (req, res) =>
-  editRevisionQuestions(req, res, RevisionQuestions)
-);
-
-// delete a revision questions
-const deleteRevisionQuestions = require("../controllers/revisionQuestions/deleteRevisionQuestions");
-router.delete("/revision_questions", requireLogin, (req, res) =>
-  deleteRevisionQuestions(req, res, RevisionQuestions)
-);
-
-// get a marking scheme
-const getMarkingScheme = require("../controllers/markingScheme/getMarkingScheme");
-router.get("/marking_scheme", (req, res) =>
-  getMarkingScheme(req, res, MarkingScheme)
-);
-
-// create a marking scheme
-const createMarkingScheme = require("../controllers/markingScheme/createMarkingScheme");
-router.post("/marking_scheme", requireLogin, (req, res) =>
-  createMarkingScheme(req, res, MarkingScheme)
-);
-
-// edit a marking scheme
-const editMarkingScheme = require("../controllers/markingScheme/editMarkingScheme");
-router.patch("/marking_scheme", requireLogin, (req, res) =>
-  editMarkingScheme(req, res, MarkingScheme)
-);
-
-// delete a marking scheme
-const deleteMarkingScheme = require("../controllers/markingScheme/deleteMarkingScheme");
-router.delete("/marking_scheme", requireLogin, (req, res) =>
-  deleteMarkingScheme(req, res, MarkingScheme)
-);
+require("./markingSchemeRoutes")(router, requireLogin);
 
 module.exports = router;
