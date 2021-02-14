@@ -7,10 +7,37 @@ class MaterialList extends Component {
     this.props.action();
   };
 
+  renderAuthButtons = (material) => {
+    if (this.props.user.isAdmin) {
+      return (
+        <React.Fragment>
+          <div className="right floated content">
+            <Link
+              className="ui red button"
+              to={`/materials/delete/${material._id}`}
+            >
+              <i className="trash icon"></i>Delete
+            </Link>
+          </div>
+          <div className="right floated content">
+            <Link
+              className="ui yellow button"
+              to={`/materials/edit/${material._id}`}
+            >
+              <i className="edit icon"></i>Edit
+            </Link>
+          </div>
+        </React.Fragment>
+      );
+    } else {
+      return null;
+    }
+  };
+
   renderMaterialItem = (material) => {
     return (
       <div className="item" key={material._id}>
-        {/* <i className="large book middle aligned icon"></i> */}
+        {this.renderAuthButtons(material)}
         <div className="content">
           <Link
             to={`/materials/content/${material._id}/notes`}
