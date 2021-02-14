@@ -10,11 +10,13 @@ class NotesReview extends Component {
   };
 
   render() {
-    const { content } = this.props.form.notesForm.values;
+    const { materialID, content } = this.props.form.notesForm.values;
     return (
       <React.Fragment>
         <h3>Review...</h3>
         <div className="ui segment">
+          <h4>Matrial ID</h4>
+          <div className="ui segment">{materialID}</div>
           <h4>Content</h4>
           <div
             className="ui segment"
