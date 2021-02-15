@@ -42,7 +42,7 @@ class SecondaryMenu extends Component {
           to={`/materials/content/${this.props.materialID}/marking_scheme`}
         >
           <i className="info icon"></i>
-          Marking Schemes
+          Marking Guides
         </Link>
       </div>
     );
