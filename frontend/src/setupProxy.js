@@ -4,6 +4,6 @@ module.exports = (app) =>
   app.use(
     ["/auth", "/api"],
     createProxyMiddleware({
-      target: "http://localhost:5000",
+      target: "http://e-learning_backend_1:5000",
     })
   );

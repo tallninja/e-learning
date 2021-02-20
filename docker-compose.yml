@@ -6,9 +6,11 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - /app/node_modules
-      - /backend:/app
+      - ./backend:/app
     environment:
       - PORT=5000
+    ports:
+      - "5000:5000"
     restart: always
   frontend:
     build:
@@ -16,6 +18,8 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - /app/node_modules
-      - /frontend:/app
+      - ./frontend:/app
     depends_on: 
       - backend
+    ports:
+      - "3000:3000"
