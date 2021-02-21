@@ -2,11 +2,11 @@ version: "3"
 services: 
   server:
     build:
-      context: ./server
+      context: ./
       dockerfile: Dockerfile.dev
     volumes:
       - /app/node_modules
-      - ./server:/app
+      - ./:/app
     environment:
       - PORT=5000
       - RUN_ENV=docker
@@ -15,11 +15,11 @@ services:
     restart: always
   client:
     build:
-      context: ./server/client
+      context: ./client
       dockerfile: Dockerfile.dev
     volumes:
       - /app/node_modules
-      - ./server/client:/app
+      - ./client:/app
     environment: 
       - RUN_ENV=docker
     depends_on: 
