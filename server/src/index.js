@@ -1,3 +1,4 @@
+const path = require("path");
 const keys = require("../config/keys");
 const express = require("express");
 const passport = require("passport");
@@ -31,6 +32,16 @@ app.use("/auth", authRoutes);
 const apiRoutes = require("./routes/apiRoutes");
 app.use("/api", apiRoutes);
 
-app.listen(5000, () => {
-  console.log("Server started successfully !");
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "frontend", "build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+}
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server listening on PORT ${PORT}`);
 });
