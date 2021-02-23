@@ -52,7 +52,7 @@ export const fetchAllMaterials = (subject, page) => async (dispatch) => {
 // create a material
 export const createMaterial = (material) => async (dispatch) => {
   const res = await axios.post("/api/materials", material);
-  history.push("/");
+  history.push(`/materials/${material.subject}/all`);
   dispatch({
     type: CREATE_MATERIAL,
     payload: res.data,
