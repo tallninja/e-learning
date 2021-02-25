@@ -43,7 +43,7 @@ class MaterialList extends Component {
             to={`/materials/content/${material._id}/notes`}
             className="header"
           >
-            {material.title}
+            {` ${material.title}`}
           </Link>
           <div className="description">
             <div>Description</div>

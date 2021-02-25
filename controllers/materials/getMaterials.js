@@ -1,7 +1,7 @@
 module.exports = async (req, res, Material) => {
   const paginateOptions = {
     page: req.query.page,
-    limit: 10,
+    limit: 1000,
   };
 
   await Material.paginate(

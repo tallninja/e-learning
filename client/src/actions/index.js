@@ -88,7 +88,7 @@ export const editMaterial = (id, data) => async (dispatch) => {
       id: id,
     },
   });
-  history.push(`/materials/content/${id}`);
+  history.push(`/materials/${data.subject}/all`);
   dispatch({
     type: EDIT_MATERIAL,
     payload: res.data,
