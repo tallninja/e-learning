@@ -1,8 +1,16 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
+
+import "./Pagination.css";
 
 class MaterialList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { materials: {}, currentPage: 0, PER_PAGE: 10 };
+  }
+
   componentDidMount = () => {
     this.props.action();
   };
@@ -54,6 +62,7 @@ class MaterialList extends Component {
   };
 
   renderMaterialsList = () => {
+    const offset = this.state.currentPage * this.state.PER_PAGE;
     switch (this.props.materials) {
       case false:
         return <h4>No Materials yet...</h4>;
@@ -67,21 +76,46 @@ class MaterialList extends Component {
           </div>
         );
       default:
-        return _.map(this.props.materials, (material) => {
-          return this.renderMaterialItem(material);
-        });
+        return _.map(
+          _.slice(this.props.materials, offset, offset + this.state.PER_PAGE),
+          (material) => {
+            return this.renderMaterialItem(material);
+          }
+        );
     }
   };
 
+  handlePageClick = ({ selected: selectedPage }) => {
+    this.setState({ currentPage: selectedPage });
+  };
+
   render() {
-    return (
-      <div>
-        <h3>Topics</h3>
-        <div className="ui ordered large relaxed divided list">
-          {this.renderMaterialsList()}
+    if (this.props.materials) {
+      const pageCount = Math.ceil(
+        this.props.materials.length / this.state.PER_PAGE
+      );
+      return (
+        <div>
+          <h3>Topics</h3>
+          <div className="ui ordered large relaxed divided list">
+            {this.renderMaterialsList()}
+          </div>
+          <ReactPaginate
+            previousLabel={"← Previous"}
+            nextLabel={"Next →"}
+            pageCount={pageCount}
+            onPageChange={this.handlePageClick}
+            containerClassName={"pagination"}
+            previousLinkClassName={"item"}
+            nextLinkClassName={"item"}
+            disabledClassName={"item"}
+            activeClassName={"item"}
+          />
         </div>
-      </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 }
 
