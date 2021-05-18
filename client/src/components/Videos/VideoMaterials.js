@@ -19,7 +19,7 @@ class VideoMaterials extends Component {
       const { _id, title } = this.props.materials.material;
       switch (this.props.videos) {
         case null:
-          return <NoContent text="No videos..." />;
+          return <NoContent text="No videos..." icon="video" />;
         case false:
           return <h4>An error occured while fetching the video</h4>;
         default:

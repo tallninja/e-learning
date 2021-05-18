@@ -1,7 +1,27 @@
-div.footer {
-  padding-bottom: 30px;
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  width: inherit;
+@media screen and (min-width: 766px) {
+  div.footer {
+    padding-bottom: 30px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: inherit;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  div.footer {
+    padding-bottom: 30px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: inherit;
+  }
+}
+
+@media screen and (min-height: 475px) {
+  div.footer {
+    padding-bottom: 30px;
+    text-align: center;
+    width: inherit;
+  }
 }

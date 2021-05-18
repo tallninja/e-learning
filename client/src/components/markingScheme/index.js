@@ -71,6 +71,7 @@ class MarkingSchemeContent extends Component {
             />
             <NoContent
               text="No Marking Guides..."
+              icon="pdf"
               renderCreateButton={() => this.renderCreateButton()}
             />
           </React.Fragment>

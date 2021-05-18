@@ -71,6 +71,7 @@ class RevisionQuestions extends Component {
             />
             <NoContent
               text="No Revision Questions..."
+              icon="pdf"
               renderCreateButton={() => this.renderCreateButton()}
             />
           </React.Fragment>

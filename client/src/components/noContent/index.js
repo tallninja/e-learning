@@ -5,8 +5,11 @@ import "./NoContent.css";
 class NoContent extends Component {
   render() {
     return (
-      <div className="ui segment no-content">
-        <h4>{this.props.text}</h4>
+      <div className="ui placeholder segment no-content">
+        <div class="ui icon header">
+          <i class={`${this.props.icon} file outline icon`}></i>
+          {this.props.text}
+        </div>
         {this.props.renderCreateButton ? this.props.renderCreateButton() : null}
       </div>
     );

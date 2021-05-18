@@ -3,10 +3,12 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
-  authID: String,
+  school: String,
+  subCounty: String,
+  email: String,
+  username: String,
+  password: String,
   isAdmin: { type: Boolean, default: false },
-  displayName: String,
-  profileImage: String,
 });
 
 mongoose.model("users", UserSchema);

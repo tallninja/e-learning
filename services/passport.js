@@ -1,9 +1,12 @@
 const keys = require("../config/keys");
+const bcrypt = require("bcrypt");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20");
+const LocalStrategy = require("passport-local");
 const mongoose = require("mongoose");
 
 const saveUser = require("../controllers/auth/saveUser");
+const authenticateUser = require("../controllers/auth/authenticateUser");
 const User = mongoose.model("users");
 require("../serializers/user")(User, passport);
 
@@ -19,4 +22,10 @@ passport.use(
       // console.log(profile);
     }
   )
+);
+
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    saveUser(User, username, password, done, bcrypt);
+  })
 );

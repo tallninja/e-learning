@@ -1,5 +1,7 @@
+const bcrypt = require("bcrypt");
 const express = require("express");
 const passport = require("passport");
+const mongoose = require("mongoose");
 
 const requireLogin = require("../middlewares/requireLogin");
 
@@ -7,7 +9,21 @@ const router = express.Router();
 
 require("../models/User");
 
-// LOGIN
+// create-user
+const User = mongoose.model("users");
+router.post("/create_user", (req, res) => {
+  require("../controllers/auth/createUser")(User, req, res, bcrypt);
+});
+
+// local-login
+require("../services/passport");
+router.get(
+  "/login",
+  passport.authenticate("local", { failureRedirect: "/login" }),
+  (req, res) => {
+    res.redirect("/");
+  }
+);
 
 // google
 require("../services/passport");

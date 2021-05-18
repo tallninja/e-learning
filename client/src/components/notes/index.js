@@ -71,6 +71,7 @@ class Notes extends Component {
             />
             <NoContent
               text="No Notes..."
+              icon="pdf"
               renderCreateButton={() => this.renderCreateButton()}
             />
           </React.Fragment>
