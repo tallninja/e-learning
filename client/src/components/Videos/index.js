@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 import VideoMaterials from "./VideoMaterials";
+import SecondaryMenu from "../SecondaryMenu";
 
 class Videos extends Component {
   componentDidMount = () => {
@@ -13,10 +14,16 @@ class Videos extends Component {
   render() {
     if (this.props.materials.material) {
       return (
-        <VideoMaterials
-          materials={this.props.materials}
-          videoID={this.props.materials.material.videoID}
-        />
+        <React.Fragment>
+          <SecondaryMenu
+            active="videos"
+            materialID={this.props.match.params.id}
+          />
+          <VideoMaterials
+            materials={this.props.materials}
+            videoID={this.props.materials.material.videoID}
+          />
+        </React.Fragment>
       );
     } else {
       return null;

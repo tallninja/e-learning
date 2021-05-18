@@ -8,7 +8,7 @@ import Navbar from "./Navbar";
 import Dashboard from "./Dashboard";
 import Subject from "./Subject";
 import Landing from "./Landing.js";
-import Footer from "./Footer";
+import Footer from "./footer";
 
 import MaterialCreate from "./materials/MaterialCreate";
 import MaterialContent from "./materials/MaterialContent";

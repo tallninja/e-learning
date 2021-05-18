@@ -6,6 +6,7 @@ import * as actions from "../../actions";
 
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
+import NoContent from "../noContent";
 
 class MarkingSchemeContent extends Component {
   componentDidMount = () => {
@@ -68,10 +69,10 @@ class MarkingSchemeContent extends Component {
               active="marking_scheme"
               materialID={this.props.match.params.id}
             />
-            <div className="ui segment" style={{ textAlign: "center" }}>
-              <h4>No Marking scheme...</h4>
-              {this.renderCreateButton()}
-            </div>
+            <NoContent
+              text="No Marking Guides..."
+              renderCreateButton={() => this.renderCreateButton()}
+            />
           </React.Fragment>
         );
       default:

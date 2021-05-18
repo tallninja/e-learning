@@ -7,6 +7,7 @@ import * as actions from "../../actions";
 import VideoPlayer from "./VideoPlayer";
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
+import NoContent from "../noContent";
 
 class VideoMaterials extends Component {
   componentDidMount = () => {
@@ -18,7 +19,7 @@ class VideoMaterials extends Component {
       const { _id, title } = this.props.materials.material;
       switch (this.props.videos) {
         case null:
-          return null;
+          return <NoContent text="No videos..." />;
         case false:
           return <h4>An error occured while fetching the video</h4>;
         default:

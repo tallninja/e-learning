@@ -6,6 +6,7 @@ import * as actions from "../../actions";
 
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
+import NoContent from "../noContent";
 
 class RevisionQuestions extends Component {
   componentDidMount = () => {
@@ -68,10 +69,10 @@ class RevisionQuestions extends Component {
               active="revision_questions"
               materialID={this.props.match.params.id}
             />
-            <div className="ui segment" style={{ textAlign: "center" }}>
-              <h4>No Revision Questions...</h4>
-              {this.renderCreateButton()}
-            </div>
+            <NoContent
+              text="No Revision Questions..."
+              renderCreateButton={() => this.renderCreateButton()}
+            />
           </React.Fragment>
         );
       default:
