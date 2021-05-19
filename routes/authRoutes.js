@@ -17,7 +17,7 @@ router.post("/create_user", (req, res) => {
 
 // local-login
 require("../services/passport");
-router.get(
+router.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
   (req, res) => {

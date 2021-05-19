@@ -8,7 +8,7 @@ module.exports = async (User, username, password, done, bcrypt) => {
         return done(null, false, {
           message: "Incorret Username or Password !",
         });
-      if (same) return done(null, user);
+      if (same) return done(null, existingUser);
     });
   } else {
     return done(null, false, { message: "Incorret Username or Password !" });

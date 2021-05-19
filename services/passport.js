@@ -26,6 +26,6 @@ passport.use(
 
 passport.use(
   new LocalStrategy((username, password, done) => {
-    saveUser(User, username, password, done, bcrypt);
+    authenticateUser(User, username, password, done, bcrypt);
   })
 );

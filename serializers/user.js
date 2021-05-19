@@ -3,7 +3,7 @@ module.exports = (User, passport) => {
     done(null, user.id);
   });
   passport.deserializeUser((id, done) => {
-    User.findById(id).then((user) => {
+    User.findById(id, { password: 0 }).then((user) => {
       done(null, user);
     });
   });
