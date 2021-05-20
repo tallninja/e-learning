@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   FETCH_USER,
+  LOGIN_USER,
   FETCH_MATERIALS,
   FETCH_MATERIAL,
   DELETE_MATERIAL,
@@ -25,6 +26,15 @@ import {
 import youtube from "../utils/youtube";
 
 import history from "../history";
+
+// login user
+export const loginUser = (credentials) => async (dispatch) => {
+  const res = axios.post("/auth/login", credentials);
+  dispatch({
+    type: LOGIN_USER,
+    payload: res.data,
+  });
+};
 
 // fetch user data
 export const fetchUser = () => async (dispatch) => {
@@ -184,16 +194,15 @@ export const fetchRevisionQuestions = (materialID) => async (dispatch) => {
 };
 
 // create a revision questions
-export const createRevisionQuestions = (revisionQuestions) => async (
-  dispatch
-) => {
-  const res = await axios.post("/api/revision_questions", revisionQuestions);
-  history.push("/");
-  dispatch({
-    type: CREATE_REVISION_QUESTIONS,
-    payload: res.data,
-  });
-};
+export const createRevisionQuestions =
+  (revisionQuestions) => async (dispatch) => {
+    const res = await axios.post("/api/revision_questions", revisionQuestions);
+    history.push("/");
+    dispatch({
+      type: CREATE_REVISION_QUESTIONS,
+      payload: res.data,
+    });
+  };
 
 // edit a revision questions
 export const editRevisionQuestions = (id, data) => async (dispatch) => {

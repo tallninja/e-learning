@@ -1,4 +1,5 @@
 export const FETCH_USER = "FETCH_USER";
+export const LOGIN_USER = "LOGIN_USER";
 export const CREATE_MATERIAL = "CREATE_MATERIAL";
 export const FETCH_MATERIALS = "FETCH_MATERIALS";
 export const DELETE_MATERIAL = "DELETE_MATERIAL";

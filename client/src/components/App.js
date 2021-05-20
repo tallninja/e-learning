@@ -9,6 +9,7 @@ import Dashboard from "./Dashboard";
 import Subject from "./Subject";
 import Landing from "./Landing.js";
 import Footer from "./footer";
+import Login from "./login";
 
 import MaterialCreate from "./materials/MaterialCreate";
 import MaterialContent from "./materials/MaterialContent";
@@ -47,6 +48,7 @@ class App extends Component {
 
           <Route exact={true} path="/" component={Landing} />
           <Route exact={true} path="/dashboard" component={Dashboard} />
+          <Route exact={true} path="/login" component={Login} />
           <Route
             exact={true}
             path="/materials/:subject/new"

@@ -13,7 +13,7 @@ class Navbar extends Component {
       case false:
         return (
           <React.Fragment>
-            <a className="ui item" href="/auth/google">
+            <a className="ui item" href="/login">
               <button className="ui google plus button">
                 <i className="google icon"></i>
                 Login
