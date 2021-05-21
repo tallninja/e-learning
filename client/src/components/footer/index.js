@@ -10,7 +10,9 @@ class Footer extends Component {
         style={{ textAlign: "center", paddingBottom: "20px" }}
       >
         <div className="ui section divider"></div>
-        <p className="ui text">Academix &copy; Copyright {year}</p>
+        <p className="ui text">
+          Made with <span>&#x1F49A;</span> by RafikiSoft &copy; Copyright {year}
+        </p>
       </div>
     );
   }

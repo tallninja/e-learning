@@ -58,7 +58,7 @@ class Landing extends Component {
           image="buss.jpeg"
           subject="Business"
           color="pink"
-          description="An accountant is someone who knows the cost of everything and the value of nothind."
+          description="An accountant is someone who knows the cost of everything and the value of nothing."
         />
         <Card
           image="cre.jpeg"
