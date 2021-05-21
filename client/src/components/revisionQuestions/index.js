@@ -14,8 +14,8 @@ class RevisionQuestions extends Component {
   };
 
   renderAuthButtons = () => {
-    if (this.props.auth) {
-      if (this.props.auth.isAdmin) {
+    if (this.props.user) {
+      if (this.props.user.isAdmin) {
         return (
           <div className="ui two top attached buttons">
             <Link
@@ -43,7 +43,7 @@ class RevisionQuestions extends Component {
   };
 
   renderCreateButton = () => {
-    if (this.props.auth.isAdmin) {
+    if (this.props.user.isAdmin) {
       return (
         <Link
           to={`/materials/content/${this.props.match.params.id}/revision_questions/new`}
@@ -103,8 +103,8 @@ class RevisionQuestions extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, revisionQuestions }) => {
-  return { auth, revisionQuestions: revisionQuestions.item };
+const mapStateToProps = ({ user, revisionQuestions }) => {
+  return { user, revisionQuestions: revisionQuestions.item };
 };
 
 export default connect(mapStateToProps, actions)(RevisionQuestions);

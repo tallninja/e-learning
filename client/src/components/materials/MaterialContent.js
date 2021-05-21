@@ -13,8 +13,8 @@ class MaterialContent extends Component {
   };
 
   renderAuthButtons = () => {
-    if (this.props.auth) {
-      if (this.props.auth.isAdmin) {
+    if (this.props.user) {
+      if (this.props.user.isAdmin) {
         return (
           <div className="ui two top attached buttons">
             <Link
@@ -75,8 +75,8 @@ class MaterialContent extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, materials }) => {
-  return { auth, material: materials.material };
+const mapStateToProps = ({ user, materials }) => {
+  return { user, material: materials.material };
 };
 
 export default connect(mapStateToProps, actions)(MaterialContent);

@@ -43,9 +43,6 @@ class LoginFrom extends Component {
             </div>
             <div className="ui error message"></div>
           </form>
-          <div className="ui message">
-            New to us?<a href="#root"> Sign Up</a>
-          </div>
         </div>
       </div>
     );

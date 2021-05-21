@@ -52,8 +52,8 @@ class Subject extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, materials }) => {
-  return { user: auth, subjectMaterials: materials.materialsList };
+const mapStateToProps = ({ user, materials }) => {
+  return { user, subjectMaterials: materials.materialsList };
 };
 
 export default connect(mapStateToProps, actions)(Subject);

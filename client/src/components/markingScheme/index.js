@@ -14,8 +14,8 @@ class MarkingSchemeContent extends Component {
   };
 
   renderAuthButtons = () => {
-    if (this.props.auth) {
-      if (this.props.auth.isAdmin) {
+    if (this.props.user) {
+      if (this.props.user.isAdmin) {
         return (
           <div className="ui two top attached buttons">
             <Link
@@ -43,7 +43,7 @@ class MarkingSchemeContent extends Component {
   };
 
   renderCreateButton = () => {
-    if (this.props.auth.isAdmin) {
+    if (this.props.user.isAdmin) {
       return (
         <Link
           to={`/materials/content/${this.props.match.params.id}/marking_scheme/new`}
@@ -103,8 +103,8 @@ class MarkingSchemeContent extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, markingScheme }) => {
-  return { auth, markingScheme: markingScheme.item };
+const mapStateToProps = ({ user, markingScheme }) => {
+  return { user, markingScheme: markingScheme.item };
 };
 
 export default connect(mapStateToProps, actions)(MarkingSchemeContent);

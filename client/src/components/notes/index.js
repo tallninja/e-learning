@@ -14,8 +14,8 @@ class Notes extends Component {
   };
 
   renderAuthButtons = () => {
-    if (this.props.auth) {
-      if (this.props.auth.isAdmin) {
+    if (this.props.user) {
+      if (this.props.user.isAdmin) {
         return (
           <div className="ui two top attached buttons">
             <Link
@@ -43,7 +43,7 @@ class Notes extends Component {
   };
 
   renderCreateButton = () => {
-    if (this.props.auth.isAdmin) {
+    if (this.props.user.isAdmin) {
       return (
         <Link
           to={`/materials/content/${this.props.match.params.id}/notes/new`}
@@ -101,8 +101,8 @@ class Notes extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, notes }) => {
-  return { auth, notes: notes.item };
+const mapStateToProps = ({ user, notes }) => {
+  return { user, notes: notes.item };
 };
 
 export default connect(mapStateToProps, actions)(Notes);
