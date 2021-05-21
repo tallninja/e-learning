@@ -34,15 +34,15 @@ router.post(
   }
 );
 
-// google
-require("../services/passport");
-router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
-);
-router.get("/google/callback", passport.authenticate("google"), (req, res) => {
-  res.redirect("/");
-});
+// // google
+// require("../services/passport");
+// router.get(
+//   "/google",
+//   passport.authenticate("google", { scope: ["email", "profile"] })
+// );
+// router.get("/google/callback", passport.authenticate("google"), (req, res) => {
+//   res.redirect("/");
+// });
 
 // get current user
 router.get("/current_user", (req, res) => {
