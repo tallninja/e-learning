@@ -15,6 +15,15 @@ router.post("/create_user", (req, res) => {
   require("../controllers/auth/createUser")(User, req, res, bcrypt);
 });
 
+// check user authentication
+router.get("/status", (req, res) => {
+  if (req.user) {
+    res.json({ status: true });
+  } else {
+    res.json({ status: false });
+  }
+});
+
 // local-login
 require("../services/passport");
 router.post(

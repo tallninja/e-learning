@@ -1,10 +1,8 @@
-import { FETCH_USER, LOGIN_USER } from "../actions/types";
+import { CHECK_USER_AUTHENTICATION } from "../actions/types";
 
-const authReducer = (state = null, action) => {
+const authReducer = (state = {}, action) => {
   switch (action.type) {
-    case FETCH_USER:
-      return action.payload || false;
-    case LOGIN_USER:
+    case CHECK_USER_AUTHENTICATION:
       return action.payload || false;
     default:
       return state;

@@ -6,7 +6,7 @@ const LocalStrategy = require("passport-local");
 const mongoose = require("mongoose");
 
 const saveUser = require("../controllers/auth/saveUser");
-const authenticateUser = require("../controllers/auth/authenticateUser");
+const loginUser = require("../controllers/auth/loginUser");
 const User = mongoose.model("users");
 require("../serializers/user")(User, passport);
 
@@ -26,6 +26,6 @@ passport.use(
 
 passport.use(
   new LocalStrategy((username, password, done) => {
-    authenticateUser(User, username, password, done, bcrypt);
+    loginUser(User, username, password, done, bcrypt);
   })
 );

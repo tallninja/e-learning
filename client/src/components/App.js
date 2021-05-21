@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import * as actions from "../actions";
@@ -35,9 +35,12 @@ import Videos from "./Videos";
 
 import history from "../history";
 
+import ProtectedRoute from "./ProtectedRoute";
+
 class App extends Component {
   componentDidMount = () => {
     this.props.fetchUser();
+    this.props.checkUserAuthentication();
   };
 
   render() {
@@ -45,104 +48,108 @@ class App extends Component {
       <Router history={history}>
         <div className="ui container">
           <Navbar auth={this.props.auth} />
+          <Switch>
+            <Route exact={true} path="/login" component={Login} />
+            <ProtectedRoute exact={true} path="/" component={Landing} />
+            <ProtectedRoute
+              exact={true}
+              path="/dashboard"
+              component={Dashboard}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/:subject/new"
+              component={MaterialCreate}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/:subject/all"
+              component={Subject}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/edit/:id"
+              component={MaterialEdit}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/delete/:id"
+              component={MaterialDelete}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id"
+              component={MaterialContent}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/videos"
+              component={Videos}
+            />
 
-          <Route exact={true} path="/" component={Landing} />
-          <Route exact={true} path="/dashboard" component={Dashboard} />
-          <Route exact={true} path="/login" component={Login} />
-          <Route
-            exact={true}
-            path="/materials/:subject/new"
-            component={MaterialCreate}
-          />
-          <Route
-            exact={true}
-            path="/materials/:subject/all"
-            component={Subject}
-          />
-          <Route
-            exact={true}
-            path="/materials/edit/:id"
-            component={MaterialEdit}
-          />
-          <Route
-            exact={true}
-            path="/materials/delete/:id"
-            component={MaterialDelete}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id"
-            component={MaterialContent}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/videos"
-            component={Videos}
-          />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/notes"
+              component={Notes}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/notes/new"
+              component={NotesCreate}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/notes/edit"
+              component={NotesEdit}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/notes/delete"
+              component={NotesDelete}
+            />
 
-          <Route
-            exact={true}
-            path="/materials/content/:id/notes"
-            component={Notes}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/notes/new"
-            component={NotesCreate}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/notes/edit"
-            component={NotesEdit}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/notes/delete"
-            component={NotesDelete}
-          />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/revision_questions"
+              component={RevisionQuestions}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/revision_questions/new"
+              component={RevisionQuestionsCreate}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/revision_questions/edit"
+              component={RevisionQuestionsEdit}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/revision_questions/delete"
+              component={RevisionQuestionsDelete}
+            />
 
-          <Route
-            exact={true}
-            path="/materials/content/:id/revision_questions"
-            component={RevisionQuestions}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/revision_questions/new"
-            component={RevisionQuestionsCreate}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/revision_questions/edit"
-            component={RevisionQuestionsEdit}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/revision_questions/delete"
-            component={RevisionQuestionsDelete}
-          />
-
-          <Route
-            exact={true}
-            path="/materials/content/:id/marking_scheme"
-            component={MarkingScheme}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/marking_scheme/new"
-            component={MarkingSchemeCreate}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/marking_scheme/edit"
-            component={MarkingSchemeEdit}
-          />
-          <Route
-            exact={true}
-            path="/materials/content/:id/marking_scheme/delete"
-            component={MarkingSchemeDelete}
-          />
-
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/marking_scheme"
+              component={MarkingScheme}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/marking_scheme/new"
+              component={MarkingSchemeCreate}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/marking_scheme/edit"
+              component={MarkingSchemeEdit}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/marking_scheme/delete"
+              component={MarkingSchemeDelete}
+            />
+          </Switch>
           <Footer />
         </div>
       </Router>

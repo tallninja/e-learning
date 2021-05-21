@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  CHECK_USER_AUTHENTICATION,
   FETCH_USER,
   LOGIN_USER,
   FETCH_MATERIALS,
@@ -26,6 +27,15 @@ import {
 import youtube from "../utils/youtube";
 
 import history from "../history";
+
+// check user authentication
+export const checkUserAuthentication = () => async (dispatch) => {
+  const res = await axios.get("/auth/status");
+  dispatch({
+    type: CHECK_USER_AUTHENTICATION,
+    payload: res.data,
+  });
+};
 
 // login user
 export const loginUser = (credentials) => async (dispatch) => {
