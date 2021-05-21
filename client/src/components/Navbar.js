@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 class Navbar extends Component {
   renderAuthButtons = () => {
-    switch (this.props.auth) {
+    switch (this.props.auth.status) {
       case null:
         return (
           <a className="ui item" href="/#">
@@ -11,16 +11,7 @@ class Navbar extends Component {
           </a>
         );
       case false:
-        return (
-          <React.Fragment>
-            <a className="ui item" href="/login">
-              <button className="ui google plus button">
-                <i className="google icon"></i>
-                Login
-              </button>
-            </a>
-          </React.Fragment>
-        );
+        return null;
       default:
         return (
           <React.Fragment>
@@ -40,9 +31,6 @@ class Navbar extends Component {
   render() {
     return (
       <div className="ui massive top secondary pointing menu">
-        <div className="item">
-          <img src={`${process.env.PUBLIC_URL}/images/brand.svg`} alt="brand" />
-        </div>
         <Link to="/" className="active item">
           Home
         </Link>

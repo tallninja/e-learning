@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
-import * as actions from "../../actions";
-
 import LoginField from "./LoginField";
 
 import "./Login.css";
