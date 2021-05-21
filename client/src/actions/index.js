@@ -39,11 +39,14 @@ export const checkUserAuthentication = () => async (dispatch) => {
 
 // login user
 export const loginUser = (credentials) => async (dispatch) => {
-  const res = axios.post("/auth/login", credentials);
+  const res = await axios.post("/auth/login", credentials);
   dispatch({
     type: LOGIN_USER,
     payload: res.data,
   });
+  if (res.data.login) {
+    history.push("/");
+  }
 };
 
 // fetch user data
