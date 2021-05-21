@@ -4,7 +4,8 @@ const express = require("express");
 const passport = require("passport");
 const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
-const bodyParser = require("body-parser");
+
+// const sslRedirect = require("heroku-ssl-redirect");
 
 // mongo
 const mongoURI = keys.mongo.URI;
@@ -12,7 +13,15 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(express.json());
+
+app.use((req, res, next) => {
+  if (req.header("x-forwarded-proto") !== "https") {
+    res.redirect(`https://${req.header("host")}${req.url}`);
+  } else {
+    next();
+  }
+});
 
 // sesions and cookies
 app.use(
