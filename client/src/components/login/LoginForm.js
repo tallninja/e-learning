@@ -16,7 +16,7 @@ class LoginFrom extends Component {
               src={`${process.env.PUBLIC_URL}/images/brand.svg`}
               alt="Logo"
             />{" "}
-            Log-in to your account
+            <div>Log-in to your account</div>
           </h2>
           <form
             className="ui large error form"
