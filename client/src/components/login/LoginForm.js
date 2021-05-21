@@ -11,11 +11,11 @@ class LoginFrom extends Component {
       <div className="ui middle aligned center aligned grid">
         <div className="column">
           <h2 className="ui center aligned header">
-            <img
+            {/* <img
               className="image"
               src={`${process.env.PUBLIC_URL}/images/brand.svg`}
               alt="Logo"
-            />{" "}
+            />{" "} */}
             Log-in to your account
           </h2>
           <form
