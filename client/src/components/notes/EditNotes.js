@@ -23,7 +23,7 @@ class NotesEdit extends Component {
 
   renderContent = () => {
     if (this.props.notes.item) {
-      const { _id, materialID, content } = this.props.notes.item;
+      const { _id, content } = this.props.notes.item;
       if (this.state.showReviewForm) {
         return (
           <NotesReview
@@ -42,7 +42,7 @@ class NotesEdit extends Component {
             <h2>Edit Marking Scheme</h2>
             <NotesForm
               onSubmit={this.handleSubmit}
-              initialValues={{ materialID, content }}
+              initialValues={{ content }}
             />
           </div>
         );

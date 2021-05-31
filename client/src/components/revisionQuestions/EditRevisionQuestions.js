@@ -23,7 +23,7 @@ class RevisionQuestionsEdit extends Component {
 
   renderContent = () => {
     if (this.props.revisionQuestions.item) {
-      const { _id, materialID, content } = this.props.revisionQuestions.item;
+      const { _id, content } = this.props.revisionQuestions.item;
       if (this.state.showReviewForm) {
         return (
           <RevisionQuestionsReview
@@ -45,7 +45,7 @@ class RevisionQuestionsEdit extends Component {
             <h2>Edit Marking Scheme</h2>
             <RevisionQuestionsForm
               onSubmit={this.handleSubmit}
-              initialValues={{ materialID, content }}
+              initialValues={{ content }}
             />
           </div>
         );

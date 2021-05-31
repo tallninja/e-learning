@@ -15,15 +15,8 @@ class RevisionQuestionsForm extends Component {
       >
         <Field
           type="text"
-          name="materialID"
-          label="Material ID"
-          component={MaterialField}
-        />
-
-        <Field
-          type="text"
           name="content"
-          label="Content"
+          label="Enter Your Content"
           component={TinyEditor}
           required
         />

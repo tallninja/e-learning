@@ -33,11 +33,12 @@ class CreateRevisionQuestions extends Component {
         <RevisionQuestionsReview
           handleBack={() => this.setState({ showReviewForm: false })}
           form={this.props.form}
-          action={() =>
-            this.props.createRevisionQuestions(
-              this.props.form.revisionQuestionsForm.values
-            )
-          }
+          action={() => {
+            const revisionQuestions =
+              this.props.form.revisionQuestionsForm.values;
+            revisionQuestions.materialID = this.props.match.params.id;
+            this.props.createRevisionQuestions(revisionQuestions);
+          }}
           icon="paper plane icon"
           buttonText="Create"
         />
