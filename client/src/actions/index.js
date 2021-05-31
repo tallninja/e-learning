@@ -210,7 +210,9 @@ export const fetchRevisionQuestions = (materialID) => async (dispatch) => {
 export const createRevisionQuestions =
   (revisionQuestions) => async (dispatch) => {
     const res = await axios.post("/api/revision_questions", revisionQuestions);
-    history.push("/");
+    history.push(
+      `/materials/content/${revisionQuestions.materialID}/revision_questions`
+    );
     dispatch({
       type: CREATE_REVISION_QUESTIONS,
       payload: res.data,
@@ -261,7 +263,7 @@ export const fetchMarkingScheme = (materialID) => async (dispatch) => {
 // create a marking scheme
 export const createMarkingScheme = (markingScheme) => async (dispatch) => {
   const res = await axios.post("/api/marking_scheme", markingScheme);
-  history.push("/");
+  history.push(`/materials/content/${markingScheme.materialID}/marking_scheme`);
   dispatch({
     type: CREATE_MARKING_SCHEME,
     payload: res.data,
