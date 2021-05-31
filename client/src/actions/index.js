@@ -9,7 +9,6 @@ import {
   EDIT_MATERIAL,
   CREATE_MATERIAL,
   FETCH_ALL_MATERIALS,
-  FETCH_VIDEOS,
   FETCH_NOTES,
   CREATE_NOTES,
   EDIT_NOTES,
@@ -23,8 +22,6 @@ import {
   EDIT_MARKING_SCHEME,
   DELETE_MARKING_SCHEME,
 } from "./types";
-
-import youtube from "../utils/youtube";
 
 import history from "../history";
 
@@ -128,17 +125,6 @@ export const deleteMaterial = (id) => async (dispatch) => {
   dispatch({
     type: DELETE_MATERIAL,
     payload: res.data,
-  });
-};
-
-// fetch videos
-export const fetchVideos = (VIDEO_ID) => async (dispatch) => {
-  const res = await youtube.get("/videos", {
-    params: { id: VIDEO_ID },
-  });
-  dispatch({
-    type: FETCH_VIDEOS,
-    payload: res.data.items,
   });
 };
 

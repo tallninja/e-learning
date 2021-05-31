@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 
-import MaterialField from "../materials/MaterialField";
 import TinyEditor from "../materials/TinyEditor";
 import formValidator from "../../utils/formValidator";
 

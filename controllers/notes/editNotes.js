@@ -5,7 +5,6 @@ module.exports = async (req, res, Notes) => {
     },
     {
       content: req.body.content,
-      materialID: req.body.materialID,
     }
   ).exec((err) => {
     if (err) {

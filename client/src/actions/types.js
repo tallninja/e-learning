@@ -8,8 +8,6 @@ export const EDIT_MATERIAL = "EDIT_MATERIAL ";
 export const FETCH_MATERIAL = "FETCH_MATERIAL";
 export const FETCH_ALL_MATERIALS = "FETCH_ALL_MATERIALS";
 
-export const FETCH_VIDEOS = "FETCH_VIDEOS";
-
 export const FETCH_NOTES = "FETCH_NOTES";
 export const CREATE_NOTES = "CREATE_NOTES";
 export const EDIT_NOTES = "EDIT_NOTES";

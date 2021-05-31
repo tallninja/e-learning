@@ -2,7 +2,6 @@ module.exports = async (req, res, Material) => {
   await Material.updateOne(
     {
       _id: req.query.id,
-      _user: req.user.id,
     },
     {
       subject: req.body.subject,

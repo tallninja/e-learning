@@ -10,8 +10,7 @@ class RevisionQuestionsReview extends Component {
   };
 
   render() {
-    const { materialID, content } =
-      this.props.form.revisionQuestionsForm.values;
+    const { content } = this.props.form.revisionQuestionsForm.values;
     return (
       <React.Fragment>
         <h3>Review...</h3>

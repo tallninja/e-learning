@@ -20,7 +20,7 @@ class Videos extends Component {
             materialID={this.props.match.params.id}
           />
           <VideoMaterials
-            materials={this.props.materials}
+            material={this.props.materials.material}
             videoID={this.props.materials.material.videoID}
           />
         </React.Fragment>
