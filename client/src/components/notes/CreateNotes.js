@@ -22,10 +22,7 @@ class CreateNotes extends Component {
       return (
         <div>
           <h2>Create Revision Questions Scheme</h2>
-          <NotesForm
-            onSubmit={this.handleSubmit}
-            materialID={this.props.match.params.id}
-          />
+          <NotesForm onSubmit={this.handleSubmit} />
         </div>
       );
     } else {
@@ -33,9 +30,11 @@ class CreateNotes extends Component {
         <NotesReview
           handleBack={() => this.setState({ showReviewForm: false })}
           form={this.props.form}
-          action={() =>
-            this.props.createNotes(this.props.form.notesForm.values)
-          }
+          action={() => {
+            const notes = this.props.form.notesForm.values;
+            notes.materialID = this.props.match.params.id;
+            this.props.createNotes(notes);
+          }}
           icon="paper plane icon"
           buttonText="Create"
         />
