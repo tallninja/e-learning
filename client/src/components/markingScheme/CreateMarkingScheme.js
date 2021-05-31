@@ -33,11 +33,11 @@ class CreateMarkingScheme extends Component {
         <MarkingSchemeReview
           handleBack={() => this.setState({ showReviewForm: false })}
           form={this.props.form}
-          action={() =>
-            this.props.createMarkingScheme(
-              this.props.form.markingSchemeForm.values
-            )
-          }
+          action={() => {
+            const markingScheme = this.props.form.markingSchemeForm.values;
+            markingScheme.materialID = this.props.match.params.id;
+            this.props.createMarkingScheme(markingScheme);
+          }}
           icon="paper plane icon"
           buttonText="Create"
         />

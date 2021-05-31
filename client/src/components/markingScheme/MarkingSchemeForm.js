@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 
-import MaterialField from "../materials/MaterialField";
 import TinyEditor from "../materials/TinyEditor";
 import formValidator from "../../utils/formValidator";
 
@@ -15,16 +14,8 @@ class MarkingSchemeForm extends Component {
       >
         <Field
           type="text"
-          value={this.props.materialID}
-          name="materialID"
-          label="Material ID"
-          component={MaterialField}
-        />
-
-        <Field
-          type="text"
           name="content"
-          label="Content"
+          label="Enter Your Content"
           component={TinyEditor}
           required
         />
