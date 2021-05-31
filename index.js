@@ -15,13 +15,15 @@ const app = express();
 
 app.use(express.json());
 
-app.use((req, res, next) => {
-  if (req.header("x-forwarded-proto") !== "https") {
-    res.redirect(`https://${req.header("host")}${req.url}`);
-  } else {
-    next();
-  }
-});
+if (process.env.NODE_ENV === "prodction") {
+  app.use((req, res, next) => {
+    if (req.header("x-forwarded-proto") !== "https") {
+      res.redirect(`https://${req.header("host")}${req.url}`);
+    } else {
+      next();
+    }
+  });
+}
 
 // sesions and cookies
 app.use(
