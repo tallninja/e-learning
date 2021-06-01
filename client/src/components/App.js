@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 
 import Navbar from "./Navbar";
-import Dashboard from "./Dashboard";
 import Subject from "./Subject";
 import Landing from "./Landing.js";
 import Footer from "./footer";
@@ -51,11 +50,6 @@ class App extends Component {
           <Switch>
             <Route exact={true} path="/login" component={Login} />
             <ProtectedRoute exact={true} path="/" component={Landing} />
-            <ProtectedRoute
-              exact={true}
-              path="/dashboard"
-              component={Dashboard}
-            />
             <ProtectedRoute
               exact={true}
               path="/materials/:subject/new"

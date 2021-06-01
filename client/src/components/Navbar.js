@@ -15,10 +15,6 @@ class Navbar extends Component {
       default:
         return (
           <React.Fragment>
-            <Link className="ui item" to="/dashboard" key="1">
-              <i className="dashboard icon"></i>
-              Dashboard
-            </Link>
             <a className="ui item" href="/auth/logout" key="2">
               <i className="sign-out icon"></i>
               Logout
