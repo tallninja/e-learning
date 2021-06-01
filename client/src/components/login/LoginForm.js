@@ -6,7 +6,25 @@ import LoginField from "./LoginField";
 import "./Login.css";
 
 class LoginFrom extends Component {
+  renderErrorMessage = () => {
+    if (this.props.login.message) {
+      return (
+        <div className="ui error message">
+          <div className="header">Login Failed !</div>
+          <p>{this.props.login.message}</p>
+        </div>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  renderButtonText = () => {
+    return "Login";
+  };
+
   render() {
+    console.log(this.props.login.message);
     return (
       <div className="ui middle aligned center aligned grid">
         <div className="column">
@@ -23,6 +41,7 @@ class LoginFrom extends Component {
             onSubmit={this.props.handleSubmit(this.props.onSubmit)}
           >
             <div className="ui stacked segment">
+              {this.renderErrorMessage()}
               <Field
                 name="username"
                 type="text"
@@ -38,7 +57,7 @@ class LoginFrom extends Component {
                 component={LoginField}
               />
               <button className="ui fluid large green submit button">
-                Login
+                {this.renderButtonText()}
               </button>
             </div>
             <div className="ui error message"></div>
@@ -49,6 +68,4 @@ class LoginFrom extends Component {
   }
 }
 
-export default reduxForm({ form: "loginForm", destroyOnUnmount: false })(
-  LoginFrom
-);
+export default reduxForm({ form: "loginForm" })(LoginFrom);

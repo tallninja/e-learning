@@ -20,13 +20,13 @@ class Login extends Component {
     return this.props.auth.status ? (
       <Redirect to="/" />
     ) : (
-      <LoginForm onSubmit={this.onFormSubmit} />
+      <LoginForm onSubmit={this.onFormSubmit} login={this.props.login} />
     );
   }
 }
 
-const mapStateToProps = ({ form, auth }) => {
-  return { form, auth };
+const mapStateToProps = ({ form, auth, login }) => {
+  return { form, auth, login };
 };
 
 export default connect(mapStateToProps, actions)(Login);

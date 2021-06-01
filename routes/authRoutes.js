@@ -26,13 +26,22 @@ router.get("/status", (req, res) => {
 
 // local-login
 require("../services/passport");
-router.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.json({ login: true });
-  }
-);
+router.post("/login", (req, res, next) => {
+  passport.authenticate("local", (e, user, info) => {
+    if (e) {
+      return next(e);
+    }
+    if (info) {
+      return res.send(info);
+    }
+    req.logIn(user, (e) => {
+      if (e) {
+        return next(e);
+      }
+      return res.send({ login: true });
+    });
+  })(req, res, next);
+});
 
 // // google
 // require("../services/passport");
