@@ -4,11 +4,14 @@ module.exports = async (User, username, password, done, bcrypt) => {
   if (existingUser) {
     const USER_PASSWORD = existingUser.password;
     bcrypt.compare(password, USER_PASSWORD, (error, same) => {
-      if (error)
+      if (error) return done(null, false);
+      if (same) {
+        return done(null, existingUser);
+      } else {
         return done(null, false, {
           message: "Incorret Username or Password !",
         });
-      if (same) return done(null, existingUser);
+      }
     });
   } else {
     return done(null, false, { message: "Incorret Username or Password !" });
