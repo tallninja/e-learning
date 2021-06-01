@@ -24,14 +24,6 @@ class MaterialForm extends Component {
 
         <SubjectSelect name="subject" label="Subject" />
 
-        <Field
-          type="text"
-          name="videoID"
-          label="Video ID"
-          placeholder="Video ID"
-          component={MaterialField}
-        />
-
         <div style={{ margin: "20px" }}>
           <button className="ui right floated teal button">
             Next

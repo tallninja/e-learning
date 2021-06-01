@@ -24,7 +24,7 @@ class MaterialCreate extends Component {
           <h2>Create Your Material</h2>
           <MaterialForm
             onSubmit={this.handleSubmit}
-            subject={this.props.match.params.subject}
+            subject={this.props.form.materialForm.values.subject}
           />
         </div>
       );
