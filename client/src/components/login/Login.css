@@ -11,3 +11,9 @@ body {
 .column {
   max-width: 450px;
 }
+
+.ui.icon.button {
+  background: transparent;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-left-color: transparent;
+}
