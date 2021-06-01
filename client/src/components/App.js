@@ -31,6 +31,9 @@ import MarkingSchemeEdit from "./markingScheme/EditMarkingScheme";
 import MarkingSchemeDelete from "./markingScheme/DeleteMarkingScheme";
 
 import Videos from "./Videos";
+import CreateVideo from "./Videos/CreateVideo";
+import EditVideo from "./Videos/EditVideo";
+import DeleteVideo from "./Videos/DeleteVideo";
 
 import history from "../history";
 
@@ -142,6 +145,27 @@ class App extends Component {
               exact={true}
               path="/materials/content/:id/marking_scheme/delete"
               component={MarkingSchemeDelete}
+            />
+
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/videos"
+              component={Videos}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/videos/new"
+              component={CreateVideo}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/videos/edit"
+              component={EditVideo}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/materials/content/:id/videos/delete"
+              component={DeleteVideo}
             />
           </Switch>
           <Footer />

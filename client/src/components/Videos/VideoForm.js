@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-import TinyEditor from "../materials/TinyEditor";
+import MaterialField from "../materials/MaterialField";
 import formValidator from "../../utils/formValidator";
 
-class RevisionQuestionsForm extends Component {
+class VideoForm extends Component {
   render() {
     return (
       <form
@@ -14,9 +15,10 @@ class RevisionQuestionsForm extends Component {
       >
         <Field
           type="text"
-          name="content"
-          label="Enter Your Content"
-          component={TinyEditor}
+          name="ytVideoID"
+          label="Youtube Video ID"
+          placeholder="ID"
+          component={MaterialField}
           required
         />
 
@@ -26,7 +28,7 @@ class RevisionQuestionsForm extends Component {
             <i className="angle right icon"></i>
           </button>
           <Link
-            to={`/materials/content/${this.props.match.params.id}/revision_questions`}
+            to={`/materials/content/${this.props.match.params.id}/videos`}
             className="ui left floated red button"
           >
             <i className="reply icon"></i>
@@ -40,8 +42,8 @@ class RevisionQuestionsForm extends Component {
 
 export default withRouter(
   reduxForm({
-    form: "revisionQuestionsForm",
+    form: "videoForm",
     validate: formValidator,
     destroyOnUnmount: false,
-  })(RevisionQuestionsForm)
+  })(VideoForm)
 );

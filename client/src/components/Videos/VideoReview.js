@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class NotesReview extends Component {
+class VideoReview extends Component {
   handleBack = () => {
     this.props.handleBack();
   };
@@ -10,13 +10,13 @@ class NotesReview extends Component {
   };
 
   render() {
-    const { content } = this.props.form.notesForm.values;
+    const { ytVideoID } = this.props.form.videoForm.values;
     return (
       <React.Fragment>
         <h3>Review...</h3>
         <div className="ui segment">
           <h4>Content</h4>
-          <div className="ui segment">{content}</div>
+          <div className="ui segment">{ytVideoID}</div>
         </div>
         <div style={{ margin: "20px" }}>
           <button
@@ -39,4 +39,4 @@ class NotesReview extends Component {
   }
 }
 
-export default NotesReview;
+export default VideoReview;

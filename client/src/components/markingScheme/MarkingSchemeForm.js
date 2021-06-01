@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import TinyEditor from "../materials/TinyEditor";
 import formValidator from "../../utils/formValidator";
@@ -25,7 +25,10 @@ class MarkingSchemeForm extends Component {
             Next
             <i className="angle right icon"></i>
           </button>
-          <Link to="/" className="ui left floated red button">
+          <Link
+            to={`/materials/content/${this.props.match.params.id}/marking_scheme`}
+            className="ui left floated red button"
+          >
             <i className="reply icon"></i>
             Cancel
           </Link>
@@ -35,8 +38,10 @@ class MarkingSchemeForm extends Component {
   }
 }
 
-export default reduxForm({
-  form: "markingSchemeForm",
-  validate: formValidator,
-  destroyOnUnmount: false,
-})(MarkingSchemeForm);
+export default withRouter(
+  reduxForm({
+    form: "markingSchemeForm",
+    validate: formValidator,
+    destroyOnUnmount: false,
+  })(MarkingSchemeForm)
+);

@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 
 import * as actions from "../../actions";
 
-import NotesForm from "./NotesForm";
-import NotesReview from "./NotesReview";
+import VideoForm from "./VideoForm";
+import VideoReview from "./VideoReview";
 
-class CreateNotes extends Component {
+class CreateVideo extends Component {
   constructor(props) {
     super(props);
 
@@ -21,18 +21,18 @@ class CreateNotes extends Component {
     if (!this.state.showReviewForm) {
       return (
         <div>
-          <NotesForm onSubmit={this.handleSubmit} />
+          <VideoForm onSubmit={this.handleSubmit} />
         </div>
       );
     } else {
       return (
-        <NotesReview
+        <VideoReview
           handleBack={() => this.setState({ showReviewForm: false })}
           form={this.props.form}
           action={() => {
-            const notes = this.props.form.notesForm.values;
-            notes.materialID = this.props.match.params.id;
-            this.props.createNotes(notes);
+            const video = this.props.form.videoForm.values;
+            video.materialID = this.props.match.params.id;
+            this.props.createVideo(video);
           }}
           icon="paper plane icon"
           buttonText="Create"
@@ -46,4 +46,4 @@ const mapStateToProps = ({ form }) => {
   return { form };
 };
 
-export default connect(mapStateToProps, actions)(CreateNotes);
+export default connect(mapStateToProps, actions)(CreateVideo);
