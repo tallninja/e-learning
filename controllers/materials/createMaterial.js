@@ -3,7 +3,6 @@ module.exports = async (req, res, Material) => {
   await new Material({
     subject: subject,
     title: title,
-    videoID: videoID,
     _user: req.user.id,
     author: req.user.displayName,
     dateCreated: new Date(),

@@ -6,7 +6,6 @@ const { Schema } = mongoose;
 const MaterialSchema = new Schema({
   subject: String,
   title: String,
-  videoID: String,
   _user: { type: Schema.Types.ObjectId, ref: "users" },
   author: String,
   dateCreated: Date,

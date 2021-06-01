@@ -13,12 +13,6 @@ module.exports = (router, requireLogin, requireAdmin, Material) => {
     createMaterial(req, res, Material)
   );
 
-  // get a list of users Materials
-  const getUserMaterials = require("../controllers/materials/getUserMaterials");
-  router.get("/materials", requireLogin, requireAdmin, (req, res) =>
-    getUserMaterials(req, res, Material)
-  );
-
   // get a single Material
   const getMaterial = require("../controllers/materials/getMaterial");
   router.get("/materials/item", (req, res) => getMaterial(req, res, Material));
