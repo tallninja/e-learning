@@ -22,7 +22,7 @@ class Subject extends Component {
             style={{ margin: "20px 0px 20px 0px" }}
           >
             <i className="plus icon"></i>
-            New material
+            New Topic
           </Link>
         );
       } else {
