@@ -13,7 +13,7 @@ class TinyEditor extends Component {
           }}
           apiKey={process.env.REACT_APP_TINYMCE_API_KEY}
           init={{
-            height: 300,
+            height: 550,
             textareaName: this.props.name,
             menubar: true,
             plugins: [
