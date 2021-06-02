@@ -31,7 +31,7 @@ class LoginFrom extends Component {
           <h2 className="ui center aligned header">
             <img
               className="image"
-              src={`${process.env.PUBLIC_URL}/images/brand.svg`}
+              src={`https://s3.af-south-1.amazonaws.com/machakos.kisomoview/images/brand.svg`}
               alt="Logo"
             />{" "}
             <div>Log-in to your account</div>
