@@ -7,7 +7,7 @@ class Card extends Component {
       <div className={`ui ${this.props.color} card`}>
         <div className="image">
           <img
-            src={`${process.env.PUBLIC_URL}/images/${this.props.image}`}
+            src={`https://s3.af-south-1.amazonaws.com/machakos.kisomoview/images/${this.props.image}`}
             alt={this.props.subject}
           />
         </div>
