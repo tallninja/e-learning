@@ -8,6 +8,7 @@ class VideoPlayer extends Component {
         <div className="ui embed">
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${this.props.videoID}`}
+            controls={true}
           />
         </div>
       </div>
