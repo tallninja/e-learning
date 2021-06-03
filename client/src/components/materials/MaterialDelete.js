@@ -39,7 +39,7 @@ class MaterialDelete extends Component {
       return (
         <div>
           <Modal
-            title="Delete Stream"
+            title="Delete Topic"
             content="Are you sure you want to delete ?"
             item={this.props.material.title}
             actions={actions}
