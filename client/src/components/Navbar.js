@@ -27,7 +27,7 @@ class Navbar extends Component {
   render() {
     return (
       <div className="ui massive top secondary pointing menu">
-        <div className="item" style={{ paddingBottom: 0 }}>
+        <div className="item" style={{ paddingBottom: 0, paddingLeft: 0 }}>
           <img
             src={`https://s3.af-south-1.amazonaws.com/machakos.kisomoview/images/brand.svg`}
             alt="brand"
