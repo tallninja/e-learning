@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import MaterialField from "./MaterialField";
 import SubjectSelect from "./SubjectSelect";
@@ -30,7 +30,7 @@ class MaterialForm extends Component {
             <i className="angle right icon"></i>
           </button>
           <Link
-            to={`/materials/${this.props.subject}/all`}
+            to={`/materials/${this.props.match.params.subject}/all`}
             className="ui left floated red button"
           >
             <i className="reply icon"></i>
@@ -42,8 +42,10 @@ class MaterialForm extends Component {
   }
 }
 
-export default reduxForm({
-  form: "materialForm",
-  validate: formValidator,
-  destroyOnUnmount: false,
-})(MaterialForm);
+export default withRouter(
+  reduxForm({
+    form: "materialForm",
+    validate: formValidator,
+    destroyOnUnmount: false,
+  })(MaterialForm)
+);

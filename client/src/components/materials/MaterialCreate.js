@@ -22,10 +22,7 @@ class MaterialCreate extends Component {
       return (
         <div>
           <h2>Create Your Material</h2>
-          <MaterialForm
-            onSubmit={this.handleSubmit}
-            subject={this.props.form.materialForm.values.subject}
-          />
+          <MaterialForm onSubmit={this.handleSubmit} />
         </div>
       );
     } else {

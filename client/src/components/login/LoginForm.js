@@ -24,7 +24,6 @@ class LoginFrom extends Component {
   };
 
   render() {
-    console.log(this.props.login.message);
     return (
       <div className="ui middle aligned center aligned grid">
         <div className="column">
