@@ -29,9 +29,11 @@ class NotesEdit extends Component {
           <NotesReview
             handleBack={() => this.setState({ showReviewForm: false })}
             form={this.props.form}
-            action={() =>
-              this.props.editNotes(_id, this.props.form.notesForm.values)
-            }
+            action={() => {
+              const data = this.props.form.notesForm.values;
+              data.materialID = this.props.match.params.id;
+              this.props.editNotes(_id, data);
+            }}
             icon="save icon"
             buttonText="Save Changes"
           />

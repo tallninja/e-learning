@@ -29,12 +29,11 @@ class RevisionQuestionsEdit extends Component {
           <RevisionQuestionsReview
             handleBack={() => this.setState({ showReviewForm: false })}
             form={this.props.form}
-            action={() =>
-              this.props.editRevisionQuestions(
-                _id,
-                this.props.form.revisionQuestionsForm.values
-              )
-            }
+            action={() => {
+              const data = this.props.form.revisionQuestionsForm.values;
+              data.materialID = this.props.match.params.id;
+              this.props.editRevisionQuestions(_id, data);
+            }}
             icon="save icon"
             buttonText="Save Changes"
           />

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import * as actions from "../../actions";
 
@@ -46,4 +47,4 @@ const mapStateToProps = ({ form }) => {
   return { form };
 };
 
-export default connect(mapStateToProps, actions)(CreateNotes);
+export default withRouter(connect(mapStateToProps, actions)(CreateNotes));

@@ -29,9 +29,11 @@ class EditVideo extends Component {
           <VideoReview
             handleBack={() => this.setState({ showReviewForm: false })}
             form={this.props.form}
-            action={() =>
-              this.props.editVideo(_id, this.props.form.videoForm.values)
-            }
+            action={() => {
+              const data = this.props.form.videoForm.values;
+              data.materialID = this.props.match.params.id;
+              this.props.editVideo(_id, data);
+            }}
             icon="save icon"
             buttonText="Save Changes"
           />

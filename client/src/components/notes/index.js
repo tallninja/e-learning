@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import * as actions from "../../actions";
 
@@ -88,7 +88,7 @@ class Notes extends Component {
               {this.renderAuthButtons()}
               <div className="ui attached segment">
                 <div
-                  className="ui left aligned piled segment"
+                  className="ui segment"
                   dangerouslySetInnerHTML={{ __html: content }}
                 ></div>
               </div>
@@ -105,4 +105,4 @@ const mapStateToProps = ({ user, notes }) => {
   return { user, notes: notes.item };
 };
 
-export default connect(mapStateToProps, actions)(Notes);
+export default withRouter(connect(mapStateToProps, actions)(Notes));

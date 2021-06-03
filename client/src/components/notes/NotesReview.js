@@ -16,7 +16,10 @@ class NotesReview extends Component {
         <h3>Review...</h3>
         <div className="ui segment">
           <h4>Content</h4>
-          <div className="ui segment">{content}</div>
+          <div
+            className="ui segment"
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></div>
         </div>
         <div style={{ margin: "20px" }}>
           <button
