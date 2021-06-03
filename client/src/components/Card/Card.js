@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import "./Card.css";
+
 class Card extends Component {
   render() {
     return (
@@ -19,10 +21,6 @@ class Card extends Component {
             <span className="date">Created in 2021</span>
           </div>
           <div className="description">{this.props.description}</div>
-        </div>
-        <div className="extra content">
-          <i className="book icon"></i>
-          22 Topics
         </div>
       </div>
     );

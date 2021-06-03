@@ -1,0 +1,7 @@
+.ui.card > .image > img,
+.ui.cards > .card > .image > img {
+  display: block;
+  width: 100%;
+  height: 25vh;
+  border-radius: inherit;
+}
