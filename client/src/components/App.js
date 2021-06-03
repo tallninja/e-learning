@@ -43,7 +43,7 @@ class App extends Component {
   componentDidMount = () => {
     this.props.fetchUser();
     this.props.checkUserAuthentication();
-    document.body.style.zoom = "100%";
+    document.body.style.zoom = "110%";
   };
 
   render() {
