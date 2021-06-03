@@ -19,6 +19,7 @@ class RevisionQuestionsReview extends Component {
           <div
             className="ui segment"
             dangerouslySetInnerHTML={{ __html: content }}
+            style={{ overflow: "auto", maxHeight: "60vh" }}
           ></div>
         </div>
         <div style={{ margin: "20px" }}>

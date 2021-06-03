@@ -92,6 +92,7 @@ class MarkingSchemeContent extends Component {
                 <div
                   className="ui left aligned piled segment"
                   dangerouslySetInnerHTML={{ __html: content }}
+                  style={{ overflow: "auto", maxHeight: "60vh" }}
                 ></div>
               </div>
             </React.Fragment>
