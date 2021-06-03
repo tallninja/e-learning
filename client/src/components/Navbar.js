@@ -27,8 +27,11 @@ class Navbar extends Component {
   render() {
     return (
       <div className="ui massive top secondary pointing menu">
-        <div className="item">
-          {/* <img src={`${process.env.PUBLIC_URL}/images/brand.svg`} alt="brand" /> */}
+        <div className="item" style={{ paddingBottom: 0 }}>
+          <img
+            src={`https://s3.af-south-1.amazonaws.com/machakos.kisomoview/images/brand.svg`}
+            alt="brand"
+          />
         </div>
         <Link to="/" className="active item">
           Home
