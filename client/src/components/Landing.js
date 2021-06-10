@@ -5,7 +5,7 @@ import Card from "./Card/Card";
 class Landing extends Component {
   render() {
     return (
-      <div className="ui three stackable cards">
+      <div className="ui four stackable cards">
         <Card
           image="maths.jpeg"
           subject="Mathematics"
