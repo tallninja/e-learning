@@ -55,12 +55,6 @@ class Landing extends Component {
           description="In our changing world nothing changes more than geography."
         />
         <Card
-          image="buss.jpeg"
-          subject="Business"
-          color="pink"
-          description="An accountant is someone who knows the cost of everything and the value of nothing."
-        />
-        <Card
           image="cre.jpeg"
           subject="CRE"
           color="teal"
@@ -71,6 +65,18 @@ class Landing extends Component {
           subject="IRE"
           color="olive"
           description="Wash your heart Everyday with Salah and warm it up with Zikr"
+        />
+        <Card
+          image="buss.jpeg"
+          subject="Business"
+          color="pink"
+          description="An accountant is someone who knows the cost of everything and the value of nothing."
+        />
+        <Card
+          image="computer.jpeg"
+          subject="Computer Studies"
+          color="olive"
+          description="The computer was born to solve problems that did not exist before"
         />
       </div>
     );
