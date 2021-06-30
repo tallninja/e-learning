@@ -65,7 +65,7 @@ class MaterialList extends Component {
     const offset = this.state.currentPage * this.state.PER_PAGE;
     switch (this.props.materials) {
       case false:
-        return <h4>No Materials yet...</h4>;
+        return <h4>No Topics yet...</h4>;
       case null:
         return (
           <div className="ui placeholder">
@@ -114,7 +114,14 @@ class MaterialList extends Component {
         </div>
       );
     } else {
-      return null;
+      return (
+        <div>
+          <h3>Topics</h3>
+          <div className="ui ordered large relaxed divided list">
+            {this.renderMaterialsList()}
+          </div>
+        </div>
+      );
     }
   }
 }
