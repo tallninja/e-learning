@@ -46,6 +46,7 @@ class SubjectSelect extends Component {
         <option value="CRE">CRE</option>
         <option value="IRE">IRE</option>
         <option value="Business">Business</option>
+        <option value="Computer">Computer</option>
       </Field>
     );
   }
