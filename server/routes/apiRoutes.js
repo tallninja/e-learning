@@ -38,4 +38,6 @@ require("./markingSchemeRoutes")(
 
 require("./videoRoutes")(router, requireLogin, requireAdmin, Video);
 
+require("./fileUploadRoutes")(router, requireLogin, requireAdmin);
+
 module.exports = router;
