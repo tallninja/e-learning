@@ -2,3 +2,4 @@ node_modules
 dev.js
 dump
 cdk-exports-dev.json
+cdk.out
