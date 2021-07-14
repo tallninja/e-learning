@@ -1,7 +1,7 @@
 const { App } = require("@aws-cdk/core");
 
 const { DEPLOY_ENVIRONMENT, REGION, STACK_PREFIX } =
-  require("../../config/keys").constants;
+  require("../config/constants").constants;
 
 const PdfUploadStack = require("./stack");
 

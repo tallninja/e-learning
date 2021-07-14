@@ -13,7 +13,7 @@ const { Stack, Duration, CfnOutput } = require("@aws-cdk/core");
 const path = require("path");
 
 const { STACK_PREFIX, DEPLOY_ENVIRONMENT, ALLOWED_ORIGIN, API_PATH } =
-  require("../../config/keys").constants;
+  require("../config/constants").constants;
 
 class PdfUploadStack extends Stack {
   constructor(scope, id, props) {
@@ -96,6 +96,12 @@ class PdfUploadStack extends Stack {
       value: httpApi.url,
     });
 
+    // api path
+    new CfnOutput(this, "apiPath", {
+      value: API_PATH,
+    });
+
+    // bucket name
     new CfnOutput(this, "bucketName", {
       value: s3bucket.bucketName,
     });

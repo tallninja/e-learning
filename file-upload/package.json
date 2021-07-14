@@ -6,7 +6,7 @@
   "scripts": {
     "setup": "npm install",
     "cdk-bootstrap": "npx cdk bootstrap",
-    "cdk-deploy": "npx cdk deploy kisomoview-file-upload-dev --outputs-file ../cdk-exports-dev.json",
+    "cdk-deploy": "npx cdk deploy kisomoview-file-upload-dev --outputs-file ../server/cdk-exports-dev.json",
     "cdk-create-stack": "npm run cdk-bootstrap && npm run cdk-deploy",
     "cdk-destroy": "npx cdk destroy kisomoview-file-upload-dev",
     "cdk": "cdk"

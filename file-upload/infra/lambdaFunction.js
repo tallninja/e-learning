@@ -11,16 +11,24 @@ export async function main(event) {
   try {
     if (
       !event.queryStringParameters?.fileType ||
-      !event.queryStringParameters?.fileTopic
+      !event.queryStringParameters?.fileSubject ||
+      !event.queryStringParameters?.fileTopic ||
+      !event.queryStringParameters?.fileCategory ||
+      !event.queryStringParameters?.fileName
     ) {
-      throw new Error("File type and File topic must be specified");
+      throw new Error(
+        "File type, subject, topic, category and name  must be specified"
+      );
     }
 
-    const { fileType, fileTopic } = event.queryStringParameters;
-    const fileName = uuid.v1();
+    const { fileType, fileSubject, fileTopic, fileCategory, fileName } =
+      event.queryStringParameters;
+    // const fileName = uuid.v1();
     const presignedURL = await createPresignedURL({
       fileType,
+      fileSubject,
       fileTopic,
+      fileCategory,
       fileName,
     });
 
@@ -29,7 +37,12 @@ export async function main(event) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...presignedURL,
-        filePath,
+        fileDetails: {
+          fileSubject,
+          fileTopic,
+          fileCategory,
+          fileName,
+        },
       }),
     };
   } catch (error) {
@@ -47,13 +60,22 @@ export async function main(event) {
   }
 }
 
-export function createPresignedURL({ fileType, fileTopic, fileName }) {
+export function createPresignedURL({
+  fileType,
+  fileSubject,
+  fileTopic,
+  fileCategory,
+  fileName,
+}) {
   const params = {
     Bucket: process.env.BUCKET_NAME,
-    Fields: { key: `${fileTopic}/${fileName}`, acl: "public-read" },
+    Fields: {
+      key: `${fileSubject}/${fileTopic}/${fileCategory}/${fileName}`,
+      acl: "public-read",
+    },
     Conditions: [
-      ["content-length-range", 0, 10000000], // maximum allowable file size 10MB
-      ["eq", "$Content-Type", fileType], // only PDF files will be allowed
+      ["content-length-range", 0, 10000000],
+      ["eq", "$Content-Type", fileType],
     ],
     Expires: 15,
   };
