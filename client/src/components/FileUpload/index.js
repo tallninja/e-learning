@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { Progress } from "semantic-ui-react";
 
 import * as actions from "../../actions";
 import DragAndDrop from "../DragAndDrop";
+import FileUploadForm from "./FileUploadForm";
 
 import fileValidator from "../../utils/fileValidator";
 
@@ -87,61 +87,15 @@ class FileUpload extends Component {
     // console.log(this.state.uploadErrorMessage);
     return (
       <DragAndDrop handleDrop={this.handleDrop}>
-        <form
-          method="POST"
-          encType="multipart/form-data"
-          className="ui error form"
-          onSubmit={this.props.onFormSubmit}
-        >
-          <div className="ui placeholder segment">
-            <div className="ui icon header">
-              <i className="pdf file outline icon"></i>
-              <div className="field">
-                <label>Upload file</label>
-                <label className="ui teal button" htmlFor="file-input">
-                  Choose a file
-                </label>
-                <input
-                  type="file"
-                  accept=".pdf"
-                  name="material"
-                  onChange={this.handleFileChange}
-                  id="file-input"
-                  hidden={true}
-                ></input>
-                {this.state.fileDetails.file
-                  ? this.state.fileDetails.file.name
-                  : null}
-              </div>
-
-              <div>{this.renderProgressBar()}</div>
-
-              <button
-                className="ui green button"
-                type="submit"
-                onClick={this.handleUpload}
-              >
-                Upload
-              </button>
-            </div>
-          </div>
-
-          <div style={{ margin: "20px" }}>
-            <button className="ui right floated teal button">
-              Next
-              <i className="angle right icon"></i>
-            </button>
-            <Link
-              to={this.props.backLink}
-              className="ui left floated red button"
-            >
-              <i className="reply icon"></i>
-              Cancel
-            </Link>
-          </div>
-        </form>
-
-        {this.renderErrorMessage()}
+        <FileUploadForm
+          fileDetails={this.state.fileDetails}
+          onFileChange={this.handleFileChange}
+          renderErrorMessage={this.renderErrorMessage}
+          onFormSubmit={this.props.onFormSubmit}
+          handleUpload={this.handleUpload}
+          renderProgressBar={this.renderProgressBar}
+          backLink={this.props.backLink}
+        />
       </DragAndDrop>
       // {this.props.renderDocument || null}
     );
