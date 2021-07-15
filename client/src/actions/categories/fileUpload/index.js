@@ -11,7 +11,9 @@ export const uploadFile =
   ) =>
   async (dispatch) => {
     const fileExtension = fileType.split("/")[1];
-    const fileName = `${fileTopic}-${fileCategory}.${fileExtension}`;
+    fileSubject = fileSubject.trim().split(" ").join("-");
+    fileTopic = fileTopic.trim().split(" ").join("-");
+    const fileName = `${fileSubject}-${fileTopic}-${fileCategory}.${fileExtension}`;
 
     const res = await getPresignedURL({
       fileType,

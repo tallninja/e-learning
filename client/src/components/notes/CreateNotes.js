@@ -14,6 +14,10 @@ class CreateNotes extends Component {
     this.state = { showReviewForm: false };
   }
 
+  componentDidMount = () => {
+    this.props.fetchMaterial(this.props.match.params.id);
+  };
+
   handleSubmit = () => {
     this.setState({ showReviewForm: true });
   };
@@ -22,7 +26,10 @@ class CreateNotes extends Component {
     if (!this.state.showReviewForm) {
       return (
         <div>
-          <NotesForm onSubmit={this.handleSubmit} />
+          <NotesForm
+            onSubmit={this.handleSubmit}
+            material={this.props.material}
+          />
         </div>
       );
     } else {
@@ -44,8 +51,8 @@ class CreateNotes extends Component {
   }
 }
 
-const mapStateToProps = ({ form, fileURL }) => {
-  return { form, fileURL };
+const mapStateToProps = ({ form, fileURL, materials: { material } }) => {
+  return { form, fileURL, material };
 };
 
 export default withRouter(connect(mapStateToProps, actions)(CreateNotes));

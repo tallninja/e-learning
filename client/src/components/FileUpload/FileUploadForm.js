@@ -34,8 +34,9 @@ class FileUploadForm extends Component {
                     value={
                       this.props.fileDetails.file
                         ? this.props.fileDetails.file.name
-                        : null
+                        : ""
                     }
+                    readOnly
                   />
                 </div>
 
