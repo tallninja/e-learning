@@ -1,7 +1,5 @@
 import axios from "axios";
 
-import { GET_PRESIGNED_URL } from "../../types";
-
 export const getPresignedURL = ({
   fileType,
   fileSubject,

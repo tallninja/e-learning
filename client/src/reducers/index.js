@@ -9,6 +9,7 @@ import notesReducer from "./notesReducer";
 import revisionQuestionsReducer from "./revisionQuestionsReducer";
 import markingSchemeReducer from "./markingSchemeReducer";
 import videoReducer from "./videoReducer";
+import fileUploadReducer from "./fileUploadReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -19,5 +20,6 @@ export default combineReducers({
   revisionQuestions: revisionQuestionsReducer,
   markingScheme: markingSchemeReducer,
   video: videoReducer,
+  fileURL: fileUploadReducer,
   form: formReducer,
 });

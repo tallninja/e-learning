@@ -29,5 +29,4 @@ export const CREATE_VIDEO = "CREATE_VIDEO";
 export const EDIT_VIDEO = "EDIT_VIDEO";
 export const DELETE_VIDEO = "DELETE_VIDEO";
 
-export const GET_PRESIGNED_URL = "GET_PRESIGNED_URL";
 export const UPLOAD_FILE = "UPLOAD_FILE";
