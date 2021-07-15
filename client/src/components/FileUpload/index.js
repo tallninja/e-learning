@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Progress } from "semantic-ui-react";
 
 import * as actions from "../../actions";
@@ -18,7 +19,7 @@ class FileUpload extends Component {
     };
   }
 
-  onFormSubmit = (event) => {
+  handleUpload = (event) => {
     event.preventDefault();
     this.props.uploadFile(this.state.fileDetails, (e) => {
       this.setState({ isUploading: true });
@@ -32,31 +33,12 @@ class FileUpload extends Component {
     });
   };
 
-  renderDocument = () => {
-    if (this.state.s3FileURL) {
-      return (
-        <div className="ui segment">
-          <div className="ui embed">
-            <embed
-              src={this.state.s3FileURL}
-              width="500"
-              height="375"
-              type="application/pdf"
-            />
-          </div>
-        </div>
-      );
-    } else {
-      return null;
-    }
-  };
-
   handleFileChange = (event) => {
     const file = event.target.files[0];
     const fileType = file.type;
     const { fileSubject, fileTopic, fileCategory } = this.props;
 
-    if (fileValidator(file)) {
+    if (fileValidator(this, file)) {
       this.setState({
         fileDetails: { file, fileType, fileSubject, fileTopic, fileCategory },
       });
@@ -69,7 +51,7 @@ class FileUpload extends Component {
     const fileType = file.type;
     const { fileSubject, fileTopic, fileCategory } = this.props;
 
-    if (this.validateFile(file)) {
+    if (fileValidator(this, file)) {
       this.setState({
         fileDetails: { file, fileType, fileSubject, fileTopic, fileCategory },
       });
@@ -104,48 +86,64 @@ class FileUpload extends Component {
   render = () => {
     // console.log(this.state.uploadErrorMessage);
     return (
-      <div className="ui container">
-        <h4>Hello World !</h4>
-        <DragAndDrop handleDrop={this.handleDrop}>
+      <DragAndDrop handleDrop={this.handleDrop}>
+        <form
+          method="POST"
+          encType="multipart/form-data"
+          className="ui error form"
+          onSubmit={this.props.onFormSubmit}
+        >
           <div className="ui placeholder segment">
             <div className="ui icon header">
               <i className="pdf file outline icon"></i>
-              <div className="ui form error">
-                <form
-                  method="POST"
-                  encType="multipart/form-data"
-                  className="ui form"
-                  onSubmit={this.onFormSubmit}
-                >
-                  <div className="field">
-                    <label>Upload file</label>
-                    <label className="ui teal button" htmlFor="file-input">
-                      Choose a file
-                    </label>
-                    <input
-                      type="file"
-                      accept=".pdf"
-                      name="material"
-                      onChange={this.handleFileChange}
-                      id="file-input"
-                      hidden={true}
-                    ></input>
-                    {this.state.file ? this.state.file.name : null}
-                  </div>
-
-                  <div>{this.renderProgressBar()}</div>
-                  <button className="ui green button" type="submit">
-                    Upload
-                  </button>
-                </form>
-
-                {this.renderErrorMessage()}
+              <div className="field">
+                <label>Upload file</label>
+                <label className="ui teal button" htmlFor="file-input">
+                  Choose a file
+                </label>
+                <input
+                  type="file"
+                  accept=".pdf"
+                  name="material"
+                  onChange={this.handleFileChange}
+                  id="file-input"
+                  hidden={true}
+                ></input>
+                {this.state.fileDetails.file
+                  ? this.state.fileDetails.file.name
+                  : null}
               </div>
+
+              <div>{this.renderProgressBar()}</div>
+
+              <button
+                className="ui green button"
+                type="submit"
+                onClick={this.handleUpload}
+              >
+                Upload
+              </button>
             </div>
           </div>
-        </DragAndDrop>
-        {this.props.renderDocument() || null}
-      </div>
+
+          <div style={{ margin: "20px" }}>
+            <button className="ui right floated teal button">
+              Next
+              <i className="angle right icon"></i>
+            </button>
+            <Link
+              to={this.props.backLink}
+              className="ui left floated red button"
+            >
+              <i className="reply icon"></i>
+              Cancel
+            </Link>
+          </div>
+        </form>
+
+        {this.renderErrorMessage()}
+      </DragAndDrop>
+      // {this.props.renderDocument || null}
     );
   };
 }

@@ -30,6 +30,7 @@ class CreateNotes extends Component {
         <NotesReview
           handleBack={() => this.setState({ showReviewForm: false })}
           form={this.props.form}
+          fileURL={this.props.fileURL}
           action={() => {
             const notes = this.props.form.notesForm.values;
             notes.materialID = this.props.match.params.id;
@@ -43,8 +44,8 @@ class CreateNotes extends Component {
   }
 }
 
-const mapStateToProps = ({ form }) => {
-  return { form };
+const mapStateToProps = ({ form, fileURL }) => {
+  return { form, fileURL };
 };
 
 export default withRouter(connect(mapStateToProps, actions)(CreateNotes));

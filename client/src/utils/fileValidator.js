@@ -1,6 +1,6 @@
-checkFileSize = (file) => {
+const checkFileSize = (scpoe, file) => {
   if (file.size > 10000000) {
-    this.setState({
+    scpoe.setState({
       uploadErrorMessage: `File is too large ${(file.size / 1000000).toFixed(
         2
       )}MB Maximum allowed file size is 10MB`,
@@ -11,28 +11,28 @@ checkFileSize = (file) => {
   }
 };
 
-checkFileType = (file) => {
+const checkFileType = (scope, file) => {
   if (file.type !== "application/pdf") {
-    this.setState({ uploadErrorMessage: "You can only upload PDF files" });
+    scope.setState({ uploadErrorMessage: "You can only upload PDF files" });
     return false;
   } else {
     return true;
   }
 };
 
-checkFileSelected = (file) => {
+const checkFileSelected = (scope, file) => {
   if (!file) {
-    this.setState({ uploadErrorMessage: "Please select a file" });
+    scope.setState({ uploadErrorMessage: "Please select a file" });
     return false;
   } else {
     return true;
   }
 };
 
-export default (file) => {
-  if (checkFileSelected(file)) {
-    if (checkFileType(file)) {
-      if (checkFileSize(file)) {
+export default (scope, file) => {
+  if (checkFileSelected(scope, file)) {
+    if (checkFileType(scope, file)) {
+      if (checkFileSize(scope, file)) {
         return true;
       } else {
         return false;
