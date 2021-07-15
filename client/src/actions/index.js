@@ -9,3 +9,5 @@ export * from "./categories/revisionQuestions";
 export * from "./categories/markingSchemes";
 
 export * from "./categories/videos";
+
+export * from "./categories/fileUpload";

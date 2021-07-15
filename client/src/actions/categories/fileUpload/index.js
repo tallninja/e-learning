@@ -21,10 +21,7 @@ export const uploadFile =
       fileName,
     });
 
-    const {
-      url,
-      fields: { key },
-    } = res.data;
+    const { url, fields } = res.data;
 
     const formData = new FormData();
     formData.append("Content-Type", fileType);
@@ -40,7 +37,7 @@ export const uploadFile =
       onUploadProgress,
     });
 
-    const S3_FILE_URL = `${url}/${key}`;
+    const S3_FILE_URL = `${url}/${fields.key}`;
 
     dispatch({
       type: UPLOAD_FILE,
