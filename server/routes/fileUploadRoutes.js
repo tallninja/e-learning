@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const { apiUrl, apiPath } = require("../cdk-exports-dev.json")[
   "kisomoview-file-upload-dev"
 ];
@@ -23,8 +25,13 @@ const getPresignedURL = async ({
 };
 
 module.exports = (router, requireLogin, requireAdmin) => {
-  router.get("/uploads", requireLogin, requireAdmin, async (req, res) => {
-    const apiResponse = await getPresignedURL(req.query);
-    res.status(200).send(apiResponse);
-  });
+  router.get(
+    "/uploads/get-presigned-url",
+    requireLogin,
+    requireAdmin,
+    async (req, res) => {
+      const apiResponse = await getPresignedURL(req.query);
+      res.status(200).send(apiResponse);
+    }
+  );
 };
