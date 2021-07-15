@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { getPresignedURL } from "./getPresugnedURL";
+import getPresignedURL from "./getPresugnedURL";
 
 import { UPLOAD_FILE } from "../../types";
 
@@ -21,7 +21,7 @@ export const uploadFile =
       fileName,
     });
 
-    const { url, fields } = res.data;
+    const { url, fields } = res;
 
     const formData = new FormData();
     formData.append("Content-Type", fileType);

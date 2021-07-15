@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getPresignedURL = async ({
+const getPresignedURL = async ({
   fileType,
   fileSubject,
   fileTopic,
@@ -19,3 +19,5 @@ export const getPresignedURL = async ({
 
   return res.data;
 };
+
+export default getPresignedURL;
