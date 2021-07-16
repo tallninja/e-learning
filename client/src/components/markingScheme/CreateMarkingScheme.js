@@ -40,11 +40,11 @@ class CreateMarkingScheme extends Component {
           form={this.props.form}
           fileURL={this.props.fileURL}
           action={() => {
-            const notes = {};
-            notes.fileURL = this.props.fileURL;
-            notes.materialID = this.props.match.params.id;
-            notes.fileName = this.props.fileURL.split("/").slice(-1)[0];
-            this.props.createNotes(notes);
+            const markingScheme = {};
+            markingScheme.fileURL = this.props.fileURL;
+            markingScheme.materialID = this.props.match.params.id;
+            markingScheme.fileName = this.props.fileURL.split("/").slice(-1)[0];
+            this.props.createMarkingScheme(markingScheme);
           }}
           icon="paper plane icon"
           buttonText="Create"

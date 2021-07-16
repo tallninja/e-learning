@@ -39,11 +39,13 @@ class CreateRevisionQuestions extends Component {
           form={this.props.form}
           fileURL={this.props.fileURL}
           action={() => {
-            const notes = {};
-            notes.fileURL = this.props.fileURL;
-            notes.materialID = this.props.match.params.id;
-            notes.fileName = this.props.fileURL.split("/").slice(-1)[0];
-            this.props.createNotes(notes);
+            const revisionQuestions = {};
+            revisionQuestions.fileURL = this.props.fileURL;
+            revisionQuestions.materialID = this.props.match.params.id;
+            revisionQuestions.fileName = this.props.fileURL
+              .split("/")
+              .slice(-1)[0];
+            this.props.createRevisionQuestions(revisionQuestions);
           }}
           icon="paper plane icon"
           buttonText="Create"

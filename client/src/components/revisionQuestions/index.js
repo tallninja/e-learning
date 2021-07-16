@@ -81,7 +81,7 @@ class RevisionQuestions extends Component {
         if (
           this.props.revisionQuestions.materialID === this.props.match.params.id
         ) {
-          const { fileURL } = this.props.notes;
+          const { fileURL } = this.props.revisionQuestions;
           return (
             <React.Fragment>
               <SecondaryMenu

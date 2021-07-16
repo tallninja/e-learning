@@ -25,7 +25,7 @@ class RevisionQuestionsForm extends Component {
           <FileUpload
             fileSubject={subject}
             fileTopic={title}
-            fileCategory="notes"
+            fileCategory="revision-questions"
             backLink={`/materials/content/${this.props.match.params.id}/notes`}
             onFormSubmit={this.props.onSubmit}
           />
