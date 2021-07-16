@@ -35,12 +35,8 @@ export const createRevisionQuestions =
   };
 
 // edit a revision questions
-export const editRevisionQuestions = (id, data) => async (dispatch) => {
-  const res = await axios.patch("/api/revision_questions", data, {
-    params: {
-      id: id,
-    },
-  });
+export const editRevisionQuestions = (data) => async (dispatch) => {
+  const res = await axios.patch("/api/revision_questions", data);
   history.push(`/materials/content/${data.materialID}/revision_questions`);
   dispatch({
     type: EDIT_REVISION_QUESTIONS,

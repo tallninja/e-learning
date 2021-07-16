@@ -32,12 +32,8 @@ export const createMarkingScheme = (markingScheme) => async (dispatch) => {
 };
 
 // edit a marking scheme
-export const editMarkingScheme = (id, data) => async (dispatch) => {
-  const res = await axios.patch("/api/marking_scheme", data, {
-    params: {
-      id: id,
-    },
-  });
+export const editMarkingScheme = (data) => async (dispatch) => {
+  const res = await axios.patch("/api/marking_scheme", data);
   history.push(`/materials/content/${data.materialID}/marking_scheme`);
   dispatch({
     type: EDIT_MARKING_SCHEME,
