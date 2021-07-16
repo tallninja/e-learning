@@ -6,7 +6,17 @@ class DocumentViewer extends Component {
       return (
         <div className="ui segment">
           <div className="ui embed">
-            <embed src={this.props.fileURL} type="application/pdf" />
+            <object data={this.props.fileURL} type="application/pdf">
+              <p>
+                Your web browser doesn't have a PDF plugin. Download the file
+                instead
+              </p>
+              <div>
+                <a href={this.props.fileURL} className="ui teal button">
+                  click here to download the PDF file.
+                </a>
+              </div>
+            </object>
           </div>
         </div>
       );
