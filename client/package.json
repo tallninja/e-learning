@@ -28,7 +28,7 @@
   "scripts": {
     "dev": "react-scripts start",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && rm -rf ../server/src/client/build && mv build ../server/src/client/build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
