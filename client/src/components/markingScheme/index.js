@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import * as actions from "../../actions";
 
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
 import NoContent from "../noContent";
+import DocumentViewer from "../DocumentViewer";
 
 class MarkingSchemeContent extends Component {
   componentDidMount = () => {
@@ -80,7 +81,7 @@ class MarkingSchemeContent extends Component {
         if (
           this.props.markingScheme.materialID === this.props.match.params.id
         ) {
-          const { content } = this.props.markingScheme;
+          const { fileURL } = this.props.markingScheme;
           return (
             <React.Fragment>
               <SecondaryMenu
@@ -88,13 +89,7 @@ class MarkingSchemeContent extends Component {
                 materialID={this.props.match.params.id}
               />
               {this.renderAuthButtons()}
-              <div className="ui attached segment">
-                <div
-                  className="ui left aligned piled segment"
-                  dangerouslySetInnerHTML={{ __html: content }}
-                  style={{ overflow: "auto", maxHeight: "60vh" }}
-                ></div>
-              </div>
+              <DocumentViewer fileURL={fileURL} />
             </React.Fragment>
           );
         } else {
@@ -104,8 +99,8 @@ class MarkingSchemeContent extends Component {
   }
 }
 
-const mapStateToProps = ({ user, markingScheme }) => {
-  return { user, markingScheme: markingScheme.item };
+const mapStateToProps = ({ user, markingScheme: { item } }) => {
+  return { user, markingScheme: item };
 };
 
 export default connect(mapStateToProps, actions)(MarkingSchemeContent);

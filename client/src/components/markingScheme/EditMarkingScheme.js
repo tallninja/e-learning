@@ -23,17 +23,19 @@ class MarkingSchemeEdit extends Component {
 
   renderContent = () => {
     if (this.props.markingScheme.item) {
-      const { _id, content } = this.props.markingScheme.item;
+      const { _id } = this.props.markingScheme;
       if (this.state.showReviewForm) {
         return (
           <MarkingSchemeReview
             handleBack={() => this.setState({ showReviewForm: false })}
-            form={this.props.form}
             action={() => {
-              const data = this.props.form.markingSchemeForm.values;
+              const data = {};
+              data.id = _id;
+              data.fileURL = this.props.fileURL;
               data.materialID = this.props.match.params.id;
-              this.props.editMarkingScheme(_id, data);
+              this.props.editNotes(data);
             }}
+            fileURL={this.props.fileURL}
             icon="save icon"
             buttonText="Save Changes"
           />
@@ -42,10 +44,7 @@ class MarkingSchemeEdit extends Component {
         return (
           <div>
             <h2>Edit Marking Scheme</h2>
-            <MarkingSchemeForm
-              onSubmit={this.handleSubmit}
-              initialValues={{ content }}
-            />
+            <MarkingSchemeForm onSubmit={this.handleSubmit} />
           </div>
         );
       }
@@ -59,8 +58,8 @@ class MarkingSchemeEdit extends Component {
   }
 }
 
-const mapStateToProps = ({ markingScheme, form }) => {
-  return { markingScheme, form };
+const mapStateToProps = ({ markingScheme: { item }, fileURL }) => {
+  return { markingScheme: item, fileURL };
 };
 
 export default connect(mapStateToProps, actions)(MarkingSchemeEdit);

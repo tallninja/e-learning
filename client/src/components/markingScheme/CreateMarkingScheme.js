@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import * as actions from "../../actions";
 
@@ -13,6 +14,10 @@ class CreateMarkingScheme extends Component {
     this.state = { showReviewForm: false };
   }
 
+  componentDidMount = () => {
+    this.props.fetchMaterial(this.props.match.params.id);
+  };
+
   handleSubmit = () => {
     this.setState({ showReviewForm: true });
   };
@@ -24,7 +29,7 @@ class CreateMarkingScheme extends Component {
           <h2>Create Marking Scheme</h2>
           <MarkingSchemeForm
             onSubmit={this.handleSubmit}
-            materialID={this.props.match.params.id}
+            material={this.props.material}
           />
         </div>
       );
@@ -33,10 +38,13 @@ class CreateMarkingScheme extends Component {
         <MarkingSchemeReview
           handleBack={() => this.setState({ showReviewForm: false })}
           form={this.props.form}
+          fileURL={this.props.fileURL}
           action={() => {
-            const markingScheme = this.props.form.markingSchemeForm.values;
-            markingScheme.materialID = this.props.match.params.id;
-            this.props.createMarkingScheme(markingScheme);
+            const notes = {};
+            notes.fileURL = this.props.fileURL;
+            notes.materialID = this.props.match.params.id;
+            notes.fileName = this.props.fileURL.split("/").slice(-1)[0];
+            this.props.createNotes(notes);
           }}
           icon="paper plane icon"
           buttonText="Create"
@@ -46,8 +54,10 @@ class CreateMarkingScheme extends Component {
   }
 }
 
-const mapStateToProps = ({ form }) => {
-  return { form };
+const mapStateToProps = ({ form, fileURL, materials: { material } }) => {
+  return { form, fileURL, material };
 };
 
-export default connect(mapStateToProps, actions)(CreateMarkingScheme);
+export default withRouter(
+  connect(mapStateToProps, actions)(CreateMarkingScheme)
+);

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import DocumentViewer from "../DocumentViewer";
+
 class MarkingSchemeReview extends Component {
   handleBack = () => {
     this.props.handleBack();
@@ -10,17 +12,13 @@ class MarkingSchemeReview extends Component {
   };
 
   render() {
-    const { content } = this.props.form.markingSchemeForm.values;
+    // const { content } = this.props.form.markingSchemeForm.values;
     return (
       <React.Fragment>
         <h3>Review...</h3>
         <div className="ui segment">
           <h4>Content</h4>
-          <div
-            className="ui segment"
-            dangerouslySetInnerHTML={{ __html: content }}
-            style={{ overflow: "auto", maxHeight: "60vh" }}
-          ></div>
+          <DocumentViewer fileURL={this.props.fileURL} />
         </div>
         <div style={{ margin: "20px" }}>
           <button
