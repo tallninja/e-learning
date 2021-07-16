@@ -6,7 +6,7 @@ class DocumentViewer extends Component {
       return (
         <div className="ui segment">
           <div className="ui embed">
-            <object data={this.props.fileURL} type="application/pdf">
+            {/* <object data={this.props.fileURL} type="application/pdf">
               <p>
                 Your web browser doesn't have a PDF plugin. Download the file
                 instead
@@ -16,7 +16,16 @@ class DocumentViewer extends Component {
                   click here to download the PDF file.
                 </a>
               </div>
-            </object>
+            </object> */}
+            <div className="ui segment">
+              <div className="ui embed">
+                <object
+                  width="900"
+                  height="900"
+                  data={`https://docs.google.com/gview?embedded=true&url=${this.props.fileURL}`}
+                ></object>
+              </div>
+            </div>
           </div>
         </div>
       );
