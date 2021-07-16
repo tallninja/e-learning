@@ -22,18 +22,20 @@ class NotesEdit extends Component {
   };
 
   renderContent = () => {
-    if (this.props.notes.item) {
-      const { _id, content } = this.props.notes.item;
+    if (this.props.notes) {
+      const { _id } = this.props.notes;
       if (this.state.showReviewForm) {
         return (
           <NotesReview
             handleBack={() => this.setState({ showReviewForm: false })}
-            form={this.props.form}
             action={() => {
-              const data = this.props.form.notesForm.values;
+              const data = {};
+              data.id = _id;
+              data.fileURL = this.props.fileURL;
               data.materialID = this.props.match.params.id;
-              this.props.editNotes(_id, data);
+              this.props.editNotes(data);
             }}
+            fileURL={this.props.fileURL}
             icon="save icon"
             buttonText="Save Changes"
           />
@@ -41,11 +43,8 @@ class NotesEdit extends Component {
       } else {
         return (
           <div>
-            <h2>Edit Marking Scheme</h2>
-            <NotesForm
-              onSubmit={this.handleSubmit}
-              initialValues={{ content }}
-            />
+            <h2>Edit Notes</h2>
+            <NotesForm onSubmit={this.handleSubmit} />
           </div>
         );
       }
@@ -59,8 +58,8 @@ class NotesEdit extends Component {
   }
 }
 
-const mapStateToProps = ({ notes, form }) => {
-  return { notes, form };
+const mapStateToProps = ({ notes, fileURL }) => {
+  return { notes: notes.item, fileURL };
 };
 
 export default connect(mapStateToProps, actions)(NotesEdit);

@@ -1,14 +1,20 @@
 import React, { Component } from "react";
-import { reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 // import TinyEditor from "../materials/TinyEditor";
 // import formValidator from "../../utils/formValidator";
+
+import * as actions from "../../actions";
 
 import FileUpload from "../FileUpload";
 import NoContent from "../noContent";
 
 class NotesForm extends Component {
+  componentDidMount = () => {
+    this.props.fetchMaterial(this.props.match.params.id);
+  };
+
   render() {
     if (this.props.material) {
       const { subject, title } = this.props.material;
@@ -31,10 +37,8 @@ class NotesForm extends Component {
   }
 }
 
-export default withRouter(
-  reduxForm({
-    form: "notesForm",
-    // validate: formValidator,
-    destroyOnUnmount: false,
-  })(NotesForm)
-);
+const mapStateToProps = ({ materials }) => {
+  return { material: materials.material };
+};
+
+export default withRouter(connect(mapStateToProps, actions)(NotesForm));

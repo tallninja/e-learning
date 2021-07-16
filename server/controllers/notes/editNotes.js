@@ -1,10 +1,11 @@
 module.exports = async (req, res, Notes) => {
+  const { id, fileURL } = req.body;
   await Notes.updateOne(
     {
-      _id: req.query.id,
+      _id: id,
     },
     {
-      content: req.body.content,
+      fileURL: fileURL,
     }
   ).exec((err) => {
     if (err) {

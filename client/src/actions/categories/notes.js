@@ -27,12 +27,8 @@ export const createNotes = (notes) => async (dispatch) => {
 };
 
 // edit a notes
-export const editNotes = (id, data) => async (dispatch) => {
-  const res = await axios.patch("/api/notes", data, {
-    params: {
-      id: id,
-    },
-  });
+export const editNotes = (data) => async (dispatch) => {
+  const res = await axios.patch("/api/notes", data);
   history.push(`/materials/content/${data.materialID}/notes`);
   dispatch({
     type: EDIT_NOTES,

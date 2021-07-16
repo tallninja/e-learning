@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import DocumentViewer from "../DocumentViewer";
+
 class NotesReview extends Component {
   handleBack = () => {
     this.props.handleBack();
@@ -9,25 +11,6 @@ class NotesReview extends Component {
     this.props.action();
   };
 
-  renderDocument = () => {
-    if (this.props.fileURL) {
-      return (
-        <div className="ui segment">
-          <div className="ui embed">
-            <embed
-              src={this.props.fileURL}
-              width="500"
-              height="375"
-              type="application/pdf"
-            />
-          </div>
-        </div>
-      );
-    } else {
-      return null;
-    }
-  };
-
   render() {
     // const { content } = this.props.form.notesForm.values;
     return (
@@ -35,7 +18,7 @@ class NotesReview extends Component {
         <h3>Review...</h3>
         <div className="ui segment">
           <h4>Content</h4>
-          {this.renderDocument()}
+          <DocumentViewer fileURL={this.props.fileURL} />
         </div>
         <div style={{ margin: "20px" }}>
           <button

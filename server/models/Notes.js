@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const NotesSchema = new Schema({
   materialID: { type: Schema.Types.ObjectId, ref: "materials" },
-  content: String,
+  fileURL: String,
 });
 
 mongoose.model("notes", NotesSchema);

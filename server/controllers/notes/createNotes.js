@@ -1,8 +1,8 @@
 module.exports = async (req, res, Notes) => {
-  const { content, materialID } = req.body;
+  const { fileURL, materialID } = req.body;
   await new Notes({
     materialID: materialID,
-    content: content,
+    fileURL: fileURL,
   }).save((err) => {
     if (err) {
       res.status(500).send({ error: "Error creating Notes !" });

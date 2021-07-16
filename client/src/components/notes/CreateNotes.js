@@ -39,7 +39,8 @@ class CreateNotes extends Component {
           form={this.props.form}
           fileURL={this.props.fileURL}
           action={() => {
-            const notes = this.props.form.notesForm.values;
+            const notes = {};
+            notes.fileURL = this.props.fileURL;
             notes.materialID = this.props.match.params.id;
             this.props.createNotes(notes);
           }}

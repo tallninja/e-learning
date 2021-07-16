@@ -7,6 +7,7 @@ import * as actions from "../../actions";
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
 import NoContent from "../noContent";
+import DocumentViewer from "../DocumentViewer";
 
 class Notes extends Component {
   componentDidMount = () => {
@@ -78,7 +79,7 @@ class Notes extends Component {
         );
       default:
         if (this.props.notes.materialID === this.props.match.params.id) {
-          const { content } = this.props.notes;
+          const { fileURL } = this.props.notes;
           return (
             <React.Fragment>
               <SecondaryMenu
@@ -86,13 +87,7 @@ class Notes extends Component {
                 materialID={this.props.match.params.id}
               />
               {this.renderAuthButtons()}
-              <div className="ui attached segment">
-                <div
-                  className="ui segment"
-                  dangerouslySetInnerHTML={{ __html: content }}
-                  style={{ overflow: "auto", maxHeight: "60vh" }}
-                ></div>
-              </div>
+              <DocumentViewer fileURL={fileURL} />
             </React.Fragment>
           );
         } else {
