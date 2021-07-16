@@ -1,4 +1,4 @@
-const { apiPath, apiUrl } = require("../cdk-exports-dev.json")[
+const { apiPath, apiUrl } = require("../cdk-exports-prod.json")[
   "kisomoview-file-upload-dev"
 ];
 
