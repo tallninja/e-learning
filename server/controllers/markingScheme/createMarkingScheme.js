@@ -1,8 +1,9 @@
 module.exports = async (req, res, MarkingScheme) => {
-  const { content, materialID } = req.body;
+  const { fileURL, materialID, fileName } = req.body;
   await new MarkingScheme({
     materialID: materialID,
-    content: content,
+    fileURL: fileURL,
+    fileName: fileName,
   }).save((err) => {
     if (err) {
       res.status(500).send({ error: "Error creating Marking Scheme !" });
