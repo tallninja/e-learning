@@ -1,1 +1,8 @@
-{}
+{
+  "kisomoview-file-upload-prod": {
+    "bucketName": "kisomoview-file-upload-p-kisomoviewfileuploadprod-1n1riq90536k9",
+    "apiUrl": "https://6kiburn7pl.execute-api.af-south-1.amazonaws.com/",
+    "apiPath": "get-presigned-url",
+    "region": "af-south-1"
+  }
+}
