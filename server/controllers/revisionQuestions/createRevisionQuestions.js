@@ -1,8 +1,9 @@
 module.exports = async (req, res, RevisionQuestions) => {
-  const { content, materialID } = req.body;
+  const { fileURL, materialID, fileName } = req.body;
   await new RevisionQuestions({
     materialID: materialID,
-    content: content,
+    fileURL: fileURL,
+    fileName: fileName,
   }).save((err) => {
     if (err) {
       res.status(500).send({ error: "Error creating Revision Questions !" });
