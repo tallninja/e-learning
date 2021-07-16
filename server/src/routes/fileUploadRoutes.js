@@ -1,8 +1,6 @@
 const axios = require("axios");
 
-const { apiUrl, apiPath } = require("../cdk-exports-dev.json")[
-  "kisomoview-file-upload-dev"
-];
+const { apiUrl, apiPath } = require("../config/keys").cdkExports;
 
 const getPresignedURL = async ({
   fileType,

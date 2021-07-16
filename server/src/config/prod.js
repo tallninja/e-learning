@@ -9,4 +9,5 @@ module.exports = {
   cookieSession: {
     key: process.env.COOKIE_SESSION_KEY,
   },
+  cdkExports: require("../cdk-exports-dev.json")["kisomoview-file-upload-dev"],
 };
