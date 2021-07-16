@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import * as actions from "../../actions";
 
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
 import NoContent from "../noContent";
+import DocumentViewer from "../DocumentViewer";
 
 class RevisionQuestions extends Component {
   componentDidMount = () => {
@@ -80,7 +81,7 @@ class RevisionQuestions extends Component {
         if (
           this.props.revisionQuestions.materialID === this.props.match.params.id
         ) {
-          const { content } = this.props.revisionQuestions;
+          const { fileURL } = this.props.notes;
           return (
             <React.Fragment>
               <SecondaryMenu
@@ -88,13 +89,7 @@ class RevisionQuestions extends Component {
                 materialID={this.props.match.params.id}
               />
               {this.renderAuthButtons()}
-              <div className="ui attached segment">
-                <div
-                  className="ui left aligned piled segment"
-                  dangerouslySetInnerHTML={{ __html: content }}
-                  style={{ overflow: "auto", maxHeight: "60vh" }}
-                ></div>
-              </div>
+              <DocumentViewer fileURL={fileURL} />
             </React.Fragment>
           );
         } else {
@@ -108,4 +103,4 @@ const mapStateToProps = ({ user, revisionQuestions }) => {
   return { user, revisionQuestions: revisionQuestions.item };
 };
 
-export default connect(mapStateToProps, actions)(RevisionQuestions);
+export default withRouter(connect(mapStateToProps, actions)(RevisionQuestions));

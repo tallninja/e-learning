@@ -1,47 +1,46 @@
 import React, { Component } from "react";
-import { Field, reduxForm } from "redux-form";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
-import TinyEditor from "../materials/TinyEditor";
-import formValidator from "../../utils/formValidator";
+// import TinyEditor from "../materials/TinyEditor";
+// import formValidator from "../../utils/formValidator";
+
+import * as actions from "../../actions";
+
+import FileUpload from "../FileUpload";
+import NoContent from "../noContent";
 
 class RevisionQuestionsForm extends Component {
-  render() {
-    return (
-      <form
-        className="ui error form"
-        onSubmit={this.props.handleSubmit(this.props.onSubmit)}
-      >
-        <Field
-          type="text"
-          name="content"
-          label="Enter Your Content"
-          component={TinyEditor}
-          required
-        />
+  componentDidMount = () => {
+    this.props.fetchMaterial(this.props.match.params.id);
+  };
 
-        <div style={{ margin: "20px" }}>
-          <button className="ui right floated teal button">
-            Next
-            <i className="angle right icon"></i>
-          </button>
-          <Link
-            to={`/materials/content/${this.props.match.params.id}/revision_questions`}
-            className="ui left floated red button"
-          >
-            <i className="reply icon"></i>
-            Cancel
-          </Link>
+  render() {
+    if (this.props.material) {
+      const { subject, title } = this.props.material;
+
+      return (
+        <div>
+          <h3>Upload Notes</h3>
+          <FileUpload
+            fileSubject={subject}
+            fileTopic={title}
+            fileCategory="notes"
+            backLink={`/materials/content/${this.props.match.params.id}/notes`}
+            onFormSubmit={this.props.onSubmit}
+          />
         </div>
-      </form>
-    );
+      );
+    } else {
+      return <NoContent />;
+    }
   }
 }
 
+const mapStateToProps = ({ materials }) => {
+  return { material: materials.material };
+};
+
 export default withRouter(
-  reduxForm({
-    form: "revisionQuestionsForm",
-    validate: formValidator,
-    destroyOnUnmount: false,
-  })(RevisionQuestionsForm)
+  connect(mapStateToProps, actions)(RevisionQuestionsForm)
 );

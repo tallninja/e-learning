@@ -23,17 +23,19 @@ class RevisionQuestionsEdit extends Component {
 
   renderContent = () => {
     if (this.props.revisionQuestions.item) {
-      const { _id, content } = this.props.revisionQuestions.item;
+      const { _id } = this.props.revisionQuestions;
       if (this.state.showReviewForm) {
         return (
           <RevisionQuestionsReview
             handleBack={() => this.setState({ showReviewForm: false })}
-            form={this.props.form}
             action={() => {
-              const data = this.props.form.revisionQuestionsForm.values;
+              const data = {};
+              data.id = _id;
+              data.fileURL = this.props.fileURL;
               data.materialID = this.props.match.params.id;
-              this.props.editRevisionQuestions(_id, data);
+              this.props.editNotes(data);
             }}
+            fileURL={this.props.fileURL}
             icon="save icon"
             buttonText="Save Changes"
           />
@@ -42,10 +44,7 @@ class RevisionQuestionsEdit extends Component {
         return (
           <div>
             <h2>Edit Marking Scheme</h2>
-            <RevisionQuestionsForm
-              onSubmit={this.handleSubmit}
-              initialValues={{ content }}
-            />
+            <RevisionQuestionsForm onSubmit={this.handleSubmit} />
           </div>
         );
       }
@@ -59,8 +58,8 @@ class RevisionQuestionsEdit extends Component {
   }
 }
 
-const mapStateToProps = ({ revisionQuestions, form }) => {
-  return { revisionQuestions, form };
+const mapStateToProps = ({ revisionQuestions, fileURL }) => {
+  return { revisionQuestions: revisionQuestions.item, fileURL };
 };
 
 export default connect(mapStateToProps, actions)(RevisionQuestionsEdit);
