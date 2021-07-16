@@ -73,13 +73,13 @@ class Videos extends Component {
             <NoContent
               text="No Video..."
               icon="video"
-              renderCreateButton={() => this.renderCreateButton()}
+              renderCreateButton={this.renderCreateButton}
             />
           </React.Fragment>
         );
       default:
         if (this.props.video.materialID === this.props.match.params.id) {
-          const { ytVideoID } = this.props.video;
+          const { ytVideoURL } = this.props.video;
           return (
             <React.Fragment>
               <SecondaryMenu
@@ -88,7 +88,7 @@ class Videos extends Component {
               />
               {this.renderAuthButtons()}
               <div className="ui attached segment">
-                <VideoMaterials videoID={ytVideoID} />
+                <VideoMaterials videoURL={ytVideoURL} />
               </div>
             </React.Fragment>
           );

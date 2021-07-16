@@ -3,13 +3,10 @@ import ReactPlayer from "react-player";
 
 class VideoPlayer extends Component {
   render() {
-    return this.props.videoID ? (
+    return this.props.videoURL ? (
       <div className="ui segment">
         <div className="ui embed">
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${this.props.videoID}`}
-            controls={true}
-          />
+          <ReactPlayer url={this.props.videoURL} controls={true} />
         </div>
       </div>
     ) : (

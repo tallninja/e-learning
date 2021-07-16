@@ -10,13 +10,13 @@ class VideoReview extends Component {
   };
 
   render() {
-    const { ytVideoID } = this.props.form.videoForm.values;
+    const { ytVideoURL } = this.props.form.videoForm.values;
     return (
       <React.Fragment>
         <h3>Review...</h3>
         <div className="ui segment">
           <h4>Content</h4>
-          <div className="ui segment">{ytVideoID}</div>
+          <div className="ui segment">{ytVideoURL}</div>
         </div>
         <div style={{ margin: "20px" }}>
           <button

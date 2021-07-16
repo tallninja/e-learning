@@ -6,10 +6,10 @@ import NoContent from "../noContent";
 
 class VideoMaterials extends Component {
   render = () => {
-    if (this.props.videoID) {
+    if (this.props.videoURL) {
       return (
         <div className="ui container">
-          <VideoPlayer videoID={this.props.videoID} />
+          <VideoPlayer videoURL={this.props.videoURL} />
         </div>
       );
     } else {

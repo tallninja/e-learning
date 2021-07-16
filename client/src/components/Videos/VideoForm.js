@@ -15,9 +15,9 @@ class VideoForm extends Component {
       >
         <Field
           type="text"
-          name="ytVideoID"
-          label="Youtube Video ID"
-          placeholder="ID"
+          name="ytVideoURL"
+          label="Youtube Video URL"
+          placeholder="https://www.youtube.com/watch?v=..."
           component={MaterialField}
           required
         />

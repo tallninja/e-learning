@@ -23,7 +23,7 @@ class EditVideo extends Component {
 
   renderContent = () => {
     if (this.props.video.item) {
-      const { _id, ytVideoID } = this.props.video.item;
+      const { _id, ytVideoURL } = this.props.video.item;
       if (this.state.showReviewForm) {
         return (
           <VideoReview
@@ -44,7 +44,7 @@ class EditVideo extends Component {
             <h2>Edit Marking Scheme</h2>
             <VideoForm
               onSubmit={this.handleSubmit}
-              initialValues={{ ytVideoID }}
+              initialValues={{ ytVideoURL }}
             />
           </div>
         );
