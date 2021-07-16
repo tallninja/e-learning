@@ -4,7 +4,7 @@ if (process.env.NODE_ENV === "production") {
       REGION: process.env.CDK_DEFAULT_REGION,
       STACK_PREFIX: "kisomoview-file-upload",
       DEPLOY_ENVIRONMENT: "prod",
-      ALLOWED_ORIGIN: "https://*.kisomoview.com",
+      ALLOWED_ORIGIN: "https://machakos.kisomoview.com",
       API_PATH: "get-presigned-url",
     },
   };
