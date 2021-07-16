@@ -29,7 +29,7 @@ const checkFileSelected = (scope, file) => {
   }
 };
 
-export default (scope, file) => {
+const fileValidator = (scope, file) => {
   if (checkFileSelected(scope, file)) {
     if (checkFileType(scope, file)) {
       if (checkFileSize(scope, file)) {
@@ -44,3 +44,5 @@ export default (scope, file) => {
     return false;
   }
 };
+
+export default fileValidator;

@@ -103,4 +103,6 @@ const mapStateToProps = ({ user, markingScheme: { item } }) => {
   return { user, markingScheme: item };
 };
 
-export default connect(mapStateToProps, actions)(MarkingSchemeContent);
+export default withRouter(
+  connect(mapStateToProps, actions)(MarkingSchemeContent)
+);

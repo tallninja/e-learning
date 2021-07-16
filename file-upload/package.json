@@ -6,9 +6,12 @@
   "scripts": {
     "setup": "npm install",
     "cdk-bootstrap": "npx cdk bootstrap",
-    "cdk-deploy": "npx cdk deploy kisomoview-file-upload-dev --outputs-file ../server/cdk-exports-dev.json",
-    "cdk-create-stack": "npm run cdk-bootstrap && npm run cdk-deploy",
-    "cdk-destroy": "npx cdk destroy kisomoview-file-upload-dev",
+    "cdk-deploy-dev": "npx cdk deploy kisomoview-file-upload-dev --outputs-file ../server/src/cdk-exports-dev.json",
+    "cdk-deploy-prod": "npx cdk deploy kisomoview-file-upload-prod --outputs-file ../server/src/cdk-exports-prod.json",
+    "cdk-create-stack-dev": "npm run cdk-bootstrap && npm run cdk-deploy-dev",
+    "cdk-create-stack-prod": "npm run cdk-bootstrap && npm run cdk-deploy-prod",
+    "cdk-destroy-stack-dev": "npx cdk destroy kisomoview-file-upload-dev",
+    "cdk-destroy-stack-prod": "npx cdk destroy kisomoview-file-upload-prod",
     "cdk": "cdk"
   },
   "keywords": [],
