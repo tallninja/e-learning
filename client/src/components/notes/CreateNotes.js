@@ -42,6 +42,7 @@ class CreateNotes extends Component {
             const notes = {};
             notes.fileURL = this.props.fileURL;
             notes.materialID = this.props.match.params.id;
+            notes.fileName = this.props.fileURL.split("/").slice(-1)[0];
             this.props.createNotes(notes);
           }}
           icon="paper plane icon"

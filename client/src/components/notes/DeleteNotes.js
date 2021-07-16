@@ -48,7 +48,7 @@ class NotesDelete extends Component {
           <Modal
             title="Delete Stream"
             content="Are you sure you want to delete ?"
-            item={this.props.notes._id}
+            item={this.props.notes.fileName}
             actions={actions}
             onDismiss={() =>
               history.push(
