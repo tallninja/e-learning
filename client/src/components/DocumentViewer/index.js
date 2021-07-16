@@ -6,12 +6,7 @@ class DocumentViewer extends Component {
       return (
         <div className="ui segment">
           <div className="ui embed">
-            <embed
-              src={this.props.fileURL}
-              width="500"
-              height="375"
-              type="application/pdf"
-            />
+            <embed src={this.props.fileURL} type="application/pdf" />
           </div>
         </div>
       );

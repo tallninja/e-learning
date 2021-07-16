@@ -1,6 +1,6 @@
 import { UPLOAD_FILE } from "../actions/types";
 
-const fileUploadReducer = (state = {}, action) => {
+const fileUploadReducer = (state = null, action) => {
   switch (action.type) {
     case UPLOAD_FILE:
       return action.payload || false;

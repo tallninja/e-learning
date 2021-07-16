@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class FileUploadForm extends Component {
   render() {
     return (
       <>
-        <form className="ui error form" onSubmit={this.props.onFormSubmit}>
+        <form className="ui error form">
           <div className="ui placeholder segment">
             <div className="ui icon header">
               <i className="pdf file outline icon"></i>
@@ -64,20 +63,6 @@ class FileUploadForm extends Component {
                 Upload
               </button>
             </div>
-          </div>
-
-          <div style={{ margin: "20px" }}>
-            <button className="ui right floated teal button">
-              Next
-              <i className="angle right icon"></i>
-            </button>
-            <Link
-              to={this.props.backLink}
-              className="ui left floated red button"
-            >
-              <i className="reply icon"></i>
-              Cancel
-            </Link>
           </div>
         </form>
 

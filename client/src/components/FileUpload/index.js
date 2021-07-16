@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Progress } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 import * as actions from "../../actions";
 import DragAndDrop from "../DragAndDrop";
@@ -21,16 +22,20 @@ class FileUpload extends Component {
 
   handleUpload = (event) => {
     event.preventDefault();
-    this.props.uploadFile(this.state.fileDetails, (e) => {
-      this.setState({ isUploading: true });
-      this.setState({
-        progress: Math.floor((e.loaded / e.total) * 100),
-      });
+    if (!this.state.fileDetails.file) {
+      this.setState({ uploadErrorMessage: "Please select a file to upload !" });
+    } else {
+      this.props.uploadFile(this.state.fileDetails, (e) => {
+        this.setState({ isUploading: true });
+        this.setState({
+          progress: Math.floor((e.loaded / e.total) * 100),
+        });
 
-      if (e.loaded === e.total) {
-        this.setState({ isUploading: false });
-      }
-    });
+        if (e.loaded === e.total) {
+          this.setState({ isUploading: false });
+        }
+      });
+    }
   };
 
   handleFileChange = (event) => {
@@ -86,18 +91,34 @@ class FileUpload extends Component {
   render = () => {
     // console.log(this.state.uploadErrorMessage);
     return (
-      <DragAndDrop handleDrop={this.handleDrop}>
-        <FileUploadForm
-          fileDetails={this.state.fileDetails}
-          onFileChange={this.handleFileChange}
-          renderErrorMessage={this.renderErrorMessage}
-          onFormSubmit={this.props.onFormSubmit}
-          handleUpload={this.handleUpload}
-          renderProgressBar={this.renderProgressBar}
-          backLink={this.props.backLink}
-        />
-      </DragAndDrop>
-      // {this.props.renderDocument || null}
+      <>
+        <DragAndDrop handleDrop={this.handleDrop}>
+          <FileUploadForm
+            fileDetails={this.state.fileDetails}
+            onFileChange={this.handleFileChange}
+            renderErrorMessage={this.renderErrorMessage}
+            handleUpload={this.handleUpload}
+            renderProgressBar={this.renderProgressBar}
+            backLink={this.props.backLink}
+            fileURL={this.props.fileURL}
+          />
+        </DragAndDrop>
+        <div style={{ margin: "20px" }}>
+          <button
+            onClick={this.props.onFormSubmit}
+            className={`ui right floated teal ${
+              this.props.fileURL ? "" : "disabled"
+            } button`}
+          >
+            Next
+            <i className="angle right icon"></i>
+          </button>
+          <Link to={this.props.backLink} className="ui left floated red button">
+            <i className="reply icon"></i>
+            Cancel
+          </Link>
+        </div>
+      </>
     );
   };
 }
