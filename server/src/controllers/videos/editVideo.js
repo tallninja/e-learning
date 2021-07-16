@@ -4,7 +4,7 @@ module.exports = async (req, res, Video) => {
       _id: req.query.id,
     },
     {
-      ytVideoID: req.body.ytVideoID,
+      ytVideoURL: req.body.ytVideoURL,
     }
   ).exec((err) => {
     if (err) {

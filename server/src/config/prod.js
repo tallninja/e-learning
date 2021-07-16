@@ -1,5 +1,5 @@
 const { apiPath, apiUrl } = require("../cdk-exports-prod.json")[
-  "kisomoview-file-upload-dev"
+  "kisomoview-file-upload-prod"
 ];
 
 module.exports = {
