@@ -1,3 +1,7 @@
+const { apiPath, apiUrl } = require("../cdk-exports-dev.json")[
+  "kisomoview-file-upload-dev"
+];
+
 module.exports = {
   google: {
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -9,5 +13,5 @@ module.exports = {
   cookieSession: {
     key: process.env.COOKIE_SESSION_KEY,
   },
-  cdkExports: require("../cdk-exports-prod.json")["kisomoview-file-upload-dev"],
+  cdkExports: { apiPath, apiUrl },
 };

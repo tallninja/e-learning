@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const { apiUrl, apiPath } = require("../config/keys").cdkExports;
+const { apiPath, apiUrl } = require("../config/keys").cdkExports;
 
 const getPresignedURL = async ({
   fileType,
