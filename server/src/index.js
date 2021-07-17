@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 if (process.env.NODE_ENV === "prodction") {
+  app.enable("trust proxy");
   app.use((req, res, next) => {
     // if (req.header("x-forwarded-proto") !== "https") {
     //   res.redirect(`https://${req.header("host")}${req.url}`);
