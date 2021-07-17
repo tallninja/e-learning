@@ -1,14 +1,14 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import ReactPaginate from "react-paginate";
+import Pagination from "../Pagination";
 
 import "./Pagination.css";
 
 class MaterialList extends Component {
   constructor(props) {
     super(props);
-    this.state = { materials: {}, currentPage: 0, PER_PAGE: 10 };
+    this.state = { materials: {}, activePage: 1, PER_PAGE: 10 };
   }
 
   componentDidMount = () => {
@@ -62,7 +62,7 @@ class MaterialList extends Component {
   };
 
   renderMaterialsList = () => {
-    const offset = this.state.currentPage * this.state.PER_PAGE;
+    const offset = (this.state.activePage - 1) * this.state.PER_PAGE;
     switch (this.props.materials) {
       case false:
         return <h4>No Topics yet...</h4>;
@@ -85,8 +85,8 @@ class MaterialList extends Component {
     }
   };
 
-  handlePageClick = ({ selected: selectedPage }) => {
-    this.setState({ currentPage: selectedPage });
+  handlePageChange = (e, { activePage }) => {
+    this.setState({ activePage: activePage });
   };
 
   render() {
@@ -100,16 +100,10 @@ class MaterialList extends Component {
           <div className="ui ordered large relaxed divided list">
             {this.renderMaterialsList()}
           </div>
-          <ReactPaginate
-            previousLabel={"← Previous"}
-            nextLabel={"Next →"}
-            pageCount={pageCount}
-            onPageChange={this.handlePageClick}
-            containerClassName={"pagination"}
-            previousLinkClassName={"item"}
-            nextLinkClassName={"item"}
-            disabledClassName={"item"}
-            activeClassName={"item"}
+          <Pagination
+            activePage={this.state.activePage}
+            handlePageChange={this.handlePageChange}
+            totalPages={pageCount}
           />
         </div>
       );
