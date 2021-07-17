@@ -18,11 +18,12 @@ app.use(express.json());
 
 if (process.env.NODE_ENV === "prodction") {
   app.use((req, res, next) => {
-    if (req.header("x-forwarded-proto") !== "https") {
-      res.redirect(`https://${req.header("host")}${req.url}`);
-    } else {
-      next();
-    }
+    // if (req.header("x-forwarded-proto") !== "https") {
+    //   res.redirect(`https://${req.header("host")}${req.url}`);
+    // } else {
+    //   next();
+    // }
+    req.secure ? next() : res.redirect(`https://${req.headers.host}${req.url}`);
   });
 }
 
