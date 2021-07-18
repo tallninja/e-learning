@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Spinner from "./Spinner";
+import Spinner from "../Spinner";
 
 class ProtectedRoute extends Component {
   render() {

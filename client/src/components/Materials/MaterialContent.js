@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import * as actions from "../../actions";
 
 import SecondaryMenu from "../SecondaryMenu";
-import Notes from "../notes";
+import Notes from "../Notes";
 
 class MaterialContent extends Component {
   componentDidMount = () => {

@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
-import MaterialField from "../materials/MaterialField";
+import MaterialField from "../Materials/MaterialField";
 import formValidator from "../../utils/formValidator";
 
 class VideoForm extends Component {

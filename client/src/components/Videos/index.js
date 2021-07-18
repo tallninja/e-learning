@@ -7,7 +7,7 @@ import * as actions from "../../actions";
 import VideoMaterials from "./VideoMaterials";
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
-import NoContent from "../noContent";
+import NoContent from "../NoContent";
 
 class Videos extends Component {
   componentDidMount = () => {

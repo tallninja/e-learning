@@ -2,42 +2,42 @@ import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
-import * as actions from "../actions";
+import * as actions from "../../actions";
 
-import Navbar from "./Navbar";
-import Subject from "./Subject";
-import Landing from "./Landing.js";
-import Footer from "./footer";
-import Login from "./login";
+import Navbar from "../Navbar";
+import Subject from "../Subject";
+import Landing from "../Landing";
+import Footer from "../Footer";
+import Login from "../Login";
 
-import MaterialCreate from "./materials/MaterialCreate";
-import MaterialContent from "./materials/MaterialContent";
-import MaterialDelete from "./materials/MaterialDelete";
-import MaterialEdit from "./materials/MaterialEdit";
+import MaterialCreate from "../Materials/MaterialCreate";
+import MaterialContent from "../Materials/MaterialContent";
+import MaterialDelete from "../Materials/MaterialDelete";
+import MaterialEdit from "../Materials/MaterialEdit";
 
-import Notes from "./notes";
-import NotesCreate from "./notes/CreateNotes";
-import NotesEdit from "./notes/EditNotes";
-import NotesDelete from "./notes/DeleteNotes";
+import Notes from "../Notes";
+import NotesCreate from "../Notes/CreateNotes";
+import NotesEdit from "../Notes/EditNotes";
+import NotesDelete from "../Notes/DeleteNotes";
 
-import RevisionQuestions from "./revisionQuestions";
-import RevisionQuestionsCreate from "./revisionQuestions/CreateRevisionQuestions";
-import RevisionQuestionsEdit from "./revisionQuestions/EditRevisionQuestions";
-import RevisionQuestionsDelete from "./revisionQuestions/DeleteRevisionQuestions";
+import RevisionQuestions from "../RevisionQuestions";
+import RevisionQuestionsCreate from "../RevisionQuestions/CreateRevisionQuestions";
+import RevisionQuestionsEdit from "../RevisionQuestions/EditRevisionQuestions";
+import RevisionQuestionsDelete from "../RevisionQuestions/DeleteRevisionQuestions";
 
-import MarkingScheme from "./markingScheme";
-import MarkingSchemeCreate from "./markingScheme/CreateMarkingScheme";
-import MarkingSchemeEdit from "./markingScheme/EditMarkingScheme";
-import MarkingSchemeDelete from "./markingScheme/DeleteMarkingScheme";
+import MarkingScheme from "../MarkingScheme";
+import MarkingSchemeCreate from "../MarkingScheme/CreateMarkingScheme";
+import MarkingSchemeEdit from "../MarkingScheme/EditMarkingScheme";
+import MarkingSchemeDelete from "../MarkingScheme/DeleteMarkingScheme";
 
-import Videos from "./Videos";
-import CreateVideo from "./Videos/CreateVideo";
-import EditVideo from "./Videos/EditVideo";
-import DeleteVideo from "./Videos/DeleteVideo";
+import Videos from "../Videos";
+import CreateVideo from "../Videos/CreateVideo";
+import EditVideo from "../Videos/EditVideo";
+import DeleteVideo from "../Videos/DeleteVideo";
 
-import history from "../history";
+import history from "../../history";
 
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "../ProtectedRoute";
 
 class App extends Component {
   componentDidMount = () => {

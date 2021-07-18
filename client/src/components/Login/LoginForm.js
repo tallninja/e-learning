@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 
 import LoginField from "./LoginField";
 
-import "./Login.css";
+import "./index.css";
 
 class LoginFrom extends Component {
   renderErrorMessage = () => {

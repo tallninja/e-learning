@@ -6,12 +6,12 @@ import * as actions from "../../actions";
 
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
-import NoContent from "../noContent";
+import NoContent from "../NoContent";
 import DocumentViewer from "../DocumentViewer";
 
-class Notes extends Component {
+class RevisionQuestions extends Component {
   componentDidMount = () => {
-    this.props.fetchNotes(this.props.match.params.id);
+    this.props.fetchRevisionQuestions(this.props.match.params.id);
   };
 
   renderAuthButtons = () => {
@@ -20,14 +20,14 @@ class Notes extends Component {
         return (
           <div className="ui two top attached buttons">
             <Link
-              to={`/materials/content/${this.props.match.params.id}/notes/edit`}
+              to={`/materials/content/${this.props.match.params.id}/revision_questions/edit`}
               className="ui teal button"
             >
               <i className="edit icon"></i>
               Edit
             </Link>
             <Link
-              to={`/materials/content/${this.props.match.params.id}/notes/delete`}
+              to={`/materials/content/${this.props.match.params.id}/revision_questions/delete`}
               className="ui orange button"
             >
               <i className="trash icon"></i>
@@ -47,7 +47,7 @@ class Notes extends Component {
     if (this.props.user.isAdmin) {
       return (
         <Link
-          to={`/materials/content/${this.props.match.params.id}/notes/new`}
+          to={`/materials/content/${this.props.match.params.id}/revision_questions/new`}
           className="ui green button"
         >
           <i className="plus icon"></i>
@@ -60,30 +60,32 @@ class Notes extends Component {
   };
 
   render() {
-    switch (this.props.notes) {
+    switch (this.props.revisionQuestions) {
       case null:
         return <PlaceHolder />;
       case false:
         return (
           <React.Fragment>
             <SecondaryMenu
-              active="notes"
+              active="revision_questions"
               materialID={this.props.match.params.id}
             />
             <NoContent
-              text="No Notes..."
+              text="No Revision Questions..."
               icon="pdf"
               renderCreateButton={() => this.renderCreateButton()}
             />
           </React.Fragment>
         );
       default:
-        if (this.props.notes.materialID === this.props.match.params.id) {
-          const { fileURL } = this.props.notes;
+        if (
+          this.props.revisionQuestions.materialID === this.props.match.params.id
+        ) {
+          const { fileURL } = this.props.revisionQuestions;
           return (
             <React.Fragment>
               <SecondaryMenu
-                active="notes"
+                active="revision_questions"
                 materialID={this.props.match.params.id}
               />
               {this.renderAuthButtons()}
@@ -97,8 +99,8 @@ class Notes extends Component {
   }
 }
 
-const mapStateToProps = ({ user, notes }) => {
-  return { user, notes: notes.item };
+const mapStateToProps = ({ user, revisionQuestions }) => {
+  return { user, revisionQuestions: revisionQuestions.item };
 };
 
-export default withRouter(connect(mapStateToProps, actions)(Notes));
+export default withRouter(connect(mapStateToProps, actions)(RevisionQuestions));

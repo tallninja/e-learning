@@ -6,12 +6,12 @@ import * as actions from "../../actions";
 
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
-import NoContent from "../noContent";
+import NoContent from "../NoContent";
 import DocumentViewer from "../DocumentViewer";
 
-class MarkingSchemeContent extends Component {
+class Notes extends Component {
   componentDidMount = () => {
-    this.props.fetchMarkingScheme(this.props.match.params.id);
+    this.props.fetchNotes(this.props.match.params.id);
   };
 
   renderAuthButtons = () => {
@@ -20,14 +20,14 @@ class MarkingSchemeContent extends Component {
         return (
           <div className="ui two top attached buttons">
             <Link
-              to={`/materials/content/${this.props.match.params.id}/marking_scheme/edit`}
+              to={`/materials/content/${this.props.match.params.id}/notes/edit`}
               className="ui teal button"
             >
               <i className="edit icon"></i>
               Edit
             </Link>
             <Link
-              to={`/materials/content/${this.props.match.params.id}/marking_scheme/delete`}
+              to={`/materials/content/${this.props.match.params.id}/notes/delete`}
               className="ui orange button"
             >
               <i className="trash icon"></i>
@@ -47,7 +47,7 @@ class MarkingSchemeContent extends Component {
     if (this.props.user.isAdmin) {
       return (
         <Link
-          to={`/materials/content/${this.props.match.params.id}/marking_scheme/new`}
+          to={`/materials/content/${this.props.match.params.id}/notes/new`}
           className="ui green button"
         >
           <i className="plus icon"></i>
@@ -60,32 +60,30 @@ class MarkingSchemeContent extends Component {
   };
 
   render() {
-    switch (this.props.markingScheme) {
+    switch (this.props.notes) {
       case null:
         return <PlaceHolder />;
       case false:
         return (
           <React.Fragment>
             <SecondaryMenu
-              active="marking_scheme"
+              active="notes"
               materialID={this.props.match.params.id}
             />
             <NoContent
-              text="No Marking Guides..."
+              text="No Notes..."
               icon="pdf"
               renderCreateButton={() => this.renderCreateButton()}
             />
           </React.Fragment>
         );
       default:
-        if (
-          this.props.markingScheme.materialID === this.props.match.params.id
-        ) {
-          const { fileURL } = this.props.markingScheme;
+        if (this.props.notes.materialID === this.props.match.params.id) {
+          const { fileURL } = this.props.notes;
           return (
             <React.Fragment>
               <SecondaryMenu
-                active="marking_scheme"
+                active="notes"
                 materialID={this.props.match.params.id}
               />
               {this.renderAuthButtons()}
@@ -99,10 +97,8 @@ class MarkingSchemeContent extends Component {
   }
 }
 
-const mapStateToProps = ({ user, markingScheme: { item } }) => {
-  return { user, markingScheme: item };
+const mapStateToProps = ({ user, notes }) => {
+  return { user, notes: notes.item };
 };
 
-export default withRouter(
-  connect(mapStateToProps, actions)(MarkingSchemeContent)
-);
+export default withRouter(connect(mapStateToProps, actions)(Notes));

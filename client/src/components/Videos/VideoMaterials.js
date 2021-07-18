@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // import VideoList from "./VideoList";
 import VideoPlayer from "./VideoPlayer";
-import NoContent from "../noContent";
+import NoContent from "../NoContent";
 
 class VideoMaterials extends Component {
   render = () => {

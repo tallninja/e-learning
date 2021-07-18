@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 import FileUpload from "../FileUpload";
-import NoContent from "../noContent";
+import NoContent from "../NoContent";
 
 class NotesForm extends Component {
   componentDidMount = () => {

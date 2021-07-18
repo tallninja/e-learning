@@ -6,12 +6,12 @@ import * as actions from "../../actions";
 
 import SecondaryMenu from "../SecondaryMenu";
 import PlaceHolder from "../PlaceHolder";
-import NoContent from "../noContent";
+import NoContent from "../NoContent";
 import DocumentViewer from "../DocumentViewer";
 
-class RevisionQuestions extends Component {
+class MarkingSchemeContent extends Component {
   componentDidMount = () => {
-    this.props.fetchRevisionQuestions(this.props.match.params.id);
+    this.props.fetchMarkingScheme(this.props.match.params.id);
   };
 
   renderAuthButtons = () => {
@@ -20,14 +20,14 @@ class RevisionQuestions extends Component {
         return (
           <div className="ui two top attached buttons">
             <Link
-              to={`/materials/content/${this.props.match.params.id}/revision_questions/edit`}
+              to={`/materials/content/${this.props.match.params.id}/marking_scheme/edit`}
               className="ui teal button"
             >
               <i className="edit icon"></i>
               Edit
             </Link>
             <Link
-              to={`/materials/content/${this.props.match.params.id}/revision_questions/delete`}
+              to={`/materials/content/${this.props.match.params.id}/marking_scheme/delete`}
               className="ui orange button"
             >
               <i className="trash icon"></i>
@@ -47,7 +47,7 @@ class RevisionQuestions extends Component {
     if (this.props.user.isAdmin) {
       return (
         <Link
-          to={`/materials/content/${this.props.match.params.id}/revision_questions/new`}
+          to={`/materials/content/${this.props.match.params.id}/marking_scheme/new`}
           className="ui green button"
         >
           <i className="plus icon"></i>
@@ -60,18 +60,18 @@ class RevisionQuestions extends Component {
   };
 
   render() {
-    switch (this.props.revisionQuestions) {
+    switch (this.props.markingScheme) {
       case null:
         return <PlaceHolder />;
       case false:
         return (
           <React.Fragment>
             <SecondaryMenu
-              active="revision_questions"
+              active="marking_scheme"
               materialID={this.props.match.params.id}
             />
             <NoContent
-              text="No Revision Questions..."
+              text="No Marking Guides..."
               icon="pdf"
               renderCreateButton={() => this.renderCreateButton()}
             />
@@ -79,13 +79,13 @@ class RevisionQuestions extends Component {
         );
       default:
         if (
-          this.props.revisionQuestions.materialID === this.props.match.params.id
+          this.props.markingScheme.materialID === this.props.match.params.id
         ) {
-          const { fileURL } = this.props.revisionQuestions;
+          const { fileURL } = this.props.markingScheme;
           return (
             <React.Fragment>
               <SecondaryMenu
-                active="revision_questions"
+                active="marking_scheme"
                 materialID={this.props.match.params.id}
               />
               {this.renderAuthButtons()}
@@ -99,8 +99,10 @@ class RevisionQuestions extends Component {
   }
 }
 
-const mapStateToProps = ({ user, revisionQuestions }) => {
-  return { user, revisionQuestions: revisionQuestions.item };
+const mapStateToProps = ({ user, markingScheme: { item } }) => {
+  return { user, markingScheme: item };
 };
 
-export default withRouter(connect(mapStateToProps, actions)(RevisionQuestions));
+export default withRouter(
+  connect(mapStateToProps, actions)(MarkingSchemeContent)
+);
