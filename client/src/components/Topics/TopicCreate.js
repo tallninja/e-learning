@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 
 import * as actions from "../../actions";
 
-import MaterialForm from "./MaterialForm";
-import MaterialReview from "./MaterialReview";
+import TopicForm from "./TopicForm";
+import TopicReview from "./TopicReview";
 
-class MaterialCreate extends Component {
+class TopicCreate extends Component {
   constructor(props) {
     super(props);
 
@@ -21,13 +21,13 @@ class MaterialCreate extends Component {
     if (!this.state.showReviewForm) {
       return (
         <div>
-          <h2>Create Your Material</h2>
-          <MaterialForm onSubmit={this.handleSubmit} />
+          <h2>Create Your Topic</h2>
+          <TopicForm onSubmit={this.handleSubmit} />
         </div>
       );
     } else {
       return (
-        <MaterialReview
+        <TopicReview
           handleBack={() => this.setState({ showReviewForm: false })}
           form={this.props.form}
           action={() =>
@@ -45,4 +45,4 @@ const mapStateToProps = ({ form }) => {
   return { form };
 };
 
-export default connect(mapStateToProps, actions)(MaterialCreate);
+export default connect(mapStateToProps, actions)(TopicCreate);

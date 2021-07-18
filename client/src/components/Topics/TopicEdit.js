@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import PlaceHolder from "../PlaceHolder";
 
-import MaterialForm from "./MaterialForm";
-import MaterialReview from "./MaterialReview";
+import TopicForm from "./TopicForm";
+import TopicReview from "./TopicReview";
 
-class MaterialEdit extends Component {
+class TopicEdit extends Component {
   constructor(props) {
     super(props);
     this.state = { showReviewForm: false };
@@ -22,11 +22,11 @@ class MaterialEdit extends Component {
   };
 
   renderContent = () => {
-    if (this.props.materials.material) {
-      const { _id, title, subject } = this.props.materials.material;
+    if (this.props.material) {
+      const { _id, title, subject } = this.props.material;
       if (this.state.showReviewForm) {
         return (
-          <MaterialReview
+          <TopicReview
             handleBack={() => this.setState({ showReviewForm: false })}
             form={this.props.form}
             action={() =>
@@ -39,10 +39,10 @@ class MaterialEdit extends Component {
       } else {
         return (
           <div>
-            <h2>Edit Material</h2>
-            <MaterialForm
+            <h2>Edit Topic...</h2>
+            <TopicForm
               onSubmit={this.handleSubmit}
-              subject={this.props.form.materialForm.values.subject}
+              subject={subject}
               initialValues={{ title, subject }}
             />
           </div>
@@ -58,8 +58,8 @@ class MaterialEdit extends Component {
   }
 }
 
-const mapStateToProps = ({ materials, form }) => {
-  return { materials, form };
+const mapStateToProps = ({ materials: { material }, form }) => {
+  return { material, form };
 };
 
-export default connect(mapStateToProps, actions)(MaterialEdit);
+export default connect(mapStateToProps, actions)(TopicEdit);

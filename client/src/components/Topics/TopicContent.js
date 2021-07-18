@@ -7,7 +7,7 @@ import * as actions from "../../actions";
 import SecondaryMenu from "../SecondaryMenu";
 import Notes from "../Notes";
 
-class MaterialContent extends Component {
+class TopicContent extends Component {
   componentDidMount = () => {
     this.props.fetchMaterial(this.props.match.params.id);
   };
@@ -54,7 +54,7 @@ class MaterialContent extends Component {
           </div>
         );
       case false:
-        return <div>Material not found...</div>;
+        return <div>Topic not found...</div>;
       default:
         if (this.props.material._id === this.props.match.params.id) {
           const { _id, title } = this.props.material;
@@ -79,4 +79,4 @@ const mapStateToProps = ({ user, materials }) => {
   return { user, material: materials.material };
 };
 
-export default connect(mapStateToProps, actions)(MaterialContent);
+export default connect(mapStateToProps, actions)(TopicContent);

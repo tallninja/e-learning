@@ -3,7 +3,7 @@ import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
-import MaterialField from "../Materials/MaterialField";
+import VideoField from "../InputField";
 import formValidator from "../../utils/formValidator";
 
 class VideoForm extends Component {
@@ -18,7 +18,7 @@ class VideoForm extends Component {
           name="ytVideoURL"
           label="Youtube Video URL"
           placeholder="https://www.youtube.com/watch?v=..."
-          component={MaterialField}
+          component={VideoField}
           required
         />
 

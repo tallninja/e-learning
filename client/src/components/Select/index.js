@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
 
-class SubjectSelect extends Component {
+class Select extends Component {
   renderErrorMessage = (meta) => {
     if (meta.touched && meta.error) {
       return (
@@ -17,10 +17,10 @@ class SubjectSelect extends Component {
   renderSelectField = (field) => {
     return (
       <div style={{ marginBottom: "15px" }} className="required field">
-        <label htmlFor="subject-select" className="default text">
+        <label htmlFor="select" className="default text">
           {field.label}
         </label>
-        <select id="subject-select" {...field.input}>
+        <select id="select" {...field.input}>
           {field.children}
         </select>
         {this.renderErrorMessage(field.meta)}
@@ -52,4 +52,4 @@ class SubjectSelect extends Component {
   }
 }
 
-export default SubjectSelect;
+export default Select;

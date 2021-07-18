@@ -10,10 +10,10 @@ import Landing from "../Landing";
 import Footer from "../Footer";
 import Login from "../Login";
 
-import MaterialCreate from "../Materials/MaterialCreate";
-import MaterialContent from "../Materials/MaterialContent";
-import MaterialDelete from "../Materials/MaterialDelete";
-import MaterialEdit from "../Materials/MaterialEdit";
+import TopicCreate from "../Topics/TopicCreate";
+import TopicContent from "../Topics/TopicContent";
+import TopicDelete from "../Topics/TopicDelete";
+import TopicEdit from "../Topics/TopicEdit";
 
 import Notes from "../Notes";
 import NotesCreate from "../Notes/CreateNotes";
@@ -57,7 +57,7 @@ class App extends Component {
             <ProtectedRoute
               exact={true}
               path="/materials/:subject/new"
-              component={MaterialCreate}
+              component={TopicCreate}
             />
             <ProtectedRoute
               exact={true}
@@ -67,17 +67,17 @@ class App extends Component {
             <ProtectedRoute
               exact={true}
               path="/materials/edit/:id"
-              component={MaterialEdit}
+              component={TopicEdit}
             />
             <ProtectedRoute
               exact={true}
               path="/materials/delete/:id"
-              component={MaterialDelete}
+              component={TopicDelete}
             />
             <ProtectedRoute
               exact={true}
               path="/materials/content/:id"
-              component={MaterialContent}
+              component={TopicContent}
             />
             <ProtectedRoute
               exact={true}

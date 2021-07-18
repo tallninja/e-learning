@@ -5,7 +5,7 @@ import * as actions from "../../actions";
 import Modal from "../Modal";
 import history from "../../history";
 
-class MaterialDelete extends Component {
+class TopicDelete extends Component {
   componentDidMount = () => {
     this.props.fetchMaterial(this.props.match.params.id);
   };
@@ -59,4 +59,4 @@ const mapStateToProps = ({ materials }) => {
   return { material: materials.material };
 };
 
-export default connect(mapStateToProps, actions)(MaterialDelete);
+export default connect(mapStateToProps, actions)(TopicDelete);

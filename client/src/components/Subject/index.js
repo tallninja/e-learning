@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import * as actions from "../../actions";
 
-import MaterialList from "../Materials/MaterialList";
+import TopicsList from "../Topics/TopicsList";
 
 class Subject extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Subject extends Component {
   render() {
     return (
       <React.Fragment>
-        <MaterialList
+        <TopicsList
           user={this.props.user}
           action={() =>
             this.props.fetchAllMaterials(

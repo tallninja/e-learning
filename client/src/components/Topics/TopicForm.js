@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { Link, withRouter } from "react-router-dom";
 
-import MaterialField from "./MaterialField";
-import SubjectSelect from "./SubjectSelect";
+import TopicField from "../InputField";
+import SubjectSelect from "../Select";
 import formValidator from "../../utils/formValidator";
 
 class MaterialForm extends Component {
@@ -18,7 +18,7 @@ class MaterialForm extends Component {
           name="title"
           label="Title"
           placeholder="Material Title"
-          component={MaterialField}
+          component={TopicField}
           required
         />
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class MaterialField extends Component {
+class Field extends Component {
   renderErrorMessage(meta) {
     if (meta.touched && meta.error) {
       return (
@@ -30,4 +30,4 @@ class MaterialField extends Component {
   }
 }
 
-export default MaterialField;
+export default Field;
