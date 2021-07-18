@@ -43,7 +43,7 @@ class DocumentViewer extends Component {
               href={`${process.env.PUBLIC_URL}/pdf.js/web/viewer.html?file=${this.props.fileURL}`}
               style={{ textDecoration: "none", color: "white" }}
             >
-              View Full Screen <i class="expand icon"></i>
+              View Full Screen <i className="expand icon"></i>
             </a>
           </div>
         </div>

@@ -23,6 +23,8 @@ class MarkingSchemeForm extends Component {
         <div>
           <h3>Upload Marking Scheme</h3>
           <FileUpload
+            host={window.location.host}
+            contentType="document"
             fileSubject={subject}
             fileTopic={title}
             fileCategory="marking-scheme"

@@ -1,9 +1,18 @@
-const checkFileSize = (scpoe, file) => {
-  if (file.size > 10000000) {
+const checkFileSize = (scpoe, file, contentType) => {
+  let maxFileSize = 1000000;
+  if (contentType === "document") {
+    maxFileSize = maxFileSize * 10;
+  } else if (contentType === "image") {
+    maxFileSize = maxFileSize * 2;
+  } else if (contentType === "video") {
+    maxFileSize = maxFileSize * 1000;
+  }
+
+  if (file.size > maxFileSize) {
     scpoe.setState({
       uploadErrorMessage: `File is too large ${(file.size / 1000000).toFixed(
         2
-      )}MB Maximum allowed file size is 10MB`,
+      )}MB Maximum allowed file size is ${maxFileSize / 1000000}MB`,
     });
     return false;
   } else {
@@ -29,10 +38,10 @@ const checkFileSelected = (scope, file) => {
   }
 };
 
-const fileValidator = (scope, file) => {
+const fileValidator = (scope, file, contentType) => {
   if (checkFileSelected(scope, file)) {
     if (checkFileType(scope, file)) {
-      if (checkFileSize(scope, file)) {
+      if (checkFileSize(scope, file, contentType)) {
         return true;
       } else {
         return false;

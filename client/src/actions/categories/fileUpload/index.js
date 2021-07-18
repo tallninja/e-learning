@@ -6,7 +6,7 @@ import { UPLOAD_FILE } from "../../types";
 
 export const uploadFile =
   (
-    { file, fileType, fileSubject, fileTopic, fileCategory },
+    { host, contentType, file, fileType, fileSubject, fileTopic, fileCategory },
     onUploadProgress
   ) =>
   async (dispatch) => {
@@ -16,6 +16,8 @@ export const uploadFile =
     const fileName = `${fileSubject}-${fileTopic}-${fileCategory}.${fileExtension}`;
 
     const res = await getPresignedURL({
+      host,
+      contentType,
       fileType,
       fileSubject,
       fileTopic,
@@ -31,6 +33,8 @@ export const uploadFile =
       formData.append(key, value);
     });
     formData.append("file", file);
+
+    console.log(url);
 
     await axios.post(url, formData, {
       headers: {

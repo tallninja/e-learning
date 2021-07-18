@@ -23,6 +23,8 @@ class NotesForm extends Component {
         <div>
           <h3>Upload Notes</h3>
           <FileUpload
+            host={window.location.host}
+            contentType="document"
             fileSubject={subject}
             fileTopic={title}
             fileCategory="notes"

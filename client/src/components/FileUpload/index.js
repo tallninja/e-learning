@@ -41,11 +41,20 @@ class FileUpload extends Component {
   handleFileChange = (event) => {
     const file = event.target.files[0];
     const fileType = file.type;
-    const { fileSubject, fileTopic, fileCategory } = this.props;
+    const { host, contentType, fileSubject, fileTopic, fileCategory } =
+      this.props;
 
-    if (fileValidator(this, file)) {
+    if (fileValidator(this, file, contentType)) {
       this.setState({
-        fileDetails: { file, fileType, fileSubject, fileTopic, fileCategory },
+        fileDetails: {
+          host,
+          contentType,
+          file,
+          fileType,
+          fileSubject,
+          fileTopic,
+          fileCategory,
+        },
       });
     } else {
       return;
@@ -54,11 +63,20 @@ class FileUpload extends Component {
 
   handleDrop = ({ file, message }) => {
     const fileType = file.type;
-    const { fileSubject, fileTopic, fileCategory } = this.props;
+    const { host, contentType, fileSubject, fileTopic, fileCategory } =
+      this.props;
 
     if (fileValidator(this, file)) {
       this.setState({
-        fileDetails: { file, fileType, fileSubject, fileTopic, fileCategory },
+        fileDetails: {
+          host,
+          contentType,
+          file,
+          fileType,
+          fileSubject,
+          fileTopic,
+          fileCategory,
+        },
       });
       this.setState({ uploadErrorMessage: null });
     } else {

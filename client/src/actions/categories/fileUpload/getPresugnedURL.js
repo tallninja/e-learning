@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const getPresignedURL = async ({
+  host,
+  contentType,
   fileType,
   fileSubject,
   fileTopic,
@@ -9,6 +11,8 @@ const getPresignedURL = async ({
 }) => {
   const res = await axios.get("/api/uploads/get-presigned-url", {
     params: {
+      host,
+      contentType,
       fileType,
       fileSubject,
       fileTopic,
