@@ -4,17 +4,17 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import PlaceHolder from "../PlaceHolder";
 
-import VideoForm from "./VideoForm";
-import VideoReview from "./VideoReview";
+import SubjectForm from "./SubjectForm";
+import SubjectReview from "./SubjectReview";
 
-class EditVideo extends Component {
+class EditSubject extends Component {
   constructor(props) {
     super(props);
     this.state = { showReviewForm: false };
   }
 
   componentDidMount = () => {
-    this.props.fetchVideo(this.props.match.params.id);
+    this.props.fetchSubject(this.props.match.params.subjectID);
   };
 
   handleSubmit = () => {
@@ -22,17 +22,18 @@ class EditVideo extends Component {
   };
 
   renderContent = () => {
-    if (this.props.video.item) {
-      const { _id, ytVideoURL } = this.props.video.item;
+    if (this.props.subject) {
+      const { _id, name, description } = this.props.subject;
       if (this.state.showReviewForm) {
         return (
-          <VideoReview
+          <SubjectReview
             handleBack={() => this.setState({ showReviewForm: false })}
             form={this.props.form}
             action={() => {
-              const data = this.props.form.videoForm.values;
-              data.materialID = this.props.match.params.id;
-              this.props.editVideo(_id, data);
+              const data = this.props.form.subjectForm.values;
+              data.id = _id;
+              data.imageURL = this.props.fileURL;
+              this.props.editSubject(data);
             }}
             icon="save icon"
             buttonText="Save Changes"
@@ -41,10 +42,10 @@ class EditVideo extends Component {
       } else {
         return (
           <div>
-            <h2>Edit Video...</h2>
-            <VideoForm
+            <h2>Edit Subject...</h2>
+            <SubjectForm
               onSubmit={this.handleSubmit}
-              initialValues={{ ytVideoURL }}
+              initialValues={{ name, description }}
             />
           </div>
         );
@@ -59,8 +60,8 @@ class EditVideo extends Component {
   }
 }
 
-const mapStateToProps = ({ video, form }) => {
-  return { video, form };
+const mapStateToProps = ({ subjects: { subject }, form }) => {
+  return { subject, form };
 };
 
-export default connect(mapStateToProps, actions)(EditVideo);
+export default connect(mapStateToProps, actions)(EditSubject);

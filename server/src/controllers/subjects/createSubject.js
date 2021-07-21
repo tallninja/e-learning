@@ -1,6 +1,6 @@
 module.exports = async (req, res, Subject) => {
   const { name, description, imageURL } = req.body;
-  await new Notes({
+  await new Subject({
     name: name,
     description: description,
     imageURL: imageURL,

@@ -1,5 +1,7 @@
 export * from "./categories/user";
 
+export * from "./categories/subjects";
+
 export * from "./categories/topics";
 
 export * from "./categories/notes";

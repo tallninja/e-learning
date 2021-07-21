@@ -10,6 +10,10 @@ import Landing from "../Landing";
 import Footer from "../Footer";
 import Login from "../Login";
 
+import CreateSubject from "../Subject/CreateSubject";
+import EditSubject from "../Subject/EditSubject";
+import DeleteSubject from "../Subject/DeleteSubject";
+
 import TopicCreate from "../Topics/TopicCreate";
 import TopicContent from "../Topics/TopicContent";
 import TopicDelete from "../Topics/TopicDelete";
@@ -54,6 +58,21 @@ class App extends Component {
           <Switch>
             <Route exact={true} path="/login" component={Login} />
             <ProtectedRoute exact={true} path="/" component={Landing} />
+            <ProtectedRoute
+              exact={true}
+              path="/subjects/new"
+              component={CreateSubject}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/subjects/:subjectID/edit"
+              component={EditSubject}
+            />
+            <ProtectedRoute
+              exact={true}
+              path="/subjects/:subjectID/delete"
+              component={DeleteSubject}
+            />
             <ProtectedRoute
               exact={true}
               path="/materials/:subject/new"
