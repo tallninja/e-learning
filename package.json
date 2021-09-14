@@ -15,6 +15,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "setup": "npm install --prefix server && npm install --prefix client && npm install --prefix file-upload",
     "start": "npm run start --prefix server",
     "server": "npm run dev --prefix server",
     "client": "npm run dev --prefix client",
