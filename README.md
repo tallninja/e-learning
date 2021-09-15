@@ -9,14 +9,14 @@ E-learning web platform for Kenyan high school students
 Creating a stack:
 
 ```bash
-export AWS_PROFILE=upload-file-user && npm run cdk-create-stack-dev
+export AWS_PROFILE=file-upload-user && npm run cdk-create-stack-dev
 
 ```
 
 Destroying a stack:
 
 ```bash
-export AWS_PROFILE=upload-file-user && npm run cdk-destroy-stack-dev
+export AWS_PROFILE=file-upload-user && npm run cdk-destroy-stack-dev
 
 ```
 
@@ -25,13 +25,13 @@ export AWS_PROFILE=upload-file-user && npm run cdk-destroy-stack-dev
 Creating a stack:
 
 ```bash
-export AWS_PROFILE=upload-file-user && export NODE_ENV=production && npm run cdk-create-stack-prod
+export AWS_PROFILE=file-upload-user && export NODE_ENV=production && npm run cdk-create-stack-prod
 
 ```
 
 Destroying a stack:
 
 ```bash
-export AWS_PROFILE=upload-file-user && export NODE_ENV=production && npm run cdk-destroy-stack-prod
+export AWS_PROFILE=file-upload-user && export NODE_ENV=production && npm run cdk-destroy-stack-prod
 
 ```
