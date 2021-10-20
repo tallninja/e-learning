@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
 import SubjectField from "../InputField";
+import Select from "../Select";
 import formValidator from "../../utils/formValidator";
 
 class SubjectForm extends Component {
@@ -13,14 +14,7 @@ class SubjectForm extends Component {
         className="ui error form"
         onSubmit={this.props.handleSubmit(this.props.onSubmit)}
       >
-        <Field
-          type="text"
-          name="name"
-          label="Subject Name"
-          placeholder="Mathematics..."
-          component={SubjectField}
-          required
-        />
+        <Select name="name" label="Subject Name" />
 
         <Field
           type="text"

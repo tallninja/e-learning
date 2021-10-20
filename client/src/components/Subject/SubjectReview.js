@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import subjects from "../Select/subjects.json";
 
 class SubjectReview extends Component {
   handleBack = () => {
@@ -11,12 +12,14 @@ class SubjectReview extends Component {
 
   render() {
     const { name, description } = this.props.form.subjectForm.values;
+    const subject = subjects.find((subject) => subject.value === name).key;
     return (
       <React.Fragment>
         <h3>Review...</h3>
         <div className="ui segment">
-          <h4>Content</h4>
-          <div className="ui segment">{name}</div>
+          <h3>Subject</h3>
+          <div className="ui segment">{subject}</div>
+          <h3>Description</h3>
           <div className="ui segment">{description}</div>
         </div>
         <div style={{ margin: "20px" }}>

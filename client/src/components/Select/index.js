@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
+import subjects from "./subjects.json";
 
 class Select extends Component {
   renderErrorMessage = (meta) => {
@@ -28,6 +29,16 @@ class Select extends Component {
     );
   };
 
+  renderSubjectsList = () => {
+    return subjects.map((subject) => {
+      return (
+        <option value={subject.value} key={subject.value}>
+          {subject.key}
+        </option>
+      );
+    });
+  };
+
   render() {
     const { label, name } = this.props;
     return (
@@ -35,18 +46,7 @@ class Select extends Component {
         <option value="" className="ui disabled">
           --Please select a subject--
         </option>
-        <option value="Mathematics">Mathematics</option>
-        <option value="Chemistry">Chemistry</option>
-        <option value="Physics">Physics</option>
-        <option value="Biology">Biology</option>
-        <option value="English">English</option>
-        <option value="Kiswahili">Kiswahili</option>
-        <option value="History">History</option>
-        <option value="Geography">Geography</option>
-        <option value="CRE">CRE</option>
-        <option value="IRE">IRE</option>
-        <option value="Business">Business</option>
-        <option value="Computer">Computer</option>
+        {this.renderSubjectsList()}
       </Field>
     );
   }
