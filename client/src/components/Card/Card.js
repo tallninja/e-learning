@@ -33,11 +33,20 @@ class Card extends Component {
     return (
       <div className={`ui ${this.props.color} card`}>
         <div className="image">
-          <img src={this.props.image} alt={this.props.subject} />
+          {/* <img src={this.props.image} alt={this.props.subject.key} /> */}
+          <img
+            src={
+              process.env.PUBLIC_URL + `/images/${this.props.subject.value}.svg`
+            }
+            alt={this.props.subject.key}
+          />
         </div>
         <div className="content">
-          <Link to={`/materials/${this.props.subject}/all`} className="header">
-            {this.props.subject}
+          <Link
+            to={`/materials/${this.props.subject.key}/all`}
+            className="header"
+          >
+            {this.props.subject.key}
           </Link>
           <div className="description">{this.props.description}</div>
         </div>

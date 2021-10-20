@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
-import subjects from "./subjects.json";
+import subjects from "../../constants/subjects.json";
+import { connect } from "react-redux";
 
 class Select extends Component {
   renderErrorMessage = (meta) => {
@@ -21,7 +22,11 @@ class Select extends Component {
         <label htmlFor="select" className="default text">
           {field.label}
         </label>
-        <select id="select" {...field.input}>
+        <select
+          id="select"
+          {...field.input}
+          value={this.props.form.values ? this.props.form.values.name : ""}
+        >
           {field.children}
         </select>
         {this.renderErrorMessage(field.meta)}
@@ -30,10 +35,10 @@ class Select extends Component {
   };
 
   renderSubjectsList = () => {
-    return subjects.map((subject) => {
+    return Object.entries(subjects).map(([k, v]) => {
       return (
-        <option value={subject.value} key={subject.value}>
-          {subject.key}
+        <option value={k} key={k}>
+          {v}
         </option>
       );
     });
@@ -43,13 +48,21 @@ class Select extends Component {
     const { label, name } = this.props;
     return (
       <Field label={label} name={name} component={this.renderSelectField}>
-        <option value="" className="ui disabled">
-          --Please select a subject--
-        </option>
+        {this.props.form.values ? (
+          ""
+        ) : (
+          <option value="" className="ui disabled">
+            --Please select a subject--
+          </option>
+        )}
         {this.renderSubjectsList()}
       </Field>
     );
   }
 }
 
-export default Select;
+const mapStateToProps = ({ form: { subjectForm } }) => {
+  return { form: subjectForm };
+};
+
+export default connect(mapStateToProps, null)(Select);

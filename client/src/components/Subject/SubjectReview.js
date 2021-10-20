@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import subjects from "../Select/subjects.json";
+import subjects from "../../constants/subjects.json";
 
 class SubjectReview extends Component {
   handleBack = () => {
@@ -12,7 +12,7 @@ class SubjectReview extends Component {
 
   render() {
     const { name, description } = this.props.form.subjectForm.values;
-    const subject = subjects.find((subject) => subject.value === name).key;
+    const subject = subjects[name];
     return (
       <React.Fragment>
         <h3>Review...</h3>

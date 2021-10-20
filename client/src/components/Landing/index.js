@@ -8,6 +8,9 @@ import * as actions from "../../actions";
 import Card from "../Card/Card";
 import NoContent from "../NoContent";
 import PlaceHolder from "../PlaceHolder";
+import subjects from "../../constants/subjects.json";
+
+import colors from "../../constants/colors.json";
 
 class Landing extends Component {
   componentDidMount = () => {
@@ -42,18 +45,6 @@ class Landing extends Component {
       case null:
         return <PlaceHolder />;
       default:
-        const colors = [
-          "red",
-          "green",
-          "teal",
-          "pink",
-          "purple",
-          "yellow",
-          "olive",
-          "grey",
-          "secondary",
-          "violet",
-        ];
         return (
           <>
             <div className="ui four stackable cards">
@@ -66,7 +57,7 @@ class Landing extends Component {
                     key={_id}
                     id={_id}
                     image={imageURL}
-                    subject={name}
+                    subject={{ key: subjects[name], value: name }}
                     color={color}
                     description={description}
                     user={this.props.user}
@@ -86,7 +77,7 @@ class Landing extends Component {
         <div
           style={{ marginTop: "2%", display: "flex", justifyContent: "center" }}
         >
-          {this.renderCreateButton()}
+          {this.props.subjects ? this.renderCreateButton() : null}
         </div>
       </>
     );
