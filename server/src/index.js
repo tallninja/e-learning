@@ -16,12 +16,12 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-if (process.env.NODE_ENV === "production") {
-  app.enable("trust proxy");
-  app.use((req, res, next) => {
-    req.secure ? next() : res.redirect(`http://${req.headers.host}${req.url}`);
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.enable("trust proxy");
+//   app.use((req, res, next) => {
+//     req.secure ? next() : res.redirect(`https://${req.headers.host}${req.url}`);
+//   });
+// }
 
 // sesions and cookies
 app.use(
