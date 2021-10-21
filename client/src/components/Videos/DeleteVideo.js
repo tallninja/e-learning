@@ -11,18 +11,14 @@ class DeleteVideo extends Component {
   };
 
   render() {
+    const { subjectID, topicID, contentID } = this.props.match.params;
     const actions = (
       <React.Fragment>
         <button
           className="ui red button"
           onClick={() => {
-            this.props.deleteVideo(
-              this.props.video._id,
-              this.props.match.params.id
-            );
-            history.push(
-              `/materials/content/${this.props.match.params.id}/videos`
-            );
+            this.props.deleteVideo({ subjectID, topicID, contentID });
+            history.push(`/subjects/${subjectID}/topics/${topicID}/videos`);
           }}
         >
           <i className="ui icon trash" />
@@ -32,9 +28,7 @@ class DeleteVideo extends Component {
         <button
           className="ui button"
           onClick={() =>
-            history.push(
-              `/materials/content/${this.props.match.params.id}/videos`
-            )
+            history.push(`/subjects/${subjectID}/topics/${topicID}/videos`)
           }
         >
           Cancel
@@ -51,9 +45,7 @@ class DeleteVideo extends Component {
             item={this.props.video._id}
             actions={actions}
             onDismiss={() =>
-              history.push(
-                `/materials/content/${this.props.match.params.id}/videos`
-              )
+              history.push(`/subjects/${subjectID}/topics/${topicID}/videos`)
             }
           />
         </div>

@@ -14,7 +14,7 @@ class CreateRevisionQuestions extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchMaterial(this.props.match.params.id);
+    this.props.fetchTopic(this.props.match.params.topicID);
   };
 
   handleSubmit = () => {
@@ -22,13 +22,14 @@ class CreateRevisionQuestions extends Component {
   };
 
   render() {
+    const { subjectID, topicID } = this.props.match.params;
     if (!this.state.showReviewForm) {
       return (
         <div>
           <h2>Create Revision Questions</h2>
           <RevisionQuestionsForm
             onSubmit={this.handleSubmit}
-            material={this.props.material}
+            topic={this.props.topic}
           />
         </div>
       );
@@ -39,12 +40,12 @@ class CreateRevisionQuestions extends Component {
           form={this.props.form}
           fileURL={this.props.fileURL}
           action={() => {
-            const revisionQuestions = {};
-            revisionQuestions.fileURL = this.props.fileURL;
-            revisionQuestions.materialID = this.props.match.params.id;
-            revisionQuestions.fileName = this.props.fileURL
-              .split("/")
-              .slice(-1)[0];
+            const revisionQuestions = {
+              subject: subjectID,
+              topic: topicID,
+              fileURL: this.props.fileURL,
+              fileName: this.props.fileURL.split("/").slice(-1)[0],
+            };
             this.props.createRevisionQuestions(revisionQuestions);
           }}
           icon="paper plane icon"
@@ -55,8 +56,8 @@ class CreateRevisionQuestions extends Component {
   }
 }
 
-const mapStateToProps = ({ form, fileURL, materials: { material } }) => {
-  return { form, fileURL, material };
+const mapStateToProps = ({ form, fileURL, topics: { topic } }) => {
+  return { form, fileURL, topic };
 };
 
 export default connect(mapStateToProps, actions)(CreateRevisionQuestions);

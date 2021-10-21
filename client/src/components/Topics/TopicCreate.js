@@ -31,7 +31,10 @@ class TopicCreate extends Component {
           handleBack={() => this.setState({ showReviewForm: false })}
           form={this.props.form}
           action={() =>
-            this.props.createMaterial(this.props.form.materialForm.values)
+            this.props.createTopic({
+              title: this.props.form.materialForm.values.title,
+              subject: this.props.match.params.subjectID,
+            })
           }
           icon="paper plane icon"
           buttonText="Create"

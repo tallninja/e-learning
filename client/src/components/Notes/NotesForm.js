@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-// import TinyEditor from "../materials/TinyEditor";
+// import TinyEditor from "../topics/TinyEditor";
 // import formValidator from "../../utils/formValidator";
 
 import * as actions from "../../actions";
@@ -12,12 +12,12 @@ import NoContent from "../NoContent";
 
 class NotesForm extends Component {
   componentDidMount = () => {
-    this.props.fetchMaterial(this.props.match.params.id);
+    this.props.fetchTopic(this.props.match.params.topicID);
   };
 
   render() {
-    if (this.props.material) {
-      const { subject, title } = this.props.material;
+    if (this.props.topic) {
+      const { _id, subject, title } = this.props.topic;
 
       return (
         <div>
@@ -28,7 +28,7 @@ class NotesForm extends Component {
             fileSubject={subject}
             fileTopic={title}
             fileCategory="notes"
-            backLink={`/materials/content/${this.props.match.params.id}/notes`}
+            backLink={`/subjects/${subject}/topics/${_id}/notes`}
             onFormSubmit={this.props.onSubmit}
           />
         </div>
@@ -39,8 +39,8 @@ class NotesForm extends Component {
   }
 }
 
-const mapStateToProps = ({ materials }) => {
-  return { material: materials.material };
+const mapStateToProps = ({ topics }) => {
+  return { topic: topics.topic };
 };
 
 export default withRouter(connect(mapStateToProps, actions)(NotesForm));

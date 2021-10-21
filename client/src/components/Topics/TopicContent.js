@@ -18,14 +18,14 @@ class TopicContent extends Component {
         return (
           <div className="ui two top attached buttons">
             <Link
-              to={`/materials/edit/${this.props.material._id}`}
+              to={`/subjects/${this.props.match.params.subjectID}/topics/${this.props.match.params.topicID}/notes/${this.props.material._id}/edit`}
               className="ui teal button"
             >
               <i className="edit icon"></i>
               Edit
             </Link>
             <Link
-              to={`/materials/delete/${this.props.material._id}`}
+              to={`/subjects/${this.props.match.params.subjectID}/topics/${this.props.match.params.topicID}/notes/${this.props.material._id}/delete`}
               className="ui orange button"
             >
               <i className="trash icon"></i>

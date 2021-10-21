@@ -8,7 +8,7 @@ import Topic from "./Topic";
 class TopicsList extends Component {
   constructor(props) {
     super(props);
-    this.state = { materials: {}, activePage: 1, PER_PAGE: 10 };
+    this.state = { topics: {}, activePage: 1, PER_PAGE: 10 };
   }
 
   componentDidMount = () => {
@@ -17,21 +17,22 @@ class TopicsList extends Component {
 
   renderTopicsList = () => {
     const offset = (this.state.activePage - 1) * this.state.PER_PAGE;
-    switch (this.props.materials) {
+    switch (this.props.topics) {
       case false:
         return <h4>No Topics yet...</h4>;
       case null:
         return <PlaceHolder />;
       default:
         return _.map(
-          _.slice(this.props.materials, offset, offset + this.state.PER_PAGE),
-          (material) => {
+          _.slice(this.props.topics, offset, offset + this.state.PER_PAGE),
+          (topic) => {
             return (
               <Topic
-                key={material._id}
+                key={topic._id}
                 user={this.props.user}
-                id={material._id}
-                title={material.title}
+                subjectID={this.props.subjectID}
+                topicID={topic._id}
+                title={topic.title}
               />
             );
           }
@@ -44,9 +45,9 @@ class TopicsList extends Component {
   };
 
   render() {
-    if (this.props.materials) {
+    if (this.props.topics) {
       const pageCount = Math.ceil(
-        this.props.materials.length / this.state.PER_PAGE
+        this.props.topics.length / this.state.PER_PAGE
       );
       return (
         <div>

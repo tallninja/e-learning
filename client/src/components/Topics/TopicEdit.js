@@ -14,7 +14,7 @@ class TopicEdit extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchMaterial(this.props.match.params.id);
+    this.props.fetchTopic(this.props.match.params.topicID);
   };
 
   handleSubmit = () => {
@@ -22,15 +22,15 @@ class TopicEdit extends Component {
   };
 
   renderContent = () => {
-    if (this.props.material) {
-      const { _id, title, subject } = this.props.material;
+    if (this.props.topic) {
+      const { _id, title, subject } = this.props.topic;
       if (this.state.showReviewForm) {
         return (
           <TopicReview
             handleBack={() => this.setState({ showReviewForm: false })}
             form={this.props.form}
             action={() =>
-              this.props.editMaterial(_id, this.props.form.materialForm.values)
+              this.props.editTopic(_id, this.props.form.topicForm.values)
             }
             icon="save icon"
             buttonText="Save Changes"
@@ -58,8 +58,8 @@ class TopicEdit extends Component {
   }
 }
 
-const mapStateToProps = ({ materials: { material }, form }) => {
-  return { material, form };
+const mapStateToProps = ({ topics: { topic }, form }) => {
+  return { topic, form };
 };
 
 export default connect(mapStateToProps, actions)(TopicEdit);

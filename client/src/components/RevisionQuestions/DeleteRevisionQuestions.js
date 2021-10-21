@@ -7,22 +7,21 @@ import history from "../../history";
 
 class RevisionQuestionsDelete extends Component {
   componentDidMount = () => {
-    this.props.fetchRevisionQuestions(this.props.match.params.id);
+    this.props.fetchRevisionQuestions(this.props.match.params.topicID);
   };
 
   render() {
+    const { subjectID, topicID, contentID } = this.props.match.params;
     const actions = (
       <React.Fragment>
         <button
           className="ui red button"
           onClick={() => {
-            this.props.deleteRevisionQuestions(
-              this.props.revisionQuestions._id,
-              this.props.match.params.id
-            );
-            history.push(
-              `/materials/content/${this.props.match.params.id}/revision_questions`
-            );
+            this.props.deleteRevisionQuestions({
+              subjectID,
+              topicID,
+              contentID,
+            });
           }}
         >
           <i className="ui icon trash" />
@@ -33,7 +32,7 @@ class RevisionQuestionsDelete extends Component {
           className="ui button"
           onClick={() =>
             history.push(
-              `/materials/content/${this.props.match.params.id}/revision_questions`
+              `/subjects/${subjectID}/topics/${topicID}/revision_questions`
             )
           }
         >
@@ -46,13 +45,13 @@ class RevisionQuestionsDelete extends Component {
       return (
         <div>
           <Modal
-            title="Delete Stream"
+            title="Delete Revision Questions"
             content="Are you sure you want to delete ?"
             item={this.props.revisionQuestions._id}
             actions={actions}
             onDismiss={() =>
               history.push(
-                `/materials/content/${this.props.match.params.id}/revision_questions`
+                `/subjects/${subjectID}/topics/${topicID}/revision_questions`
               )
             }
           />

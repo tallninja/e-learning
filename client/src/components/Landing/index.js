@@ -49,7 +49,7 @@ class Landing extends Component {
           <>
             <div className="ui four stackable cards">
               {_.map(this.props.subjects, (subject) => {
-                const { _id, name, description, imageURL } = subject;
+                const { _id, name, imageURL } = subject;
                 const color =
                   colors[Math.floor(Math.random() * colors.length) - 1];
                 return (
@@ -57,9 +57,9 @@ class Landing extends Component {
                     key={_id}
                     id={_id}
                     image={imageURL}
-                    subject={{ key: subjects[name], value: name }}
+                    subject={subject}
+                    verboseSubject={subjects[name]}
                     color={color}
-                    description={description}
                     user={this.props.user}
                   />
                 );

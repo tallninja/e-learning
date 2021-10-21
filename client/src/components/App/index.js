@@ -15,7 +15,7 @@ import EditSubject from "../Subject/EditSubject";
 import DeleteSubject from "../Subject/DeleteSubject";
 
 import TopicCreate from "../Topics/TopicCreate";
-import TopicContent from "../Topics/TopicContent";
+// import TopicContent from "../Topics/TopicContent";
 import TopicDelete from "../Topics/TopicDelete";
 import TopicEdit from "../Topics/TopicEdit";
 
@@ -38,6 +38,8 @@ import Videos from "../Videos";
 import CreateVideo from "../Videos/CreateVideo";
 import EditVideo from "../Videos/EditVideo";
 import DeleteVideo from "../Videos/DeleteVideo";
+
+import NotFound from "../NotFound";
 
 import history from "../../history";
 
@@ -75,118 +77,115 @@ class App extends Component {
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/:subject/new"
+              path="/subjects/:subjectID/topics/new"
               component={TopicCreate}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/:subject/all"
+              path="/subjects/:subjectID"
               component={Subject}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/edit/:id"
+              path="/subjects/:subjectID/topics/:topicID/edit"
               component={TopicEdit}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/delete/:id"
+              path="/subjects/:subjectID/topics/:topicID/delete"
               component={TopicDelete}
             />
-            <ProtectedRoute
+
+            {/* <ProtectedRoute
               exact={true}
-              path="/materials/content/:id"
+              path="/subjects/:subjectID/topics/:topicID"
               component={TopicContent}
-            />
-            <ProtectedRoute
-              exact={true}
-              path="/materials/content/:id/videos"
-              component={Videos}
-            />
+            /> */}
 
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/notes"
+              path="/subjects/:subjectID/topics/:topicID/notes"
               component={Notes}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/notes/new"
+              path="/subjects/:subjectID/topics/:topicID/notes/new"
               component={NotesCreate}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/notes/edit"
+              path="/subjects/:subjectID/topics/:topicID/notes/:contentID/edit"
               component={NotesEdit}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/notes/delete"
+              path="/subjects/:subjectID/topics/:topicID/notes/:contentID/delete"
               component={NotesDelete}
             />
 
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/revision_questions"
+              path="/subjects/:subjectID/topics/:topicID/revision_questions"
               component={RevisionQuestions}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/revision_questions/new"
+              path="/subjects/:subjectID/topics/:topicID/revision_questions/new"
               component={RevisionQuestionsCreate}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/revision_questions/edit"
+              path="/subjects/:subjectID/topics/:topicID/revision_questions/:contentID/edit"
               component={RevisionQuestionsEdit}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/revision_questions/delete"
+              path="/subjects/:subjectID/topics/:topicID/revision_questions/:contentID/delete"
               component={RevisionQuestionsDelete}
             />
 
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/marking_scheme"
+              path="/subjects/:subjectID/topics/:topicID/marking_scheme"
               component={MarkingScheme}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/marking_scheme/new"
+              path="/subjects/:subjectID/topics/:topicID/marking_scheme/new"
               component={MarkingSchemeCreate}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/marking_scheme/edit"
+              path="/subjects/:subjectID/topics/:topicID/marking_scheme/:contentID/edit"
               component={MarkingSchemeEdit}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/marking_scheme/delete"
+              path="/subjects/:subjectID/topics/:topicID/marking_scheme/:contentID/delete"
               component={MarkingSchemeDelete}
             />
 
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/videos"
+              path="/subjects/:subjectID/topics/:topicID/videos"
               component={Videos}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/videos/new"
+              path="/subjects/:subjectID/topics/:topicID/videos/new"
               component={CreateVideo}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/videos/edit"
+              path="/subjects/:subjectID/topics/:topicID/videos/:contentID/edit"
               component={EditVideo}
             />
             <ProtectedRoute
               exact={true}
-              path="/materials/content/:id/videos/delete"
+              path="/subjects/:subjectID/topics/:topicID/videos/:contentID/delete"
               component={DeleteVideo}
             />
+            <Route exact={true} path="*" component={NotFound} />
           </Switch>
           <Footer />
         </div>

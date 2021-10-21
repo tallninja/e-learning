@@ -14,7 +14,7 @@ class RevisionQuestionsEdit extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchRevisionQuestions(this.props.match.params.id);
+    this.props.fetchRevisionQuestions(this.props.match.params.topicID);
   };
 
   handleSubmit = () => {
@@ -22,18 +22,22 @@ class RevisionQuestionsEdit extends Component {
   };
 
   renderContent = () => {
-    if (this.props.revisionQuestions.item) {
-      const { _id } = this.props.revisionQuestions;
+    const { subjectID, topicID, contentID } = this.props.match.params;
+    if (this.props.revisionQuestions) {
       if (this.state.showReviewForm) {
         return (
           <RevisionQuestionsReview
             handleBack={() => this.setState({ showReviewForm: false })}
             action={() => {
-              const data = {};
-              data.id = _id;
-              data.fileURL = this.props.fileURL;
-              data.materialID = this.props.match.params.id;
-              this.props.editNotes(data);
+              const data = {
+                id: contentID,
+                fileURL: this.props.fileURL,
+              };
+              this.props.editRevisionQuestions({
+                data,
+                subjectID,
+                topicID,
+              });
             }}
             fileURL={this.props.fileURL}
             icon="save icon"

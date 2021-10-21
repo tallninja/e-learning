@@ -4,10 +4,10 @@ import history from "../../history";
 import { FETCH_VIDEO, CREATE_VIDEO, EDIT_VIDEO, DELETE_VIDEO } from "../types";
 
 // fetch video
-export const fetchVideo = (materialID) => async (dispatch) => {
+export const fetchVideo = (topicID) => async (dispatch) => {
   const res = await axios.get("/api/video", {
     params: {
-      materialID: materialID,
+      topicID: topicID,
     },
   });
   dispatch({
@@ -19,7 +19,7 @@ export const fetchVideo = (materialID) => async (dispatch) => {
 // create video
 export const createVideo = (video) => async (dispatch) => {
   const res = await axios.post("/api/video", video);
-  history.push(`/materials/content/${video.materialID}/videos`);
+  history.push(`/subjects/${video.subject}/topics/${video.topic}/videos`);
   dispatch({
     type: CREATE_VIDEO,
     payload: res.data,
@@ -27,29 +27,33 @@ export const createVideo = (video) => async (dispatch) => {
 };
 
 // edit video
-export const editVideo = (id, data) => async (dispatch) => {
-  const res = await axios.patch("/api/video", data, {
-    params: {
-      id: id,
-    },
-  });
-  history.push(`/materials/content/${data.materialID}/videos`);
-  dispatch({
-    type: EDIT_VIDEO,
-    payload: res.data,
-  });
-};
+export const editVideo =
+  ({ contentID, data, subjectID, topicID }) =>
+  async (dispatch) => {
+    const res = await axios.patch("/api/video", data, {
+      params: {
+        id: contentID,
+      },
+    });
+    history.push(`/subjects/${subjectID}/topics/${topicID}/videos`);
+    dispatch({
+      type: EDIT_VIDEO,
+      payload: res.data,
+    });
+  };
 
 // delete video
-export const deleteVideo = (id, materialID) => async (dispatch) => {
-  const res = axios.delete("/api/video", {
-    params: {
-      id: id,
-    },
-  });
-  history.push(`/materials/content/${materialID}/videos`);
-  dispatch({
-    type: DELETE_VIDEO,
-    payload: res.data,
-  });
-};
+export const deleteVideo =
+  ({ subjectID, topicID, contentID }) =>
+  async (dispatch) => {
+    const res = axios.delete("/api/video", {
+      params: {
+        id: contentID,
+      },
+    });
+    history.push(`/subjects/${subjectID}/topics/${topicID}/videos`);
+    dispatch({
+      type: DELETE_VIDEO,
+      payload: res.data,
+    });
+  };

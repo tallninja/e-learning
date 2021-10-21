@@ -5,7 +5,7 @@ module.exports = async (req, res, Topic) => {
   };
 
   await Topic.paginate(
-    Topic.find({ subject: req.query.subjectID }),
+    Topic.find({ subject: req.query.subject }),
     paginateOptions,
     (err, topics) => {
       if (err) {

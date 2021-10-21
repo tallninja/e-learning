@@ -7,7 +7,7 @@ import history from "../../history";
 
 class TopicDelete extends Component {
   componentDidMount = () => {
-    this.props.fetchMaterial(this.props.match.params.id);
+    this.props.fetchTopic(this.props.match.params.topicID);
   };
 
   render() {
@@ -16,8 +16,8 @@ class TopicDelete extends Component {
         <button
           className="ui red button"
           onClick={() => {
-            this.props.deleteMaterial(this.props.material._id);
-            history.push("/dashboard");
+            this.props.deleteTopic(this.props.topic._id);
+            history.push(`/subjects/${this.props.match.params.subjectID}`);
           }}
         >
           <i className="ui icon trash" />
@@ -27,7 +27,7 @@ class TopicDelete extends Component {
         <button
           className="ui button"
           onClick={() =>
-            history.push(`/materials/content/${this.props.material._id}`)
+            history.push(`/subjects/${this.props.match.params.subjectID}`)
           }
         >
           Cancel
@@ -35,16 +35,16 @@ class TopicDelete extends Component {
       </React.Fragment>
     );
 
-    if (this.props.material) {
+    if (this.props.topic) {
       return (
         <div>
           <Modal
             title="Delete Topic"
             content="Are you sure you want to delete ?"
-            item={this.props.material.title}
+            item={this.props.topic.title}
             actions={actions}
             onDismiss={() =>
-              history.push(`/materials/content/${this.props.material._id}`)
+              history.push(`/subjects/${this.props.match.params.subjectID}`)
             }
           />
         </div>
@@ -55,8 +55,8 @@ class TopicDelete extends Component {
   }
 }
 
-const mapStateToProps = ({ materials }) => {
-  return { material: materials.material };
+const mapStateToProps = ({ topics }) => {
+  return { topic: topics.topic };
 };
 
 export default connect(mapStateToProps, actions)(TopicDelete);

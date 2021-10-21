@@ -8,11 +8,11 @@ import {
   DELETE_MARKING_SCHEME,
 } from "../types";
 
-// fetch a marking scheme
-export const fetchMarkingScheme = (materialID) => async (dispatch) => {
+// fetch marking scheme
+export const fetchMarkingScheme = (topicID) => async (dispatch) => {
   const res = await axios.get("/api/marking_scheme", {
     params: {
-      materialID: materialID,
+      topicID: topicID,
     },
   });
   dispatch({
@@ -21,36 +21,46 @@ export const fetchMarkingScheme = (materialID) => async (dispatch) => {
   });
 };
 
-// create a marking scheme
+// create marking scheme
 export const createMarkingScheme = (markingScheme) => async (dispatch) => {
   const res = await axios.post("/api/marking_scheme", markingScheme);
-  history.push(`/materials/content/${markingScheme.materialID}/marking_scheme`);
+  history.push(
+    `/subjects/${markingScheme.subject}/topics/${markingScheme.topic}/marking_scheme`
+  );
   dispatch({
     type: CREATE_MARKING_SCHEME,
     payload: res.data,
   });
 };
 
-// edit a marking scheme
-export const editMarkingScheme = (data) => async (dispatch) => {
-  const res = await axios.patch("/api/marking_scheme", data);
-  history.push(`/materials/content/${data.materialID}/marking_scheme`);
-  dispatch({
-    type: EDIT_MARKING_SCHEME,
-    payload: res.data,
-  });
-};
+// edit marking scheme
+export const editMarkingScheme =
+  ({ data, subjectID, topicID, contentID }) =>
+  async (dispatch) => {
+    const res = await axios.patch("/api/marking_scheme", data, {
+      params: {
+        id: contentID,
+      },
+    });
+    history.push(`/subjects/${subjectID}/topics/${topicID}/marking_scheme`);
+    dispatch({
+      type: EDIT_MARKING_SCHEME,
+      payload: res.data,
+    });
+  };
 
-// delete a marking scheme
-export const deleteMarkingScheme = (id, materialID) => async (dispatch) => {
-  const res = await axios.delete("/api/marking_scheme", {
-    params: {
-      id: id,
-    },
-  });
-  history.push(`/materials/content/${materialID}/marking_scheme`);
-  dispatch({
-    type: DELETE_MARKING_SCHEME,
-    payload: res.data,
-  });
-};
+// delete marking scheme
+export const deleteMarkingScheme =
+  ({ subjectID, topicID, contentID }) =>
+  async (dispatch) => {
+    const res = await axios.delete("/api/marking_scheme", {
+      params: {
+        id: contentID,
+      },
+    });
+    history.push(`/subjects/${subjectID}/topics/${topicID}/marking_scheme`);
+    dispatch({
+      type: DELETE_MARKING_SCHEME,
+      payload: res.data,
+    });
+  };

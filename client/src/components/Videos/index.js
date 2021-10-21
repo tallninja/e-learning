@@ -11,23 +11,25 @@ import NoContent from "../NoContent";
 
 class Videos extends Component {
   componentDidMount = () => {
-    this.props.fetchVideo(this.props.match.params.id);
+    this.props.fetchVideo(this.props.match.params.topicID);
   };
 
   renderAuthButtons = () => {
+    const { subjectID, topicID } = this.props.match.params;
+    const contentID = this.props.video._id;
     if (this.props.user) {
       if (this.props.user.isAdmin) {
         return (
           <div className="ui two top attached buttons">
             <Link
-              to={`/materials/content/${this.props.match.params.id}/videos/edit`}
+              to={`/subjects/${subjectID}/topics/${topicID}/videos/${contentID}/edit`}
               className="ui teal button"
             >
               <i className="edit icon"></i>
               Edit
             </Link>
             <Link
-              to={`/materials/content/${this.props.match.params.id}/videos/delete`}
+              to={`/subjects/${subjectID}/topics/${topicID}/videos/${contentID}/delete`}
               className="ui orange button"
             >
               <i className="trash icon"></i>
@@ -44,10 +46,11 @@ class Videos extends Component {
   };
 
   renderCreateButton = () => {
+    const { subjectID, topicID } = this.props.match.params;
     if (this.props.user.isAdmin) {
       return (
         <Link
-          to={`/materials/content/${this.props.match.params.id}/videos/new`}
+          to={`/subjects/${subjectID}/topics/${topicID}/videos/new`}
           className="ui green button"
         >
           <i className="plus icon"></i>
@@ -60,6 +63,7 @@ class Videos extends Component {
   };
 
   render() {
+    const { subjectID, topicID } = this.props.match.params;
     switch (this.props.video) {
       case null:
         return <PlaceHolder />;
@@ -68,7 +72,9 @@ class Videos extends Component {
           <React.Fragment>
             <SecondaryMenu
               active="videos"
-              materialID={this.props.match.params.id}
+              subjectID={subjectID}
+              topicID={topicID}
+              contentID={this.props.video._id}
             />
             <NoContent
               text="No Video..."
@@ -84,7 +90,9 @@ class Videos extends Component {
             <React.Fragment>
               <SecondaryMenu
                 active="videos"
-                materialID={this.props.match.params.id}
+                subjectID={subjectID}
+                topicID={topicID}
+                contentID={this.props.video._id}
               />
               {this.renderAuthButtons()}
               <div className="ui attached segment">

@@ -1,5 +1,5 @@
 module.exports = async (req, res, Topic) => {
-  const Topic = await Topic.deleteOne({
+  await Topic.deleteOne({
     _id: req.query.id,
   }).exec((err) => {
     if (err) {

@@ -5,7 +5,7 @@ import authReducer from "./authReducer";
 import loginReducer from "./loginReducer";
 import userReducer from "./userReducer";
 import subjectsReducer from "./subjectsReducer";
-import materialsReducer from "./materialsReducer";
+import topicsReducer from "./topicsReducer";
 import notesReducer from "./notesReducer";
 import revisionQuestionsReducer from "./revisionQuestionsReducer";
 import markingSchemeReducer from "./markingSchemeReducer";
@@ -17,7 +17,7 @@ export default combineReducers({
   login: loginReducer,
   user: userReducer,
   subjects: subjectsReducer,
-  materials: materialsReducer,
+  topics: topicsReducer,
   notes: notesReducer,
   revisionQuestions: revisionQuestionsReducer,
   markingScheme: markingSchemeReducer,

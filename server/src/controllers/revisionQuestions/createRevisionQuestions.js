@@ -8,7 +8,7 @@ module.exports = async (req, res, RevisionQuestions) => {
     fileName,
   }).save((err) => {
     if (err) {
-      res.status(500).send({ error: "Error creating Revision Questions !" });
+      res.status(500).send({ error: err });
       return;
     } else {
       res

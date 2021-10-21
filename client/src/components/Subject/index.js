@@ -6,6 +6,8 @@ import * as actions from "../../actions";
 
 import TopicsList from "../Topics/TopicsList";
 
+// import subjects from "../../constants/subjects.json";
+
 class Subject extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,7 @@ class Subject extends Component {
       if (this.props.user.isAdmin) {
         return (
           <Link
-            to={`/materials/${this.props.match.params.subject}/new`}
+            to={`/subjects/${this.props.match.params.subjectID}/topics/new`}
             className="fluid ui green button"
             style={{ margin: "20px 0px 20px 0px" }}
           >
@@ -39,12 +41,13 @@ class Subject extends Component {
         <TopicsList
           user={this.props.user}
           action={() =>
-            this.props.fetchAllMaterials(
-              this.props.match.params.subject,
+            this.props.fetchAllTopics(
+              this.props.match.params.subjectID,
               this.state.page
             )
           }
-          materials={this.props.subjectMaterials}
+          subjectID={this.props.match.params.subjectID}
+          topics={this.props.subjectTopics}
         />
         {this.renderAuthButtons()}
       </React.Fragment>
@@ -52,8 +55,12 @@ class Subject extends Component {
   }
 }
 
-const mapStateToProps = ({ user, materials }) => {
-  return { user, subjectMaterials: materials.materialsList };
+const mapStateToProps = ({ user, topics, subjects: { subjectsList } }) => {
+  return {
+    user,
+    subjectTopics: topics.topicsList,
+    subjects: subjectsList,
+  };
 };
 
 export default connect(mapStateToProps, actions)(Subject);

@@ -3,7 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import { Link, withRouter } from "react-router-dom";
 
 import TopicField from "../InputField";
-import SubjectSelect from "../Select";
+// import SubjectSelect from "../Select";
 import formValidator from "../../utils/formValidator";
 
 class MaterialForm extends Component {
@@ -16,13 +16,13 @@ class MaterialForm extends Component {
         <Field
           type="text"
           name="title"
-          label="Title"
-          placeholder="Material Title"
+          label="Topic Name"
+          placeholder="Topic Name"
           component={TopicField}
           required
         />
 
-        <SubjectSelect name="subject" label="Subject" />
+        {/* <SubjectSelect name="subject" label="Subject" /> */}
 
         <div style={{ margin: "20px" }}>
           <button className="ui right floated teal button">
@@ -30,7 +30,7 @@ class MaterialForm extends Component {
             <i className="angle right icon"></i>
           </button>
           <Link
-            to={`/materials/${this.props.match.params.subject}/all`}
+            to={`/subjects/${this.props.match.params.subjectID}`}
             className="ui left floated red button"
           >
             <i className="reply icon"></i>
@@ -44,7 +44,7 @@ class MaterialForm extends Component {
 
 export default withRouter(
   reduxForm({
-    form: "materialForm",
+    form: "topicForm",
     validate: formValidator,
     destroyOnUnmount: false,
   })(MaterialForm)

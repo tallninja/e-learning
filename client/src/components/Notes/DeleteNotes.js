@@ -7,22 +7,17 @@ import history from "../../history";
 
 class NotesDelete extends Component {
   componentDidMount = () => {
-    this.props.fetchNotes(this.props.match.params.id);
+    this.props.fetchNotes(this.props.match.params.topicID);
   };
 
   render() {
+    const { subjectID, topicID, contentID } = this.props.match.params;
     const actions = (
       <React.Fragment>
         <button
           className="ui red button"
           onClick={() => {
-            this.props.deleteNotes(
-              this.props.notes._id,
-              this.props.match.params.id
-            );
-            history.push(
-              `/materials/content/${this.props.match.params.id}/notes`
-            );
+            this.props.deleteNotes({ contentID, subjectID, topicID });
           }}
         >
           <i className="ui icon trash" />
@@ -32,9 +27,7 @@ class NotesDelete extends Component {
         <button
           className="ui button"
           onClick={() =>
-            history.push(
-              `/materials/content/${this.props.match.params.id}/notes`
-            )
+            history.push(`/subjects/${subjectID}/topics/${topicID}/notes`)
           }
         >
           Cancel
@@ -46,14 +39,12 @@ class NotesDelete extends Component {
       return (
         <div>
           <Modal
-            title="Delete Stream"
+            title="Delete Notes"
             content="Are you sure you want to delete ?"
             item={this.props.notes.fileName}
             actions={actions}
             onDismiss={() =>
-              history.push(
-                `/materials/content/${this.props.match.params.id}/notes`
-              )
+              history.push(`/subjects/${subjectID}/topics/${topicID}/notes`)
             }
           />
         </div>

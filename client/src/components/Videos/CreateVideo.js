@@ -18,6 +18,7 @@ class CreateVideo extends Component {
   };
 
   render() {
+    const { subjectID, topicID } = this.props.match.params;
     if (!this.state.showReviewForm) {
       return (
         <div>
@@ -31,7 +32,8 @@ class CreateVideo extends Component {
           form={this.props.form}
           action={() => {
             const video = this.props.form.videoForm.values;
-            video.materialID = this.props.match.params.id;
+            video.subject = subjectID;
+            video.topic = topicID;
             this.props.createVideo(video);
           }}
           icon="paper plane icon"

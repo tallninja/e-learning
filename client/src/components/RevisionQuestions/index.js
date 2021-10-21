@@ -11,23 +11,25 @@ import DocumentViewer from "../DocumentViewer";
 
 class RevisionQuestions extends Component {
   componentDidMount = () => {
-    this.props.fetchRevisionQuestions(this.props.match.params.id);
+    this.props.fetchRevisionQuestions(this.props.match.params.topicID);
   };
 
   renderAuthButtons = () => {
+    const { subjectID, topicID } = this.props.match.params;
+    const contentID = this.props.revisionQuestions._id;
     if (this.props.user) {
       if (this.props.user.isAdmin) {
         return (
           <div className="ui two top attached buttons">
             <Link
-              to={`/materials/content/${this.props.match.params.id}/revision_questions/edit`}
+              to={`/subjects/${subjectID}/topics/${topicID}/revision_questions/${contentID}/edit`}
               className="ui teal button"
             >
               <i className="edit icon"></i>
               Edit
             </Link>
             <Link
-              to={`/materials/content/${this.props.match.params.id}/revision_questions/delete`}
+              to={`/subjects/${subjectID}/topics/${topicID}/revision_questions/${contentID}/delete`}
               className="ui orange button"
             >
               <i className="trash icon"></i>
@@ -44,10 +46,11 @@ class RevisionQuestions extends Component {
   };
 
   renderCreateButton = () => {
+    const { subjectID, topicID } = this.props.match.params;
     if (this.props.user.isAdmin) {
       return (
         <Link
-          to={`/materials/content/${this.props.match.params.id}/revision_questions/new`}
+          to={`/subjects/${subjectID}/topics/${topicID}/revision_questions/new`}
           className="ui green button"
         >
           <i className="plus icon"></i>
@@ -60,6 +63,7 @@ class RevisionQuestions extends Component {
   };
 
   render() {
+    const { subjectID, topicID } = this.props.match.params;
     switch (this.props.revisionQuestions) {
       case null:
         return <PlaceHolder />;
@@ -68,7 +72,9 @@ class RevisionQuestions extends Component {
           <React.Fragment>
             <SecondaryMenu
               active="revision_questions"
-              materialID={this.props.match.params.id}
+              subjectID={subjectID}
+              topicID={topicID}
+              contentID={this.props.revisionQuestions._id}
             />
             <NoContent
               text="No Revision Questions..."
@@ -86,7 +92,9 @@ class RevisionQuestions extends Component {
             <React.Fragment>
               <SecondaryMenu
                 active="revision_questions"
-                materialID={this.props.match.params.id}
+                subjectID={subjectID}
+                topicID={topicID}
+                contentID={this.props.revisionQuestions._id}
               />
               {this.renderAuthButtons()}
               <DocumentViewer fileURL={fileURL} />

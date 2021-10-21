@@ -14,7 +14,7 @@ class NotesEdit extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchNotes(this.props.match.params.id);
+    this.props.fetchNotes(this.props.match.params.topicID);
   };
 
   handleSubmit = () => {
@@ -22,6 +22,7 @@ class NotesEdit extends Component {
   };
 
   renderContent = () => {
+    const { subjectID, topicID } = this.props.match.params;
     if (this.props.notes) {
       const { _id } = this.props.notes;
       if (this.state.showReviewForm) {
@@ -29,11 +30,11 @@ class NotesEdit extends Component {
           <NotesReview
             handleBack={() => this.setState({ showReviewForm: false })}
             action={() => {
-              const data = {};
-              data.id = _id;
-              data.fileURL = this.props.fileURL;
-              data.materialID = this.props.match.params.id;
-              this.props.editNotes(data);
+              const data = {
+                id: _id,
+                fileURL: this.props.fileURL,
+              };
+              this.props.editNotes({ data, subjectID, topicID });
             }}
             fileURL={this.props.fileURL}
             icon="save icon"

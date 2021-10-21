@@ -8,6 +8,7 @@ import formValidator from "../../utils/formValidator";
 
 class VideoForm extends Component {
   render() {
+    const { subjectID, topicID } = this.props.match.params;
     return (
       <form
         className="ui error form"
@@ -28,7 +29,7 @@ class VideoForm extends Component {
             <i className="angle right icon"></i>
           </button>
           <Link
-            to={`/materials/content/${this.props.match.params.id}/videos`}
+            to={`/subjects/${subjectID}/topics/${topicID}/videos`}
             className="ui left floated red button"
           >
             <i className="reply icon"></i>

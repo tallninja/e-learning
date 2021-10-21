@@ -11,23 +11,25 @@ import DocumentViewer from "../DocumentViewer";
 
 class MarkingSchemeContent extends Component {
   componentDidMount = () => {
-    this.props.fetchMarkingScheme(this.props.match.params.id);
+    this.props.fetchMarkingScheme(this.props.match.params.topicID);
   };
 
   renderAuthButtons = () => {
+    const { subjectID, topicID } = this.props.match.params;
+    const contentID = this.props.markingScheme._id;
     if (this.props.user) {
       if (this.props.user.isAdmin) {
         return (
           <div className="ui two top attached buttons">
             <Link
-              to={`/materials/content/${this.props.match.params.id}/marking_scheme/edit`}
+              to={`/subjects/${subjectID}/topics/${topicID}/marking_scheme/${contentID}/edit`}
               className="ui teal button"
             >
               <i className="edit icon"></i>
               Edit
             </Link>
             <Link
-              to={`/materials/content/${this.props.match.params.id}/marking_scheme/delete`}
+              to={`/subjects/${subjectID}/topics/${topicID}/marking_scheme/${contentID}/delete`}
               className="ui orange button"
             >
               <i className="trash icon"></i>
@@ -44,10 +46,11 @@ class MarkingSchemeContent extends Component {
   };
 
   renderCreateButton = () => {
+    const { subjectID, topicID } = this.props.match.params;
     if (this.props.user.isAdmin) {
       return (
         <Link
-          to={`/materials/content/${this.props.match.params.id}/marking_scheme/new`}
+          to={`/subjects/${subjectID}/topics/${topicID}/marking_scheme/new`}
           className="ui green button"
         >
           <i className="plus icon"></i>
@@ -60,6 +63,7 @@ class MarkingSchemeContent extends Component {
   };
 
   render() {
+    const { subjectID, topicID, contentID } = this.props.match.params;
     switch (this.props.markingScheme) {
       case null:
         return <PlaceHolder />;
@@ -68,7 +72,9 @@ class MarkingSchemeContent extends Component {
           <React.Fragment>
             <SecondaryMenu
               active="marking_scheme"
-              materialID={this.props.match.params.id}
+              subjectID={subjectID}
+              topicID={topicID}
+              contentID={contentID}
             />
             <NoContent
               text="No Marking Guides..."
@@ -78,15 +84,15 @@ class MarkingSchemeContent extends Component {
           </React.Fragment>
         );
       default:
-        if (
-          this.props.markingScheme.materialID === this.props.match.params.id
-        ) {
+        if (this.props.markingScheme.topic === topicID) {
           const { fileURL } = this.props.markingScheme;
           return (
             <React.Fragment>
               <SecondaryMenu
                 active="marking_scheme"
-                materialID={this.props.match.params.id}
+                subjectID={subjectID}
+                topicID={topicID}
+                contentID={contentID}
               />
               {this.renderAuthButtons()}
               <DocumentViewer fileURL={fileURL} />

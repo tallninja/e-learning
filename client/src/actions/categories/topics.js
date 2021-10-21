@@ -2,83 +2,83 @@ import axios from "axios";
 import history from "../../history";
 
 import {
-  FETCH_ALL_MATERIALS,
-  CREATE_MATERIAL,
-  DELETE_MATERIAL,
-  EDIT_MATERIAL,
-  FETCH_MATERIAL,
-  FETCH_MATERIALS,
+  FETCH_ALL_TOPICS,
+  CREATE_TOPIC,
+  DELETE_TOPIC,
+  EDIT_TOPIC,
+  FETCH_TOPIC,
+  FETCH_TOPICS,
 } from "../types";
 
-// fetch all materials
-export const fetchAllMaterials = (subject, page) => async (dispatch) => {
-  const res = await axios.get("/api/materials/all", {
+// fetch all topics
+export const fetchAllTopics = (subject, page) => async (dispatch) => {
+  const res = await axios.get("/api/topics/all", {
     params: {
       page: page,
       subject: subject,
     },
   });
   dispatch({
-    type: FETCH_ALL_MATERIALS,
+    type: FETCH_ALL_TOPICS,
     payload: res.data,
   });
 };
 
-// create a material
-export const createMaterial = (material) => async (dispatch) => {
-  const res = await axios.post("/api/materials", material);
-  history.push(`/materials/${material.subject}/all`);
+// create a topic
+export const createTopic = (topic) => async (dispatch) => {
+  const res = await axios.post("/api/topics", topic);
+  history.push(`/subjects/${topic.subject}`);
   dispatch({
-    type: CREATE_MATERIAL,
+    type: CREATE_TOPIC,
     payload: res.data,
   });
 };
 
-// fetch all the user's materials
-export const fetchMaterials = () => async (dispatch) => {
-  const res = await axios.get("/api/materials");
+// fetch all the user's topics
+export const fetchTopics = () => async (dispatch) => {
+  const res = await axios.get("/api/topics");
   dispatch({
-    type: FETCH_MATERIALS,
+    type: FETCH_TOPICS,
     payload: res.data || "",
   });
 };
 
-// fetch a single material
-export const fetchMaterial = (id) => async (dispatch) => {
-  const res = await axios.get("/api/materials/item", {
+// fetch a single topic
+export const fetchTopic = (id) => async (dispatch) => {
+  const res = await axios.get("/api/topics/item", {
     params: {
       id: id,
     },
   });
   dispatch({
-    type: FETCH_MATERIAL,
+    type: FETCH_TOPIC,
     payload: res.data || "",
   });
 };
 
-// edit a material
-export const editMaterial = (id, data) => async (dispatch) => {
-  const res = await axios.patch("/api/materials", data, {
+// edit a topic
+export const editTopic = (id, data) => async (dispatch) => {
+  const res = await axios.patch("/api/topics", data, {
     params: {
       id: id,
     },
   });
-  history.push(`/materials/${data.subject}/all`);
+  history.push(`/subjects/${data.subject}`);
   dispatch({
-    type: EDIT_MATERIAL,
+    type: EDIT_TOPIC,
     payload: res.data,
   });
 };
 
-// delete a material
-export const deleteMaterial = (id) => async (dispatch) => {
-  const res = await axios.delete("/api/materials", {
+// delete a topic
+export const deleteTopic = (id) => async (dispatch) => {
+  const res = await axios.delete("/api/topics", {
     params: {
       id: id,
     },
   });
   dispatch({
-    type: DELETE_MATERIAL,
+    type: DELETE_TOPIC,
     payload: res.data,
   });
 };

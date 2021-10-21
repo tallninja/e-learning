@@ -22,6 +22,7 @@ class EditVideo extends Component {
   };
 
   renderContent = () => {
+    const { subjectID, topicID, contentID } = this.props.match.params;
     if (this.props.video.item) {
       const { _id, ytVideoURL } = this.props.video.item;
       if (this.state.showReviewForm) {
@@ -31,8 +32,7 @@ class EditVideo extends Component {
             form={this.props.form}
             action={() => {
               const data = this.props.form.videoForm.values;
-              data.materialID = this.props.match.params.id;
-              this.props.editVideo(_id, data);
+              this.props.editVideo({ contentID, data, subjectID, topicID });
             }}
             icon="save icon"
             buttonText="Save Changes"

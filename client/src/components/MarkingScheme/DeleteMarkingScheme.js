@@ -7,22 +7,21 @@ import history from "../../history";
 
 class MarkingSchemeDelete extends Component {
   componentDidMount = () => {
-    this.props.fetchMarkingScheme(this.props.match.params.id);
+    this.props.fetchMarkingScheme(this.props.match.params.topicID);
   };
 
   render() {
+    const { subjectID, topicID, contentID } = this.props.match.params;
     const actions = (
       <React.Fragment>
         <button
           className="ui red button"
           onClick={() => {
-            this.props.deleteMarkingScheme(
-              this.props.markingScheme._id,
-              this.props.match.params.id
-            );
-            history.push(
-              `/materials/content/${this.props.match.params.id}/marking_scheme`
-            );
+            this.props.deleteMarkingScheme({
+              subjectID,
+              topicID,
+              contentID,
+            });
           }}
         >
           <i className="ui icon trash" />
@@ -33,7 +32,7 @@ class MarkingSchemeDelete extends Component {
           className="ui button"
           onClick={() =>
             history.push(
-              `/materials/content/${this.props.match.params.id}/marking_scheme`
+              `/subjects/${subjectID}/topics/${topicID}/marking_scheme`
             )
           }
         >
@@ -52,7 +51,7 @@ class MarkingSchemeDelete extends Component {
             actions={actions}
             onDismiss={() =>
               history.push(
-                `/materials/content/${this.props.match.params.id}/marking_scheme`
+                `/subjects/${subjectID}/topics/${topicID}/marking_scheme`
               )
             }
           />

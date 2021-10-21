@@ -10,12 +10,11 @@ import NotesReview from "./NotesReview";
 class CreateNotes extends Component {
   constructor(props) {
     super(props);
-
     this.state = { showReviewForm: false };
   }
 
   componentDidMount = () => {
-    this.props.fetchMaterial(this.props.match.params.id);
+    this.props.fetchTopic(this.props.match.params.topicID);
   };
 
   handleSubmit = () => {
@@ -23,13 +22,11 @@ class CreateNotes extends Component {
   };
 
   render() {
+    const { subjectID, topicID } = this.props.match.params;
     if (!this.state.showReviewForm) {
       return (
         <div>
-          <NotesForm
-            onSubmit={this.handleSubmit}
-            material={this.props.material}
-          />
+          <NotesForm onSubmit={this.handleSubmit} topic={this.props.topic} />
         </div>
       );
     } else {
@@ -39,10 +36,12 @@ class CreateNotes extends Component {
           form={this.props.form}
           fileURL={this.props.fileURL}
           action={() => {
-            const notes = {};
-            notes.fileURL = this.props.fileURL;
-            notes.materialID = this.props.match.params.id;
-            notes.fileName = this.props.fileURL.split("/").slice(-1)[0];
+            const notes = {
+              subject: subjectID,
+              topic: topicID,
+              fileURL: this.props.fileURL,
+              fileName: this.props.fileURL.split("/").slice(-1)[0],
+            };
             this.props.createNotes(notes);
           }}
           icon="paper plane icon"
@@ -53,8 +52,8 @@ class CreateNotes extends Component {
   }
 }
 
-const mapStateToProps = ({ form, fileURL, materials: { material } }) => {
-  return { form, fileURL, material };
+const mapStateToProps = ({ form, fileURL, topics: { topic } }) => {
+  return { form, fileURL, topic };
 };
 
 export default withRouter(connect(mapStateToProps, actions)(CreateNotes));

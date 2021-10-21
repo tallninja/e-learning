@@ -1,6 +1,4 @@
 module.exports = (router, requireLogin, requireAdmin, Topic) => {
-  const requireAdmin = require("../middlewares/requireAdmin");
-
   // get all topics
   const getTopics = require("../controllers/topics/getTopics");
   router.get("/topics/all", async (req, res) => getTopics(req, res, Topic));

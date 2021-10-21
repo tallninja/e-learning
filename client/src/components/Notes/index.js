@@ -11,23 +11,25 @@ import DocumentViewer from "../DocumentViewer";
 
 class Notes extends Component {
   componentDidMount = () => {
-    this.props.fetchNotes(this.props.match.params.id);
+    this.props.fetchNotes(this.props.match.params.topicID);
   };
 
   renderAuthButtons = () => {
+    const { subjectID, topicID } = this.props.match.params;
+    const contentID = this.props.notes._id;
     if (this.props.user) {
       if (this.props.user.isAdmin) {
         return (
           <div className="ui two top attached buttons">
             <Link
-              to={`/materials/content/${this.props.match.params.id}/notes/edit`}
+              to={`/subjects/${subjectID}/topics/${topicID}/notes/${contentID}/edit`}
               className="ui teal button"
             >
               <i className="edit icon"></i>
               Edit
             </Link>
             <Link
-              to={`/materials/content/${this.props.match.params.id}/notes/delete`}
+              to={`/subjects/${subjectID}/topics/${topicID}/notes/${contentID}/delete`}
               className="ui orange button"
             >
               <i className="trash icon"></i>
@@ -44,10 +46,11 @@ class Notes extends Component {
   };
 
   renderCreateButton = () => {
+    const { subjectID, topicID } = this.props.match.params;
     if (this.props.user.isAdmin) {
       return (
         <Link
-          to={`/materials/content/${this.props.match.params.id}/notes/new`}
+          to={`/subjects/${subjectID}/topics/${topicID}/notes/new`}
           className="ui green button"
         >
           <i className="plus icon"></i>
@@ -60,6 +63,7 @@ class Notes extends Component {
   };
 
   render() {
+    const { subjectID, topicID } = this.props.match.params;
     switch (this.props.notes) {
       case null:
         return <PlaceHolder />;
@@ -68,7 +72,9 @@ class Notes extends Component {
           <React.Fragment>
             <SecondaryMenu
               active="notes"
-              materialID={this.props.match.params.id}
+              subjectID={subjectID}
+              topicID={topicID}
+              contentID={this.props.notes._id}
             />
             <NoContent
               text="No Notes..."
@@ -78,13 +84,16 @@ class Notes extends Component {
           </React.Fragment>
         );
       default:
-        if (this.props.notes.materialID === this.props.match.params.id) {
+        if (this.props.notes.topic === topicID) {
           const { fileURL } = this.props.notes;
+          const contentID = this.props.notes._id;
           return (
             <React.Fragment>
               <SecondaryMenu
                 active="notes"
-                materialID={this.props.match.params.id}
+                subjectID={subjectID}
+                topicID={topicID}
+                contentID={contentID}
               />
               {this.renderAuthButtons()}
               <DocumentViewer fileURL={fileURL} />

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-// import TinyEditor from "../materials/TinyEditor";
+// import TinyEditor from "../topics/TinyEditor";
 // import formValidator from "../../utils/formValidator";
 
 import * as actions from "../../actions";
@@ -12,12 +12,13 @@ import NoContent from "../NoContent";
 
 class RevisionQuestionsForm extends Component {
   componentDidMount = () => {
-    this.props.fetchMaterial(this.props.match.params.id);
+    this.props.fetchTopic(this.props.match.params.topicID);
   };
 
   render() {
-    if (this.props.material) {
-      const { subject, title } = this.props.material;
+    const { subjectID, topicID } = this.props.match.params;
+    if (this.props.topic) {
+      const { subject, title } = this.props.topic;
 
       return (
         <div>
@@ -28,7 +29,7 @@ class RevisionQuestionsForm extends Component {
             fileSubject={subject}
             fileTopic={title}
             fileCategory="revision-questions"
-            backLink={`/materials/content/${this.props.match.params.id}/notes`}
+            backLink={`/subjects/${subjectID}/topics/${topicID}/notes`}
             onFormSubmit={this.props.onSubmit}
           />
         </div>
@@ -39,8 +40,8 @@ class RevisionQuestionsForm extends Component {
   }
 }
 
-const mapStateToProps = ({ materials }) => {
-  return { material: materials.material };
+const mapStateToProps = ({ topics }) => {
+  return { topic: topics.topic };
 };
 
 export default withRouter(

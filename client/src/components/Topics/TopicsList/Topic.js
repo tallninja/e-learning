@@ -12,7 +12,7 @@ class Topic extends Component {
             <div className="right floated content">
               <Link
                 className="ui red button"
-                to={`/materials/delete/${this.props.id}`}
+                to={`/subjects/${this.props.subjectID}/topics/${this.props.topicID}/delete`}
               >
                 <i className="trash icon"></i>Delete
               </Link>
@@ -20,7 +20,7 @@ class Topic extends Component {
             <div className="right floated content">
               <Link
                 className="ui yellow button"
-                to={`/materials/edit/${this.props.id}`}
+                to={`/subjects/${this.props.subjectID}/topics/${this.props.topicID}/edit`}
               >
                 <i className="edit icon"></i>Edit
               </Link>
@@ -41,7 +41,7 @@ class Topic extends Component {
         {this.renderAuthButtons()}
 
         <Link
-          to={`/materials/content/${this.props.id}/notes`}
+          to={`/subjects/${this.props.subjectID}/topics/${this.props.topicID}/notes`}
           className="header"
         >
           {` ${this.props.title}`}

@@ -15,7 +15,7 @@ class CreateMarkingScheme extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchMaterial(this.props.match.params.id);
+    this.props.fetchTopic(this.props.match.params.topicID);
   };
 
   handleSubmit = () => {
@@ -23,13 +23,14 @@ class CreateMarkingScheme extends Component {
   };
 
   render() {
+    const { subjectID, topicID } = this.props.match.params;
     if (!this.state.showReviewForm) {
       return (
         <div>
           <h2>Create Marking Scheme</h2>
           <MarkingSchemeForm
             onSubmit={this.handleSubmit}
-            material={this.props.material}
+            topic={this.props.topic}
           />
         </div>
       );
@@ -40,10 +41,12 @@ class CreateMarkingScheme extends Component {
           form={this.props.form}
           fileURL={this.props.fileURL}
           action={() => {
-            const markingScheme = {};
-            markingScheme.fileURL = this.props.fileURL;
-            markingScheme.materialID = this.props.match.params.id;
-            markingScheme.fileName = this.props.fileURL.split("/").slice(-1)[0];
+            const markingScheme = {
+              subject: subjectID,
+              topic: topicID,
+              fileURL: this.props.fileURL,
+              fileName: this.props.fileURL.split("/").slice(-1)[0],
+            };
             this.props.createMarkingScheme(markingScheme);
           }}
           icon="paper plane icon"
@@ -54,8 +57,8 @@ class CreateMarkingScheme extends Component {
   }
 }
 
-const mapStateToProps = ({ form, fileURL, materials: { material } }) => {
-  return { form, fileURL, material };
+const mapStateToProps = ({ form, fileURL, topics: { topic } }) => {
+  return { form, fileURL, topic };
 };
 
 export default withRouter(

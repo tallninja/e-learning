@@ -1,8 +1,8 @@
 module.exports = async (req, res, MarkingScheme) => {
-  const { id, fileURL } = req.body;
+  const { fileURL } = req.body;
   await MarkingScheme.updateOne(
     {
-      _id: id,
+      _id: req.query.id,
     },
     {
       fileURL: fileURL,
