@@ -1,8 +1,10 @@
 module.exports = async (req, res, Video) => {
-  const { materialID, ytVideoURL } = req.body;
+  const { form, subject, topic, ytVideoURL } = req.body;
   await new Video({
-    materialID: materialID,
-    ytVideoURL: ytVideoURL,
+    form,
+    subject,
+    topic,
+    ytVideoURL,
   }).save((err) => {
     if (err) {
       res.status(500).json({ error: "Error saving video !" });

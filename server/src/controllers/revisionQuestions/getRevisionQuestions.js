@@ -1,5 +1,5 @@
 module.exports = async (req, res, RevisionQuestions) => {
-  await RevisionQuestions.findOne({ materialID: req.query.materialID }).exec(
+  await RevisionQuestions.findOne({ topic: req.query.topicID }).exec(
     (err, revisionQuestions) => {
       if (err) {
         res

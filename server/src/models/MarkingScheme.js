@@ -3,7 +3,9 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const MarkingSchemeSchema = new Schema({
-  materialID: { type: Schema.Types.ObjectId, ref: "materials" },
+  form: Number,
+  subject: { type: Schema.Types.ObjectId, ref: "subjects" },
+  topic: { type: Schema.Types.ObjectId, ref: "topics" },
   fileURL: String,
   fileName: String,
 });

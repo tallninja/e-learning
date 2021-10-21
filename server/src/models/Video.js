@@ -1,7 +1,9 @@
 const { model, Schema } = require("mongoose");
 
 const videoSchema = new Schema({
-  materialID: { type: Schema.Types.ObjectId, ref: "materials" },
+  form: Number,
+  subject: { type: Schema.Types.ObjectId, ref: "subjects" },
+  topic: { type: Schema.Types.ObjectId, ref: "topics" },
   ytVideoURL: String,
 });
 
