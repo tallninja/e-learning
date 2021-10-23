@@ -6,7 +6,6 @@ class Hero extends Component {
       <div className="ui container">
         <img
           src={`${process.env.PUBLIC_URL}/images/learning.svg`}
-          alt="Image"
           style={{ backgroundSize: "auto" }}
         ></img>
       </div>

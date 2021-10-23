@@ -1,12 +1,9 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import * as actions from "../../actions";
 
-import NoContent from "../NoContent";
-import PlaceHolder from "../PlaceHolder";
 import subjectsDict from "../../constants/subjects.json";
 import Search from "../Search";
 
@@ -14,7 +11,7 @@ import colors from "../../constants/colors.json";
 import SubjectsList from "../SubjectsList";
 
 class Landing extends Component {
-  state = { searchTerm: "", filteredSubjects: this.props.subjects };
+  state = { searchTerm: "", filteredSubjects: [] };
 
   componentDidMount = () => {
     this.props.fetchSubjects(1);
@@ -30,32 +27,6 @@ class Landing extends Component {
       );
     } else {
       return null;
-    }
-  };
-
-  renderSubjects = () => {
-    switch (this.props.subjects) {
-      case false:
-        return (
-          <React.Fragment>
-            <NoContent
-              text="No Subjects..."
-              icon="eye slash"
-              renderCreateButton={() => this.renderCreateButton()}
-            />
-          </React.Fragment>
-        );
-      case null:
-        return <PlaceHolder />;
-      default:
-        return (
-          <SubjectsList
-            subjects={this.state.filteredSubjects}
-            colors={colors}
-            user={this.props.user}
-            subjectsDict={subjectsDict}
-          />
-        );
     }
   };
 
@@ -77,7 +48,19 @@ class Landing extends Component {
     return (
       <>
         <Search action={(searchTerm) => this.searchSubjects(searchTerm)} />
-        <div>{this.renderSubjects(this.state.subjectsList)}</div>
+        <div>
+          <SubjectsList
+            subjects={
+              this.state.filteredSubjects == false
+                ? this.props.subjects
+                : this.state.filteredSubjects
+            }
+            colors={colors}
+            user={this.props.user}
+            subjectsDict={subjectsDict}
+            renderCreateButton={this.renderCreateButton}
+          />
+        </div>
         <div
           style={{ marginTop: "2%", display: "flex", justifyContent: "center" }}
         >
