@@ -32,7 +32,7 @@ class TopicCreate extends Component {
           form={this.props.form}
           action={() =>
             this.props.createTopic({
-              title: this.props.form.materialForm.values.title,
+              title: this.props.form.topicForm.values.title,
               subject: this.props.match.params.subjectID,
             })
           }

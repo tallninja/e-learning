@@ -5,14 +5,17 @@ import { Link } from "react-router-dom";
 
 import * as actions from "../../actions";
 
-import Card from "../Card/Card";
 import NoContent from "../NoContent";
 import PlaceHolder from "../PlaceHolder";
-import subjects from "../../constants/subjects.json";
+import subjectsDict from "../../constants/subjects.json";
+import Search from "../Search";
 
 import colors from "../../constants/colors.json";
+import SubjectsList from "../SubjectsList";
 
 class Landing extends Component {
+  state = { searchTerm: "", filteredSubjects: this.props.subjects };
+
   componentDidMount = () => {
     this.props.fetchSubjects(1);
   };
@@ -46,34 +49,35 @@ class Landing extends Component {
         return <PlaceHolder />;
       default:
         return (
-          <>
-            <div className="ui four stackable cards">
-              {_.map(this.props.subjects, (subject) => {
-                const { _id, name, imageURL } = subject;
-                const color =
-                  colors[Math.floor(Math.random() * colors.length) - 1];
-                return (
-                  <Card
-                    key={_id}
-                    id={_id}
-                    image={imageURL}
-                    subject={subject}
-                    verboseSubject={subjects[name]}
-                    color={color}
-                    user={this.props.user}
-                  />
-                );
-              })}
-            </div>
-          </>
+          <SubjectsList
+            subjects={this.state.filteredSubjects}
+            colors={colors}
+            user={this.props.user}
+            subjectsDict={subjectsDict}
+          />
         );
+    }
+  };
+
+  searchSubjects = (searchTerm) => {
+    if (searchTerm !== "") {
+      this.setState({ searchTerm });
+      let filteredSubjects = this.props.subjects.filter((subject) =>
+        subjectsDict[subject.name]
+          .toLowerCase()
+          .includes(this.state.searchTerm.toLowerCase())
+      );
+      this.setState({ filteredSubjects });
+    } else {
+      this.setState({ filteredSubjects: this.props.subjects });
     }
   };
 
   render() {
     return (
       <>
-        <div>{this.renderSubjects()}</div>
+        <Search action={(searchTerm) => this.searchSubjects(searchTerm)} />
+        <div>{this.renderSubjects(this.state.subjectsList)}</div>
         <div
           style={{ marginTop: "2%", display: "flex", justifyContent: "center" }}
         >

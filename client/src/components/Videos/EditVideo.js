@@ -24,7 +24,7 @@ class EditVideo extends Component {
   renderContent = () => {
     const { subjectID, topicID, contentID } = this.props.match.params;
     if (this.props.video.item) {
-      const { _id, ytVideoURL } = this.props.video.item;
+      const { ytVideoURL } = this.props.video.item;
       if (this.state.showReviewForm) {
         return (
           <VideoReview
