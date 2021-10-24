@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Search from "../Search";
 
 import * as actions from "../../actions";
 
@@ -11,7 +12,7 @@ import TopicsList from "../Topics/TopicsList";
 class Subject extends Component {
   constructor(props) {
     super(props);
-    this.state = { page: 1 };
+    this.state = { page: 1, searchTerm: "", filteredTopics: [] };
   }
 
   renderAuthButtons = () => {
@@ -35,9 +36,22 @@ class Subject extends Component {
     }
   };
 
+  searchTopics = (searchTerm) => {
+    if (searchTerm !== "") {
+      this.setState({ searchTerm });
+      let filteredTopics = this.props.subjectTopics.filter((topic) =>
+        topic.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+      );
+      this.setState({ filteredTopics });
+    } else {
+      this.setState({ filteredTopics: this.props.subjectTopics });
+    }
+  };
+
   render() {
     return (
-      <React.Fragment>
+      <>
+        <Search action={(searchTerm) => this.searchTopics(searchTerm)} />
         <TopicsList
           user={this.props.user}
           action={() =>
@@ -47,10 +61,14 @@ class Subject extends Component {
             )
           }
           subjectID={this.props.match.params.subjectID}
-          topics={this.props.subjectTopics}
+          topics={
+            this.state.filteredTopics.length === 0
+              ? this.props.subjectTopics
+              : this.state.filteredTopics
+          }
         />
         {this.renderAuthButtons()}
-      </React.Fragment>
+      </>
     );
   }
 }

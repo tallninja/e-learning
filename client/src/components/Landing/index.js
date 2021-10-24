@@ -51,7 +51,7 @@ class Landing extends Component {
         <div>
           <SubjectsList
             subjects={
-              this.state.filteredSubjects == false
+              this.state.filteredSubjects.length === 0
                 ? this.props.subjects
                 : this.state.filteredSubjects
             }
