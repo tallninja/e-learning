@@ -2,9 +2,9 @@ if (process.env.NODE_ENV === "production") {
   module.exports = {
     constants: {
       REGION: process.env.CDK_DEFAULT_REGION,
-      STACK_PREFIX: "kisomoview-file-upload",
+      STACK_PREFIX: process.env.AWS_STACK_PREFIX,
       DEPLOY_ENVIRONMENT: "prod",
-      ALLOWED_ORIGIN: "https://machakos.kisomoview.com",
+      ALLOWED_ORIGIN: process.env.AWS_ALLOWED_ORIGIN,
       API_PATH: "get-presigned-url",
     },
   };
