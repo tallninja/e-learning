@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import Spinner from "../../Spinner";
-
 class Topic extends Component {
   renderAuthButtons = () => {
     if (this.props.user) {
@@ -31,7 +29,7 @@ class Topic extends Component {
         return null;
       }
     } else {
-      return <Spinner />;
+      return null;
     }
   };
 
