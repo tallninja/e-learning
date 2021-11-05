@@ -3,3 +3,4 @@ dev.js
 dump
 cdk-exports-dev.json
 cdk.out
+cdk-exports-v2-dev.json

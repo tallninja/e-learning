@@ -10,9 +10,12 @@ export async function main(event) {
 
   try {
     if (
-      !event.queryStringParameters?.key ||
+      !event.queryStringParameters?.host ||
+      !event.queryStringParameters?.contentType ||
       !event.queryStringParameters?.fileType ||
-      !event.queryStringParameters?.contentLength ||
+      !event.queryStringParameters?.fileSubject ||
+      !event.queryStringParameters?.fileTopic ||
+      !event.queryStringParameters?.fileCategory ||
       !event.queryStringParameters?.fileName
     ) {
       throw new Error(
@@ -20,13 +23,23 @@ export async function main(event) {
       );
     }
 
-    const { key, fileType, contentLength, fileName } =
-      event.queryStringParameters;
+    const {
+      host,
+      contentType,
+      fileType,
+      fileSubject,
+      fileTopic,
+      fileCategory,
+      fileName,
+    } = event.queryStringParameters;
     // const fileName = uuid.v1();
     const presignedURL = await createPresignedURL({
-      key,
+      host,
+      contentType,
       fileType,
-      contentLength,
+      fileSubject,
+      fileTopic,
+      fileCategory,
       fileName,
     });
 
@@ -36,7 +49,9 @@ export async function main(event) {
       body: JSON.stringify({
         ...presignedURL,
         fileDetails: {
-          key,
+          fileSubject,
+          fileTopic,
+          fileCategory,
           fileName,
         },
       }),
@@ -56,20 +71,50 @@ export async function main(event) {
   }
 }
 
-export function createPresignedURL({ key, fileType, contentLength, fileName }) {
-  const params = {
-    Bucket: process.env.BUCKET_NAME,
-    Fields: {
-      key: key,
-      acl: "public-read",
-    },
-    Conditions: [
-      ["content-length-range", 0, contentLength * 1000000],
-      ["eq", "$Content-Type", fileType],
-    ],
-    Expires: 15,
+export function createPresignedURL({
+  host,
+  contentType,
+  fileType,
+  fileSubject,
+  fileTopic,
+  fileCategory,
+  fileName,
+}) {
+  const setParams = (contentLength, key) => {
+    const params = {
+      Bucket: process.env.BUCKET_NAME,
+      Fields: {
+        key: key,
+        acl: "public-read",
+      },
+      Conditions: [
+        ["content-length-range", 0, contentLength * 1000000],
+        ["eq", "$Content-Type", fileType],
+      ],
+      Expires: 15,
+    };
+    return params;
   };
 
   const s3 = new S3();
-  s3.createPresignedPost(params);
+
+  if (contentType === "document") {
+    const key = `${host}/${contentType}/${fileSubject}/${fileTopic}/${fileCategory}/${fileName}`;
+    const params = setParams(10, key); // 10MB
+    return s3.createPresignedPost(params);
+  } else if (contentType === "image") {
+    const key = `${host}/${contentType}/${fileSubject}/${fileName}`;
+    const params = setParams(2, key); // 2MB
+    return s3.createPresignedPost(params);
+  } else if (contentType === "video") {
+    const key = `${host}/${contentType}/${fileSubject}/${fileTopic}/${fileCategory}/${fileName}`;
+    const params = setParams(1000, key); // 1GB
+    return s3.createPresignedPost(params);
+  } else {
+    return {
+      url: contentType,
+      fields: "nothing",
+      message: "invalid content type",
+    };
+  }
 }

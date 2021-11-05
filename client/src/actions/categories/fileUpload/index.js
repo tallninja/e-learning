@@ -34,7 +34,9 @@ export const uploadFile =
     });
     formData.append("file", file);
 
-    console.log(url);
+    if (process.env.NODE_ENV !== "production") {
+      console.log(url);
+    }
 
     await axios.post(url, formData, {
       headers: {
