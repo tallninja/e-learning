@@ -4,7 +4,7 @@ if (process.env.NODE_ENV === "production") {
       REGION: "af-south-1",
       STACK_PREFIX: "kisomoview-file-upload-v2",
       DEPLOY_ENVIRONMENT: "prod",
-      ALLOWED_ORIGIN: "https://kisomoview-v2.herokuapp.com/",
+      ALLOWED_ORIGIN: "https://kisomoview-v2.herokuapp.com",
       API_PATH: "get-presigned-url",
     },
   };
