@@ -7,11 +7,7 @@ import NoContent from "../NoContent";
 class VideoMaterials extends Component {
   render = () => {
     if (this.props.videoURL) {
-      return (
-        <div className="ui container">
-          <VideoPlayer videoURL={this.props.videoURL} />
-        </div>
-      );
+      return <VideoPlayer videoURL={this.props.videoURL} />;
     } else {
       return <NoContent text="No videos..." icon="video" />;
     }

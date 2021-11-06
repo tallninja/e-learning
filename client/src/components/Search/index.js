@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Search extends Component {
   render() {
     return (
-      <div className="ui segment">
+      <div className="ui segment" style={{ marginBottom: 25 }}>
         <div className="ui container">
           <h3>Search</h3>
           <div className="ui fluid icon input">
